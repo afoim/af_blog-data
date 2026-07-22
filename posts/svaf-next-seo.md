@@ -2,7 +2,7 @@
 title: 纯前端 SPA 的 SEO 自救指南：我是如何让博客和论坛被百度谷歌乖乖收录的
 description: 众所周知，现在流行前后端分离，而 SPA 更是许多个人网站的首选。但 SPA 天生的 SEO 劣势（爬虫不执行 JS）让很多人头疼不已。这篇文章就来复盘一下，
   我（二叉树树）的网站是如何通过边缘 Worker + 路由级元数据 + 结构化数据 + 预渲染四管齐下，让搜索引擎和社交爬虫在 SPA 里也能畅游的。
-coverImage: /img/cover.png
+coverImage: /img/cover-svaf-next-seo.png
 date: 2026-07-22
 draft: false
 pin: false

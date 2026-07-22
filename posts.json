@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T01:58:48.968Z",
+  "generatedAt": "2026-07-22T02:02:32.437Z",
   "perPage": 30,
   "total": 158,
   "pageCount": 6,
@@ -20,7 +20,7 @@
       "title": "纯前端 SPA 的 SEO 自救指南：我是如何让博客和论坛被百度谷歌乖乖收录的",
       "description": "众所周知，现在流行前后端分离，而 SPA 更是许多个人网站的首选。但 SPA 天生的 SEO 劣势（爬虫不执行 JS）让很多人头疼不已。这篇文章就来复盘一下，",
       "published": "2026-07-22",
-      "image": "https://raw-posts.2x.nz/img/cover.png",
+      "image": "https://raw-posts.2x.nz/img/cover-svaf-next-seo.png",
       "pinned": false,
       "draft": false,
       "hide": false,
