@@ -98,7 +98,27 @@ return rewriter.transform(assetRes);
 
 这就意味着非 JS 爬虫在访问文章页时，直接就能拿到包含完整正文的 HTML。而浏览器端 React 挂载时，`createRoot().render()` 会直接替换掉预渲染的内容，不存在 hydration 冲突——因为 SPA 本身就是 CSR，不是 SSR。
 
-效果？Google 搜索 "二叉树树" 或者某篇文章标题，搜索结果里能直接看到正文片段，排名也明显比纯 JS 渲染时要好很多。
+效果？来看看实际搜索结果就知道了。
+
+Google 搜索 "二叉树树"，首页第一就是本站，正文片段也能正常展示：
+
+![Google 搜索 "二叉树树" 结果](/img/search-google.jpg)
+
+百度同样有很好的收录表现：
+
+![百度搜索 "二叉树树" 结果](/img/search-baidu.jpg)
+
+Bing 也没落下，同样排名靠前：
+
+![Bing 搜索 "二叉树树" 结果](/img/search-bing.jpg)
+
+更让人惊喜的是，这套 SEO 方案不只让网站名称能搜到，一些技术关键词也有不错的权重。比如搜索 "Cloudflare优选"，在 Google 和 Bing 上本站同样位列前排：
+
+![Google 搜索 "Cloudflare优选" 结果](/img/search-google-cf.jpg)
+
+![Bing 搜索 "Cloudflare优选" 结果](/img/search-bing-cf.jpg)
+
+这就是边缘 Worker + 路由元数据 + 预渲染 + 结构化数据四管齐下的成果。
 
 而对于 `/posts` 列表页，Worker 也会生成一个简单的文章链接列表注入 `#root`，方便爬虫发现所有文章入口：
 

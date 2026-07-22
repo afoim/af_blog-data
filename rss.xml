@@ -77,7 +77,17 @@ return rewriter.transform(assetRes);
 <li>把渲染后的 HTML 注入到 <code>&lt;div id=&quot;root&quot;&gt;</code> 中</li>
 </ol>
 <p>这就意味着非 JS 爬虫在访问文章页时，直接就能拿到包含完整正文的 HTML。而浏览器端 React 挂载时，<code>createRoot().render()</code> 会直接替换掉预渲染的内容，不存在 hydration 冲突——因为 SPA 本身就是 CSR，不是 SSR。</p>
-<p>效果？Google 搜索 &quot;二叉树树&quot; 或者某篇文章标题，搜索结果里能直接看到正文片段，排名也明显比纯 JS 渲染时要好很多。</p>
+<p>效果？来看看实际搜索结果就知道了。</p>
+<p>Google 搜索 &quot;二叉树树&quot;，首页第一就是本站，正文片段也能正常展示：</p>
+<p><img src="https://raw-posts.2x.nz/img/search-google.jpg" alt="Google 搜索 &quot;二叉树树&quot; 结果" /></p>
+<p>百度同样有很好的收录表现：</p>
+<p><img src="https://raw-posts.2x.nz/img/search-baidu.jpg" alt="百度搜索 &quot;二叉树树&quot; 结果" /></p>
+<p>Bing 也没落下，同样排名靠前：</p>
+<p><img src="https://raw-posts.2x.nz/img/search-bing.jpg" alt="Bing 搜索 &quot;二叉树树&quot; 结果" /></p>
+<p>更让人惊喜的是，这套 SEO 方案不只让网站名称能搜到，一些技术关键词也有不错的权重。比如搜索 &quot;Cloudflare优选&quot;，在 Google 和 Bing 上本站同样位列前排：</p>
+<p><img src="https://raw-posts.2x.nz/img/search-google-cf.jpg" alt="Google 搜索 &quot;Cloudflare优选&quot; 结果" /></p>
+<p><img src="https://raw-posts.2x.nz/img/search-bing-cf.jpg" alt="Bing 搜索 &quot;Cloudflare优选&quot; 结果" /></p>
+<p>这就是边缘 Worker + 路由元数据 + 预渲染 + 结构化数据四管齐下的成果。</p>
 <p>而对于 <code>/posts</code> 列表页，Worker 也会生成一个简单的文章链接列表注入 <code>#root</code>，方便爬虫发现所有文章入口：</p>
 <pre><code class="language-html">&lt;h1&gt;博客文章&lt;/h1&gt;&lt;ul&gt;
   &lt;li&gt;&lt;time&gt;2026-07-17&lt;/time&gt;&lt;a href=&quot;/posts/micro-blog-service&quot;&gt;整个博客非得塞到网站源码吗？...&lt;/a&gt;&lt;/li&gt;
