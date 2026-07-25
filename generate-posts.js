@@ -423,7 +423,7 @@ function buildPostSeoHtml(post, bodyHtml) {
   h.push('<script type="application/ld+json">' + jsonLd + "</script>");
   h.push("</head>");
   h.push("<body>");
-  h.push('<nav><a href="/seo/posts">← 博客文章</a></nav>');
+  h.push('<nav><a href="/posts">← 博客文章</a></nav>');
   h.push("<article>");
   h.push("<h1>" + escapeXml(post.title) + "</h1>");
   h.push(bodyHtml);
@@ -433,7 +433,7 @@ function buildPostSeoHtml(post, bodyHtml) {
   return h.join("\n") + "\n";
 }
 
-/** SEO 文章列表页（爬虫抓取入口，链接指向同树 /seo/posts/<slug>） */
+/** SEO 文章列表页（爬虫抓取入口，链接指向公开路径 /posts/<slug>） */
 function buildListSeoHtml(list) {
   var listUrl = MAIN_URL + "/posts";
   var items = list
@@ -444,7 +444,7 @@ function buildListSeoHtml(list) {
       return (
         "<li>" +
         date +
-        '<a href="/seo/posts/' +
+        '<a href="/posts/' +
         encodeURIComponent(p.slug) +
         '">' +
         escapeXml(p.title) +
