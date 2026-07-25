@@ -344,6 +344,16 @@ return new Response(upstream.body, {
 <p>天才啊！我们想到的所有方法和所有模块都被复用到了，让它重定向到我们新的 query 的形式（注意，根据部署平台，可能需要显式指定404行为）。</p>
 <h3>访问量上报</h3>
 <p>和Giscus一致，改为读 <code>og:title</code> 上报即可</p>
+<h3>相对链接叛逃到后端</h3>
+<p>本以为万事大吉，结果最近又踩了一个坑。前面不是说了嘛，我们的预构建脚本会把文章里的资源路径改写成绝对地址——比如以 <code>/img</code> 开头的图片路径，会被前缀成后端域名。图片这么搞完全没问题，因为图片本来就存在后端。</p>
+<p>但脚本有点“用力过猛”：它把正文里<strong>所有</strong>根相对链接（也就是以 <code>/</code> 开头的链接）统统前缀成了后端地址。图片没事，可要是我在文章里写了一个站内跳转，指向另一篇文章（<code>/posts/xxx</code> 这种根相对链接），它就会被改写成后端的裸地址 <code>raw-posts.2x.nz/posts/xxx</code>。</p>
+<p>这就又回到了我们讲 RSS 时提到的那个尴尬场面：用户满心欢喜点进去，结果落到的是后端那个只吐裸 Markdown 的地址，没有任何前端渲染，一脸懵。</p>
+<p>治本当然是去改预构建脚本，让它只对图片资源做前缀，站内链接要么保持相对、要么前缀成前端域名 <code>2x.nz</code>。不过我这次偷了个懒，用 Cloudflare 的重定向规则做了个兜底：只要是<strong>浏览器</strong>访问后端的 <code>/posts/*</code>（且不是 <code>.md</code> 结尾的原文请求），就 302 弹回前端的同名路径。</p>
+<p>匹配表达式长这样：</p>
+<pre><code>(http.host eq &quot;raw-posts.2x.nz&quot; and starts_with(http.request.uri.path, &quot;/posts/&quot;) and not ends_with(http.request.uri.path, &quot;.md&quot;) and http.user_agent contains &quot;Mozilla&quot;)
+</code></pre>
+<p>目标地址用动态表达式 <code>concat(&quot;https://2x.nz&quot;, http.request.uri.path)</code> 就行。</p>
+<p>这里最容易翻车的是那句 <code>not ends_with(..., &quot;.md&quot;)</code>：别忘了前端本身也是在浏览器里 <code>fetch</code> 后端的 <code>/posts/xxx.md</code> 来取正文的，这条请求同样带着浏览器 UA。要是不把 <code>.md</code> 排除掉，就会把前端取文章的请求也一起重定向了，文章直接加载失败——问就是我踩过。</p>
 <p>至此，所有工作才得以结束。你听懂了吗？</p>
 <p>OK，那么这期文章就到这里结束。如果有问题，欢迎留言，也欢迎加群。</p>
 ]]></content:encoded>
