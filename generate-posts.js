@@ -514,5 +514,5 @@ var sitemapXml =
   '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   sitemapUrls.join("\n") +
   "\n</urlset>\n";
-writeFileSync(join(__dirname, "dist", "seo", "posts", "sitemap.xml"), sitemapXml, "utf-8");
-console.log("Generated dist/seo/posts/sitemap.xml with " + visibleSorted.length + " post URLs");
+writeFileSync(join(__dirname, "dist", "sitemap-posts.xml"), sitemapXml, "utf-8");
+console.log("Generated dist/sitemap-posts.xml with " + visibleSorted.length + " post URLs");
