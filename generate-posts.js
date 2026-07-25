@@ -260,7 +260,7 @@ function generateRssFeed(allPosts, allRawPosts) {
 
   for (var j = 0; j < visible.length; j++) {
     var post = visible[j];
-    var postUrl = RSS_URL + "posts/" + post.slug + "/";
+    var postUrl = RSS_URL + "posts/" + post.slug;
 
     // Convert Markdown body to HTML using marked
     var rawBody = bodyMap[post.slug] || "";
