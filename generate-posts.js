@@ -349,6 +349,8 @@ console.log("Copied posts.json + " + pageCount + " page files + rss.xml into dis
 var MAIN_URL = "https://2x.nz"; // 权威域名（用户真正访问的站点）
 var MAIN_NAME = "二叉树树";
 var DEFAULT_OG_IMAGE = MAIN_URL + "/files/img/official.png";
+// 站点/作者头像（与主站 siteConfig.bio.avatar、index.html favicon 同源；外链硬资源写绝对）
+var SITE_AVATAR = "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0";
 
 // 专供 SEO 页的 marked 渲染器：图片转绝对（硬资源），链接保持原样（相对不动）
 var seoRenderer = new marked.Renderer();
@@ -385,7 +387,7 @@ function buildPostSeoHtml(post, bodyHtml) {
     image: image, // 富媒体文章卡要求有图，无封面退回站点默认分享图
     keywords: post.tags && post.tags.length ? post.tags.join(",") : undefined,
     inLanguage: "zh-CN",
-    author: { "@type": "Person", name: "AcoFork", url: MAIN_URL },
+    author: { "@type": "Person", name: "AcoFork", url: MAIN_URL, image: SITE_AVATAR },
     mainEntityOfPage: pageUrl,
   };
   var jsonLd = JSON.stringify(ld).replace(/</g, "\\u003c");
@@ -395,6 +397,7 @@ function buildPostSeoHtml(post, bodyHtml) {
   h.push('<html lang="zh-CN">');
   h.push("<head>");
   h.push('<meta charset="utf-8" />');
+  h.push('<link rel="icon" href="' + escapeXml(SITE_AVATAR) + '" />');
   h.push("<title>" + seoTitle(post.title) + "</title>");
   h.push('<meta name="description" content="' + escapeXml(description) + '" />');
   h.push('<meta name="robots" content="index, follow" />');
@@ -454,6 +457,7 @@ function buildListSeoHtml(list) {
   h.push('<html lang="zh-CN">');
   h.push("<head>");
   h.push('<meta charset="utf-8" />');
+  h.push('<link rel="icon" href="' + escapeXml(SITE_AVATAR) + '" />');
   h.push("<title>" + seoTitle("博客文章") + "</title>");
   h.push('<meta name="description" content="' + escapeXml(SITE_DESC) + '" />');
   h.push('<meta name="robots" content="index, follow" />');
