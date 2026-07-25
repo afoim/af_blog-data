@@ -515,5 +515,4 @@ var sitemapXml =
   sitemapUrls.join("\n") +
   "\n</urlset>\n";
 writeFileSync(join(__dirname, "dist", "seo", "posts", "sitemap.xml"), sitemapXml, "utf-8");
-writeFileSync(join(__dirname, "dist", "posts", "sitemap.xml"), sitemapXml, "utf-8");
-console.log("Generated dist/seo/posts/sitemap.xml + dist/posts/sitemap.xml (" + visibleSorted.length + " URLs)");
+console.log("Generated dist/seo/posts/sitemap.xml with " + visibleSorted.length + " post URLs");
