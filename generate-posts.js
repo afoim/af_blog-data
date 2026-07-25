@@ -335,3 +335,161 @@ for (var dpg = 0; dpg < pageCount; dpg++) {
 }
 writeFileSync(join(__dirname, "dist", "rss.xml"), readFileSync(FEED_OUTPUT, "utf-8"), "utf-8");
 console.log("Copied posts.json + " + pageCount + " page files + rss.xml into dist/");
+
+// ---- SEO 静态预渲染页 (dist/seo/posts/<slug>.html) ----
+// 目的：把主仓边缘 Worker「给爬虫动态拼 HTML」的活挪到构建时。
+// 产物是零样式、零 JS 的纯语义 HTML，供 UA 重写规则把爬虫导流到
+// raw-posts.2x.nz/seo/posts/<slug> 直接取用，避免动态 Worker 请求计费。
+//
+// 路径策略（与主站约定一致）：
+//   - 图片等硬资源 → 绝对 URL（内容托管在 raw-posts.2x.nz）
+//   - 其余站内链接 → 相对路径（无域名，两域名下都可用）
+//   - canonical / og:url / JSON-LD 页面地址 → 硬指向权威域名 2x.nz（防收录分裂）
+// SEO 常量对齐主仓 src/lib/seo/route-meta.ts 与 worker/index.ts。
+var MAIN_URL = "https://2x.nz"; // 权威域名（用户真正访问的站点）
+var MAIN_NAME = "二叉树树";
+var DEFAULT_OG_IMAGE = MAIN_URL + "/files/img/official.png";
+
+// 专供 SEO 页的 marked 渲染器：图片转绝对（硬资源），链接保持原样（相对不动）
+var seoRenderer = new marked.Renderer();
+seoRenderer.image = function (tok) {
+  var href = tok.href ? absUrl(tok.href) : "";
+  var alt = tok.text || "";
+  return '<img src="' + href + '" alt="' + alt.replace(/"/g, "&quot;") + '" loading="lazy" />';
+};
+seoRenderer.link = function (tok) {
+  var href = tok.href || "";
+  return '<a href="' + href + '">' + tok.text + "</a>";
+};
+var Marked = require("marked").Marked;
+var seoMarked = new Marked({ renderer: seoRenderer, breaks: false, gfm: true });
+
+/** <title> 拼接：`标题 | 二叉树树`（对齐主仓 formatTitle） */
+function seoTitle(t) {
+  return escapeXml(t + " | " + MAIN_NAME);
+}
+
+/** 单篇文章的完整 SEO HTML 文档 */
+function buildPostSeoHtml(post, bodyHtml) {
+  var pageUrl = MAIN_URL + "/posts/" + encodeURIComponent(post.slug);
+  var description = post.description || post.title + " —— 来自二叉树树的博客文章。";
+  var image = post.image || DEFAULT_OG_IMAGE;
+  var fullTitle = post.title + " | " + MAIN_NAME;
+
+  var ld = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: description,
+    datePublished: post.published || undefined,
+    image: image, // 富媒体文章卡要求有图，无封面退回站点默认分享图
+    keywords: post.tags && post.tags.length ? post.tags.join(",") : undefined,
+    inLanguage: "zh-CN",
+    author: { "@type": "Person", name: "AcoFork", url: MAIN_URL },
+    mainEntityOfPage: pageUrl,
+  };
+  var jsonLd = JSON.stringify(ld).replace(/</g, "\\u003c");
+
+  var h = [];
+  h.push("<!doctype html>");
+  h.push('<html lang="zh-CN">');
+  h.push("<head>");
+  h.push('<meta charset="utf-8" />');
+  h.push("<title>" + seoTitle(post.title) + "</title>");
+  h.push('<meta name="description" content="' + escapeXml(description) + '" />');
+  h.push('<meta name="robots" content="index, follow" />');
+  h.push('<link rel="canonical" href="' + escapeXml(pageUrl) + '" />');
+  h.push('<meta property="og:site_name" content="' + escapeXml(MAIN_NAME) + '" />');
+  h.push('<meta property="og:title" content="' + escapeXml(fullTitle) + '" />');
+  h.push('<meta property="og:description" content="' + escapeXml(description) + '" />');
+  h.push('<meta property="og:url" content="' + escapeXml(pageUrl) + '" />');
+  h.push('<meta property="og:type" content="article" />');
+  h.push('<meta property="og:image" content="' + escapeXml(image) + '" />');
+  if (post.published) {
+    h.push('<meta property="article:published_time" content="' + escapeXml(post.published) + '" />');
+  }
+  if (Array.isArray(post.tags)) {
+    for (var t = 0; t < post.tags.length; t++) {
+      h.push('<meta property="article:tag" content="' + escapeXml(post.tags[t]) + '" />');
+    }
+  }
+  h.push('<meta name="twitter:card" content="summary_large_image" />');
+  h.push('<meta name="twitter:title" content="' + escapeXml(fullTitle) + '" />');
+  h.push('<meta name="twitter:description" content="' + escapeXml(description) + '" />');
+  h.push('<meta name="twitter:image" content="' + escapeXml(image) + '" />');
+  h.push('<script type="application/ld+json">' + jsonLd + "</script>");
+  h.push("</head>");
+  h.push("<body>");
+  h.push('<nav><a href="/seo/posts">← 博客文章</a></nav>');
+  h.push("<article>");
+  h.push("<h1>" + escapeXml(post.title) + "</h1>");
+  h.push(bodyHtml);
+  h.push("</article>");
+  h.push("</body>");
+  h.push("</html>");
+  return h.join("\n") + "\n";
+}
+
+/** SEO 文章列表页（爬虫抓取入口，链接指向同树 /seo/posts/<slug>） */
+function buildListSeoHtml(list) {
+  var listUrl = MAIN_URL + "/posts";
+  var items = list
+    .map(function (p) {
+      var date = /^\d{4}-\d{2}-\d{2}/.test(p.published)
+        ? '<time datetime="' + p.published.slice(0, 10) + '">' + p.published.slice(0, 10) + "</time> "
+        : "";
+      return (
+        "<li>" +
+        date +
+        '<a href="/seo/posts/' +
+        encodeURIComponent(p.slug) +
+        '">' +
+        escapeXml(p.title) +
+        "</a></li>"
+      );
+    })
+    .join("\n");
+  var h = [];
+  h.push("<!doctype html>");
+  h.push('<html lang="zh-CN">');
+  h.push("<head>");
+  h.push('<meta charset="utf-8" />');
+  h.push("<title>" + seoTitle("博客文章") + "</title>");
+  h.push('<meta name="description" content="' + escapeXml(SITE_DESC) + '" />');
+  h.push('<meta name="robots" content="index, follow" />');
+  h.push('<link rel="canonical" href="' + escapeXml(listUrl) + '" />');
+  h.push('<meta property="og:site_name" content="' + escapeXml(MAIN_NAME) + '" />');
+  h.push('<meta property="og:title" content="' + escapeXml("博客文章 | " + MAIN_NAME) + '" />');
+  h.push('<meta property="og:description" content="' + escapeXml(SITE_DESC) + '" />');
+  h.push('<meta property="og:url" content="' + escapeXml(listUrl) + '" />');
+  h.push('<meta property="og:type" content="website" />');
+  h.push('<meta property="og:image" content="' + escapeXml(DEFAULT_OG_IMAGE) + '" />');
+  h.push("</head>");
+  h.push("<body>");
+  h.push("<h1>博客文章</h1>");
+  h.push("<ul>");
+  h.push(items);
+  h.push("</ul>");
+  h.push("</body>");
+  h.push("</html>");
+  return h.join("\n") + "\n";
+}
+
+var SEO_OUT = join(__dirname, "dist", "seo", "posts");
+mkdirSync(SEO_OUT, { recursive: true });
+
+// slug → 去 frontmatter 后的正文（rawPosts 已按 LF 归一化并剥离 frontmatter）
+var seoBodyMap = {};
+for (var sb = 0; sb < rawPosts.length; sb++) {
+  seoBodyMap[rawPosts[sb].slug] = rawPosts[sb].body;
+}
+
+for (var vi = 0; vi < visibleSorted.length; vi++) {
+  var vpost = visibleSorted[vi];
+  var vbody = seoMarked.parse(seoBodyMap[vpost.slug] || "");
+  writeFileSync(join(SEO_OUT, vpost.slug + ".html"), buildPostSeoHtml(vpost, vbody), "utf-8");
+}
+writeFileSync(join(__dirname, "dist", "seo", "posts.html"), buildListSeoHtml(visibleSorted), "utf-8");
+console.log(
+  "Generated " + visibleSorted.length + " SEO pages into dist/seo/posts/ + list dist/seo/posts.html"
+);
