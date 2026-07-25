@@ -497,3 +497,22 @@ writeFileSync(join(__dirname, "dist", "seo", "posts.html"), buildListSeoHtml(vis
 console.log(
   "Generated " + visibleSorted.length + " SEO pages into dist/seo/posts/ + list dist/seo/posts.html"
 );
+
+// ---- 博客 sitemap 分片：URL 全部 canonical 指向主站 2x.nz ----
+// 由主站 sitemap 索引引用（/posts/sitemap.xml → 本文件），博客每次构建即刷新。
+var sitemapUrls = [];
+for (var si = 0; si < visibleSorted.length; si++) {
+  var spost = visibleSorted[si];
+  var sloc = MAIN_URL + "/posts/" + encodeURIComponent(spost.slug);
+  var slastmod =
+    spost.published && /^\d{4}-\d{2}-\d{2}/.test(spost.published)
+      ? "<lastmod>" + spost.published.slice(0, 10) + "</lastmod>"
+      : "";
+  sitemapUrls.push("  <url><loc>" + sloc + "</loc>" + slastmod + "</url>");
+}
+var sitemapXml =
+  '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  sitemapUrls.join("\n") +
+  "\n</urlset>\n";
+writeFileSync(join(__dirname, "dist", "sitemap-posts.xml"), sitemapXml, "utf-8");
+console.log("Generated dist/sitemap-posts.xml with " + visibleSorted.length + " post URLs");
