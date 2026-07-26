@@ -29,19 +29,33 @@ jobs:
           const path = ctx.path || '';
           const slug = path.replace(/\.md$/, '').split('/').pop();
 
-          // 直接从文件读取 frontmatter
+          // 直接从文件读取 frontmatter（支持 YAML 折叠续行：description 的第二行
+          // 以缩进开头，续接上一行，正则只抓第一行会把内容截断）
           let title = slug;
           let desc = '';
           try {
             const content = fs.readFileSync(path, 'utf8');
             const fm = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
             if (fm) {
-              const get = (key) => {
-                const m = fm[1].match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
-                return m ? m[1].replace(/^["']|["']$/g, '').trim() : '';
+              // 多行值提取：匹配 key: value 后接续的所有缩进行，用单空格拼接
+              const getMulti = (key) => {
+                const lines = fm[1].split('\n');
+                let started = false;
+                let parts = [];
+                for (const line of lines) {
+                  if (!started) {
+                    const m = line.match(new RegExp(`^${key}:\\s*(.*)$`));
+                    if (m) { started = true; parts.push(m[1]); }
+                  } else if (/^\s+\S/.test(line)) {
+                    parts.push(line.trim());
+                  } else {
+                    break;
+                  }
+                }
+                return parts.join(' ').replace(/^["']|["']$/g, '').trim();
               };
-              title = get('title') || slug;
-              desc = get('description') || '';
+              title = getMulti('title') || slug;
+              desc = getMulti('description') || '';
             }
           } catch (e) {
             // fallback to payload data
@@ -50,7 +64,7 @@ jobs:
           }
 
           const summary = desc || '博客更新';
-          const url = `https://feed.2x.nz/posts/${slug}/`;
+          const url = `https://2x.nz/posts/${slug}`;
 
           console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
           console.log('  文章广播推送');
