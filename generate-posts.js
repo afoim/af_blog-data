@@ -2,14 +2,16 @@
  * 从 posts/*.md 中提取 frontmatter，生成 posts.json
  * 供 svaf-next 获取文章列表
  */
-const { readdirSync, readFileSync, writeFileSync, mkdirSync } = require("fs");
+const { readdirSync, readFileSync, writeFileSync, mkdirSync, statSync } = require("fs");
 const { join } = require("path");
 const { marked } = require("marked");
 
 const POSTS_DIR = join(__dirname, "posts");
 const OUTPUT = join(__dirname, "posts.json");
 var FEED_OUTPUT = join(__dirname, "rss.xml");
-var SELF_URL = "https://2x.nz/rss.xml";
+// 订阅源的正式地址挂在 /posts 名下（源里只有博客文章，没有论坛内容）。
+// 站点侧 /rss.xml 保留为 301，老订阅者不会掉线。
+var SELF_URL = "https://2x.nz/posts/rss.xml";
 
 const SITE_URL = "https://raw-posts.2x.nz/";
 const SITE_TITLE = "博客 | 二叉树树";
@@ -231,9 +233,37 @@ const MIME_MAP = {
   ".bmp": "image/bmp",
 };
 
+/**
+ * 封面图的字节数。`<enclosure>` 按 RSS 2.0 规范必须同时带 url/length/type，
+ * 缺一个 Search Console 就报「缺少 XML 属性」。
+ *
+ * 图片就在本仓库 img/ 下，直接 stat 即可——不要退回去问 CDN：raw-posts 在
+ * Cloudflare 后面，缓存命中的响应既不返回 content-length，也不支持
+ * `Range: bytes=0-0`（直接回 200 而非 206），网络侧根本拿不到长度。
+ *
+ * 返回 0 表示查不到（外链图/文件缺失），调用方据此**整个跳过 enclosure**：
+ * 宁可没有，也不要输出一个非法的标签。
+ */
+function localImageSize(imageUrl) {
+  if (!imageUrl) return 0;
+  var base = SITE_URL.replace(/\/$/, "");
+  if (imageUrl.indexOf(base + "/") !== 0) return 0;
+  var rel = imageUrl.slice(base.length + 1);
+  try { rel = decodeURIComponent(rel); } catch (e) { /* 未编码的原样用 */ }
+  try {
+    var st = statSync(join(__dirname, rel));
+    return st.isFile() ? st.size : 0;
+  } catch (e) {
+    return 0;
+  }
+}
+
 /** Build an RSS 2.0 feed from the visible (non-draft, non-hidden) posts */
 function generateRssFeed(allPosts, allRawPosts) {
   var RSS_URL = "https://2x.nz/";
+  // 全量输出，不截断：RSS 只有文本、不含图片资源本身，体积可控。
+  // allPosts 是**按日期倒序**的那份（见文件上方的 posts.sort）。别改成
+  // visibleSorted —— 那份是「置顶优先」，会让老置顶帖占住订阅源的最前面。
   var visible = allPosts.filter(function (p) { return !p.draft && !p.hide; });
   var lastBuildDate =
     visible.length > 0 ? toRfc822Date(visible[0].published) : new Date().toUTCString();
@@ -293,8 +323,14 @@ function generateRssFeed(allPosts, allRawPosts) {
     if (post.image) {
       var ext = (post.image.toLowerCase().match(/\.\w+$/) || [""])[0];
       var mime = MIME_MAP[ext] || "image/jpeg";
-      lines.push('      <media:content url="' + absUrl(post.image) + '" type="' + mime + '" medium="image" />');
-      lines.push('      <media:thumbnail url="' + absUrl(post.image) + '" />');
+      var imageUrl = absUrl(post.image);
+      // enclosure 三个属性缺一不可，length 查不到就整条不输出
+      var imageSize = localImageSize(imageUrl);
+      if (imageSize > 0) {
+        lines.push('      <enclosure url="' + escapeXml(imageUrl) + '" type="' + mime + '" length="' + imageSize + '"/>');
+      }
+      lines.push('      <media:content url="' + escapeXml(imageUrl) + '" type="' + mime + '" medium="image" />');
+      lines.push('      <media:thumbnail url="' + escapeXml(imageUrl) + '" />');
     }
 
     // Categories / tags
