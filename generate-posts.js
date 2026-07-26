@@ -41,51 +41,85 @@ renderer.link = function (tok) {
 };
 marked.setOptions({ renderer: renderer, breaks: false, gfm: true });
 
-/** Parse YAML-like frontmatter into a map */
+/**
+ * Parse YAML-like frontmatter into a map
+ *
+ * **必须支持折叠续行**：Pages CMS 写回文章时会把长文本自动折成多行，
+ *
+ *     description: 前半句很长很长
+ *       后半句在缩进的续行里
+ *
+ * 早先的实现遇到 `key: value` 就把值定死、后面的缩进行既不匹配键值也不匹配
+ * 列表项，于是被静默丢掉 —— 结果就是 description 被截断到第一行，连带
+ * posts.json、RSS 的 <description>、SEO 页的 og:description 一起缺一截。
+ */
 function parseFrontmatter(fm) {
   const lines = fm.split("\n");
   const result = {};
-  let currentKey = null;
+  let listKey = null; // 正在累积列表项的键
   let currentList = [];
+  let scalarKey = null; // 正在累积折叠标量的键
+  let scalarParts = [];
+
+  const stripQuotes = (s) => s.replace(/^['"]|['"]$/g, "");
+  const flushScalar = () => {
+    if (scalarKey !== null) {
+      // YAML 折叠语义：续行之间用单个空格拼接
+      result[scalarKey] = stripQuotes(scalarParts.join(" ").trim());
+      scalarKey = null;
+      scalarParts = [];
+    }
+  };
+  const flushList = () => {
+    if (listKey !== null && currentList.length) {
+      result[listKey] = [...currentList];
+    }
+    listKey = null;
+    currentList = [];
+  };
 
   for (const line of lines) {
     // Key: value
     const kvMatch = line.match(/^(\w[\w_-]*):\s*(.*)$/);
     if (kvMatch) {
-      // Flush previous list
-      if (currentKey && currentList.length) {
-        result[currentKey] = [...currentList];
-        currentList = [];
-      }
-      currentKey = kvMatch[1];
+      flushScalar();
+      flushList();
+      const key = kvMatch[1];
       const val = kvMatch[2].trim();
       if (val === "") {
         // Could be a list starting next line
-        currentList = [];
+        listKey = key;
       } else if (val.startsWith("[")) {
         // Inline list: [a, b, c]
-        result[currentKey] = val
+        result[key] = val
           .slice(1, -1)
           .split(",")
-          .map((s) => s.trim().replace(/^['"]|['"]$/g, ""))
+          .map((s) => stripQuotes(s.trim()))
           .filter(Boolean);
-        currentKey = null;
       } else {
-        result[currentKey] = val.replace(/^['"]|['"]$/g, "");
-        currentKey = null;
+        // 先挂起：后面可能还有折叠续行
+        scalarKey = key;
+        scalarParts = [val];
       }
       continue;
     }
+
     // List item:  - value
     const liMatch = line.match(/^\s*-\s+(.*)$/);
-    if (liMatch && currentKey) {
-      currentList.push(liMatch[1].trim().replace(/^['"]|['"]$/g, ""));
+    if (liMatch && listKey !== null) {
+      flushScalar();
+      currentList.push(stripQuotes(liMatch[1].trim()));
+      continue;
+    }
+
+    // 折叠续行：缩进的非列表行，归属上一个标量键
+    if (scalarKey !== null && /^\s+\S/.test(line)) {
+      scalarParts.push(line.trim());
     }
   }
-  // Flush final list
-  if (currentKey && currentList.length) {
-    result[currentKey] = [...currentList];
-  }
+
+  flushScalar();
+  flushList();
 
   return result;
 }
