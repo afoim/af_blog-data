@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/concurrently-concurrently.png
 ---
-# 引言
+## 引言
 
 经常做全栈的小伙伴们都知道，写完后端看效果要dev，写完前端看效果也要dev，那么有没有一劳永逸的解决方案呢？
 
@@ -44,7 +44,7 @@ coverImage: /img/concurrently-concurrently.png
 
 它是一个能给前端 + 后端的 Dev 同时拉起来，这样，我们就同时得到了前后端的热重载，我们只需要专心的去改代码，网页会实时呈现效果
 
-# 正式开始
+## 正式开始
 
 首先，安装 concurrently 的 npm 包
 

@@ -14,7 +14,7 @@ tags:
 
 > [!CAUTION] 本文使用 DeepSeek-V4-Pro 编写。
 
-# 引言
+## 引言
 
 我在上篇文章[纯前端 SPA 的 SEO 自救指南](/posts/svaf-next-seo)里详细讲了一遍我是怎么靠边缘 Worker + 路由级元数据 + 结构化数据那套组合拳，让一个纯 SPA 网站在搜索引擎和社交爬虫面前装成传统多页网站的。这套方案跑了不到三天就被我放弃了——不是因为 SEO 效果不行，而是架构太复杂了。各种 Worker 路由叠在一起，你完全搞不清主站某个路径到底是主站本身提供的，还是被别的 Worker 路由截胡了；再加上回源规则的重写，这个路径到底是真的还是被改写过的，根本无从判断。Google 和百度确实收得挺好，分享卡片也正常展开——表面上看起来 SEO 问题解决了，但底下的复杂度已经失控。
 
@@ -27,7 +27,7 @@ tags:
 
 这篇文章就是这次迁移的完整记录。不吹不黑，把架构决策、踩过的坑、以及最终落地的运维方案都摊开来。
 
-# 为什么是 React Router 7，不是 Next.js，也不是 Astro？
+## 为什么是 React Router 7，不是 Next.js，也不是 Astro？
 
 这个问题在社区里被问烂了，但我确实认真比较过。
 
@@ -50,7 +50,7 @@ React Router 7 的 Framework Mode 是另一个极端：它就做一件事——*
 
 另外还有一个工程上的原因——**部署**。Next.js 需要 `next start`，那是一个完整的 Node 进程，而我需要控制 Express 的 `express.static` 细节（后面会讲）。RR7 就给了我一个标准的 `server.js`，我可以完全控制 Express 中间件的顺序和行为。
 
-# 架构总览：壳是 SSR，交互是岛
+## 架构总览：壳是 SSR，交互是岛
 
 整个网站的渲染策略可以概括为一句话：**静态壳走服务端渲染，动态交互做客户端岛**。
 
@@ -73,45 +73,45 @@ curl 页面 | grep 'div hidden id="S:'  # 应为 0
 
 **3. 客户端专用能力走 `useEffect`，不阻塞首屏。** watermark、convert、tier 这些工具页有十几处 canvas 调用，但它们全都在 `useEffect` 或事件回调里，SSR 完全跑得动。唯一保留整页 `ClientOnly` 的是 `/draw` 系列路由——canvas/WebGL 在组件顶层就有依赖，SSR 零收益。但 `meta()` 仍在服务端直出。
 
-# 禁用 JS 是硬指标：七个意料之外的坑
+## 禁用 JS 是硬指标：七个意料之外的坑
 
 「用户关掉 JavaScript 后看到什么」是我迁到 SSR 后的核心验收标准。不是「大部分可用」，是**必须可用**。下面是实际踩过的坑，按出坑难度从低到高排列。
 
-## 坑 1：`<Suspense>` 会杀死无 JS 页面
+### 坑 1：`<Suspense>` 会杀死无 JS 页面
 
 前面说过了，不再展开。一句话：**有 loader 数据的组件别包 Suspense。**
 
-## 坑 2：分页和筛选必须是真链接
+### 坑 2：分页和筛选必须是真链接
 
 论坛分页曾经是 `onClick` 按钮——点一下触发 `useState` 翻页。禁用 JS 时点了没反应，99 篇帖子里只有前 20 篇能被爬虫发现。改成 `<Link>` / `<Form method="get">` 后，有 JS 时走客户端导航、页面不重载，无 JS 时变成整页跳转——两边都不亏。
 
-## 坑 3：`<noscript>` 里放元素会导致水合失配
+### 坑 3：`<noscript>` 里放元素会导致水合失配
 
 这是 React 的一个已知问题（#418）：浏览器在 JS 开启时**不把 noscript 内容解析成 DOM**，React 却按元素去水合。必须用 `dangerouslySetInnerHTML`。我被这个坑绊倒过两次——一次是 Cookie 横幅，一次是论坛的分类兜底 UI。
 
-## 坑 4：`@iconify/react` 的 SSR 输出是空 `<span>`
+### 坑 4：`@iconify/react` 的 SSR 输出是空 `<span>`
 
 Iconify 的 React 组件在服务端只渲染一个空壳，真正的 SVG 数据是客户端运行时向 API 拉的。SSR 输出就是 `<span></span>`，客户端水合后从内部存储查图标——但服务端写入的内部存储和浏览器端不是同一个，必然水合失配。
 
 解法：`scripts/build-icon-subset.mjs` 在构建期扫描全站 `Icon` 组件的引用，把用到的图标预先抽出成静态 JSON。`Icon` 组件直接查表出 `<svg>`，不依赖运行时网络。**这个脚本随 `pnpm build` 自动重跑**，加新图标不需要手动维护。
 
-## 坑 5：`backdrop-filter` 会让 `fixed` 后代脱轨
+### 坑 5：`backdrop-filter` 会让 `fixed` 后代脱轨
 
 移动端的汉堡菜单是个 `<details>` 抽屉，原本用 `position:fixed` 定位到视口。但 header 带了 `backdrop-blur-md`，而 CSS 规范规定 `backdrop-filter` 会成为 fixed 后代的新包含块——抽屉被压进 56px 高的 header 里，实测面板整个塌掉。改成 `absolute` 相对 header 定位即可，因为 header 本身已是 `fixed inset-x-0`。
 
-## 坑 6：按需挂载重组件
+### 坑 6：按需挂载重组件
 
 `MermaidRenderer` 一挂载就 `import('mermaid')`（~150KB：mermaid.core + rough + purify + cytoscape……），而 159 篇文章里只有 6 篇含图表。此前无条件渲染让 96% 的读者白下这堆东西。
 
 现在改了双重门禁：路由层先检查 `html.includes('class="mermaid"')` 决定是否挂载组件，组件内再兜一层 `document.querySelector('.mermaid')`。单篇文章 JS 从 400KB / 50 请求降到 184KB / 30 请求。
 
-## 坑 7：DOMPurify 在 Node 里跑不了
+### 坑 7：DOMPurify 在 Node 里跑不了
 
 DOMPurify 依赖真实 DOM API，Node 里没有。SSR 之前，SPA 时代的净化全在浏览器端；SSR 之后，论坛帖子的正文由 loader 用 `renderMarkdown` 预渲染，如果净化这一步被跳过，用户投稿里的 `<script>` / `on*` 就会原样穿过。
 
 解法是 `app/lib/sanitize.server.ts`——用 jsdom 模拟 DOM，在上面跑 DOMPurify，与客户端逐字节等价。**不要自造标签白名单**，和客户端不一致会导致内容漂移。
 
-# 博客不绑在主项目里：为什么不做 SSG
+## 博客不绑在主项目里：为什么不做 SSG
 
 这一段值得单独拿出来讲，因为它决定了整个站点的内容获取策略。
 
@@ -158,7 +158,7 @@ GitHub Action deploy 完成
 
 同时 `rss.xml` 的 content-type 从 `application/rss+xml` 改成了 `application/xml`——因为前者浏览器不当可渲染 XML，直接摊成纯文本。对 RSS 阅读器两者都是合法类型，订阅的自动发现靠的是 `<link rel="alternate">` 标签的 `type` 属性，跟响应头没关系。顺带给 RSS 和 sitemap 各加了一份终端风 XSL 样式表，在浏览器里打开也能看到排版好的可读页面，而不是裸 XML。
 
-# 从边缘到 VPS：为什么选择自己托管
+## 从边缘到 VPS：为什么选择自己托管
 
 这次迁移表面上是 SPA → SSR，底层其实还有一个更大的转向：**从边缘函数 / 静态托管退回到自己管一台 VPS。**
 
@@ -187,7 +187,7 @@ VPS 的方案则相反：**一台机器的账单是固定的**，不管你一天
 
 所以这不是「VPS 比边缘函数好」的问题，是「固定成本 vs 弹性计费」的取舍。如果你的流量稳定、愿意做运维，选 VPS；如果你追求零运维、能承受账单波动，选边缘函数。
 
-# 近零停机部署
+## 近零停机部署
 
 部署到 VPS 这件事，社区里多数教程是 `rsync` + `pm2 restart`。但 SSR 应用有个特殊问题：**构建会清空 `build/client/assets`**，而旧进程仍然在发 HTML 引用那些被删掉的哈希文件名——构建的一两分钟里，访客会拿到 404 的 JS/CSS。
 
@@ -212,7 +212,7 @@ supervisorctl restart svaf-ssr:
 
 论坛后端更简单：`wrangler dev` 自带文件监听，改完源码保存即自动重建并热替换，**不需要重启进程**。实测 forum 进程 uptime 12 小时，期间经过了注册冷却逻辑、验证链接域名修复等多次改动，没有一次中断服务。
 
-# 防滥用体系
+## 防滥用体系
 
 SSR 让页面渲染不再依赖客户端 JS，但发邮件、注册、登录这些写操作仍然需要防滥用。本站靠的是三层：
 
@@ -224,13 +224,13 @@ SSR 让页面渲染不再依赖客户端 JS，但发邮件、注册、登录这�
 
 所有限流参数都在管理后台可配，填 `0` 即关闭该项。默认值取了中等档：注册/找回密码/换邮箱各 5 分钟冷却，登录 15 分钟窗口内最多失败 10 次。
 
-# 给 LLM 看的导航
+## 给 LLM 看的导航
 
 最后顺手加了个小东西：`/llms.txt`，按 llmstxt.org 的约定格式，给大语言模型看的站点导航。
 
 内容全部动态生成——博客文章读本地 `posts.json`、论坛帖子走 `127.0.0.1:8787` 实时查库，两者都随发文自动变化，零维护。正文里特意写明了 RSS 全文源的地址——对模型来说，一次抓 982KB 的 XML 比逐页翻 HTML 省事得多，这个细节说不定哪天哪个爬虫就真的用上了。
 
-# 选型结论
+## 选型结论
 
 如果你也在纠结 SSR 方案，我的经验可以总结成一句话：**外壳 SSR、交互做岛。** 不要因为有了 SSR 就把所有逻辑往服务端搬，也不要因为怕 SSR 的坑就继续在客户端硬撑。
 

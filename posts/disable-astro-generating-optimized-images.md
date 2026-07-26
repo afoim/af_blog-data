@@ -8,7 +8,7 @@ draft: false
 
 > 视频： [禁用Astro跟弱智一般的静态构建图像优化_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV12VH2z1EDb)
 
-# 为什么要禁用图片优化？
+## 为什么要禁用图片优化？
 
 下图是一个默认的Astro静态构建，也就是 `astro build` 的输出，输出中记录了每张图片是如何被Astro “优化” 的。我们不难发现问题所在：
 
@@ -18,7 +18,7 @@ draft: false
 
 ![](/img/disable-astro-generating-optimized-images-2025-09-10-06-21-20-26ca667ff5c7024c12d7a8254f483b27.webp)
 
-# 如何让Astro不”优化“图片？
+## 如何让Astro不”优化“图片？
 
 > [图像 | Docs](https://docs.astro.build/zh-cn/guides/images/)
 
@@ -34,7 +34,7 @@ draft: false
 
 不难发现，我们似乎已经找到了一个折中的解决方案： **将图片放置到 /public 目录**
 
-# 尝试将图片放置到 /public 目录（不完美）
+## 尝试将图片放置到 /public 目录（不完美）
 
 这会遇到一个经典问题，这是我询问 OpenAI ChatGPT 的原话
 
@@ -44,7 +44,7 @@ draft: false
 
 **结论：** 该方案并不完美。要不无法即写即看，要不构建失败
 
-# 尝试使用Astro官方提供的配置禁用图片优化（失败）
+## 尝试使用Astro官方提供的配置禁用图片优化（失败）
 
 遇到Astro上的问题，首先就应该查询官方文档了解是否已有解决方案。通过文档查询，我找到了 [图像 | Docs](https://docs.astro.build/zh-cn/guides/images/#%E9%85%8D%E7%BD%AE-no-op-%E9%80%8F%E4%BC%A0%E6%9C%8D%E5%8A%A1) 中的 **配置 no-op 透传服务** ，尝试配置，但是无用，不管是本地运行构建或Cloudflare Worker云端构建，仍然会触发 **generating optimized images** 步骤
 
@@ -52,7 +52,7 @@ draft: false
 
 ![](/img/disable-astro-generating-optimized-images-2025-09-10-06-27-46-image.webp)
 
-# 尝试直接更改Astro源码来禁用图片优化（成功）
+## 尝试直接更改Astro源码来禁用图片优化（成功）
 
 研究到这，大半天已经过去了，我已经没有精力去研究怎么 **合法** 禁用Astro的图片优化了，不如单刀直入，直接改源码，使用 **非法操作** 吧
 
@@ -92,7 +92,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
 
 下文为我让OpenAI ChatGPT 5解释的已经禁用图片优化的补丁（`astro.patch`）具体做了什么
 
-### 修改点 1：`dist/assets/utils/transformToPath.js`
+#### 修改点 1：`dist/assets/utils/transformToPath.js`
 
 ```diff
 -  return decodeURIComponent(`${prefixDirname}/${filename}_${hash}${outputExt}`);
@@ -101,7 +101,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
 +  return decodeURIComponent(`${prefixDirname}/${filename}${ext}`);
 ```
 
-#### 原逻辑
+##### 原逻辑
 
 - 原本的返回路径是：
   
@@ -119,7 +119,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
 
 👉 这样 Astro 会给图片文件生成带 hash 的路径，并且可能修改格式。
 
-#### 修改后逻辑
+##### 修改后逻辑
 
 - 返回路径改成了：
 
@@ -133,7 +133,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
 
 ---
 
-### 修改点 2：`dist/core/build/generate.js`
+#### 修改点 2：`dist/core/build/generate.js`
 
 ```diff
 -  if (staticImageList.size) {
@@ -141,7 +141,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
 +  if (false) {
 ```
 
-#### 原逻辑
+##### 原逻辑
 
 - `staticImageList` 存放了 Astro build 时需要优化的所有静态图片。
 
@@ -151,7 +151,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
   
   - 遍历 `staticImageList`，并调用 image service 去生成不同尺寸和格式。
 
-#### 修改后逻辑
+##### 修改后逻辑
 
 - 把 `if (staticImageList.size)` 改成了 `if (false)`。
 
@@ -161,7 +161,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
 
 ---
 
-### 总结
+#### 总结
 
 你的这个 patch 做了两件事：
 
@@ -171,7 +171,7 @@ index 3144f4c058b161b9e6eb3c8d891b743b34783653..0ba275b320204e154307c6aff75452e9
 
 等价于 **彻底关闭 Astro 的图片优化功能**，构建出来的就是你原始的图片。
 
-# 最终效果
+## 最终效果
 
 任何情况下使用 `astro build` 都会跳过图片优化，Cloudflare Worker的构建时间从 3分钟下降到2分钟
 

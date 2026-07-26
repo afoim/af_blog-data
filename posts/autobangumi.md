@@ -7,13 +7,13 @@ coverImage: /img/autobangumi-QmXYf2u6BZMseAzjPUhcHsdfdhQpc3XkdjuEi4VvE1BkTn.webp
 ---
 
 
-# 实现流程：
+## 实现流程：
 
 1. 每当新番更新时AutoBangumi自动向qb推送种子下载并且重命名
 2. 刮削软件（如Plex，飞牛影视设置定时搜索媒体库）
 3. 你只需要选番，然后等待下载和看就行了 ~~实际并非~~
 
-### 安装qbittorrent
+#### 安装qbittorrent
 
 > 用于下载番剧
 
@@ -29,7 +29,7 @@ Tracker服务器大全：[中国可用的 BT Tracker 服务器列表，每24小�
 
 ![8938ee430e5f74109c34c8c6d48e0e4f619cbeff.webp](/img/autobangumi-29e0e4c26c15463ff692aabcee747950e2d029d3.webp)
 
-### 安装[AutoBangumi](https://www.autobangumi.org/)
+#### 安装[AutoBangumi](https://www.autobangumi.org/)
 
 > 用于获取你订阅的番剧并在更新时自动发起下载任务
 
@@ -75,7 +75,7 @@ services:
 
 8. 静静等待，不出意外 AutoBangumi 会自动下载你订阅的番剧了（如果没有可以查看AutoBangumi的日志，或者尝试重启容器）
 
-### 下载旧集或已完结番剧
+#### 下载旧集或已完结番剧
 
 首先推荐几个资源网（梯子自备）：
 
@@ -85,7 +85,7 @@ services:
 4. 蜜柑计划 需翻墙：https://mikanani.me
    然后找你想要的番剧下载
 
-#### 规范重命名
+##### 规范重命名
 
 > 为了让软件能正确刮削元数据和剧集，我们需要规范重命名。
 
@@ -106,7 +106,7 @@ services:
 **小贴士：** 可以使用[RaiDrive](https://onani.cn/RaiDrive)或[SSHFS](/posts/sshfs/)将远程的Linux文件映射到Windows上，管理番剧更方便
 ![QmY7KM2MjudNksqvSkkFmwFgjjdD7ZQKLDaVPXR3jnXoxw.webp](/img/autobangumi-5cf6dfe73164f6a869a59817df53f939e936ab00.webp)
 
-### 安装 Plex（或者安装飞牛云NAS）
+#### 安装 Plex（或者安装飞牛云NAS）
 
 > 用于观看番剧
 

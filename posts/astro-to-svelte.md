@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/astro-to-svelte-svelte.png
 ---
-# 为什么要重构为纯Svelte？
+## 为什么要重构为纯Svelte？
 这实际上是个复杂的问题。在2024年选择Fuwari作为本站框架实际上只是一个巧合，当时并没有顾虑到后续开发的问题，我当时甚至是从 Hugo/PaperMod 这种明显比Astro高效的框架迁移过来的。当时选择Fuwari只有一个原因：**好看** 
 
 我们可以来简单看一看Fuwari Demo Site
@@ -71,7 +71,7 @@ coverImage: /img/astro-to-svelte-svelte.png
 
 ![](/img/astro-to-svelte-index-4.png)
 
-# 迁移！抉择架构！
+## 迁移！抉择架构！
 
 那么既然要迁移，一开始我其实并没有直接就开一个新的Svelte项目，而是在参考各大框架，比如 Next.js，Nuxt.js，Vue 等。但最终还是用了Svelte，准确来说，是SvelteKit
 
@@ -85,7 +85,7 @@ coverImage: /img/astro-to-svelte-svelte.png
 
 好在，Svelte有专门适配和优化过的shadcn：[The Foundation for your Design System - shadcn-svelte](https://www.shadcn-svelte.com/) ，那么，UI也敲定了，我们就可以开始重构我们的站点并迁移了
 
-# 约束！防止史山！
+## 约束！防止史山！
 接下来，我首先将 https://github.com/afoim/fuwari 仓库的状态转为 **公共存档（Public Archive）** 一方面，这么做能防止有新的贡献者在新旧站点迁移期间提交，另一方面，也可以为旧站点画上一个休止符，以此时的状态为锚点，将新站尽量无损实现旧站的所有功能
 
 然后，创建一个新的仓库 https://github.com/afoim/svaf ，它的命名非常简单 **sv**elte**a**co**f**ork 
@@ -127,7 +127,7 @@ coverImage: /img/astro-to-svelte-svelte.png
 
 不过，只要你有耐心，这都只是时间问题
 
-# SvelteKit更像毛坯房
+## SvelteKit更像毛坯房
 在迁移过程到一定进度的时候，我发现项目似乎在往一些奇怪的地方发展
 
 由于习惯了Astro/Fuwari那种内置MD渲染，内置RSS，内置Sitemap，内置内容集合，内置重定向等等

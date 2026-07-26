@@ -7,11 +7,11 @@ tags: []
 coverImage: /img/google-adsense-google-adsense1.png
 ---
 
-# Google Adsense 是什么
+## Google Adsense 是什么
 
 它是Google提供的一个广告服务。当您的网站通过Adsense审核后，Google将会开始在你的网站中插入广告展示给访客，从而让你赚取收入
 
-# 申请 Google Adsense
+## 申请 Google Adsense
 
 前往 https://adsense.google.com/ ，填写网站的相关信息，并通过所有权验证（有三种方式，建议都做）
 
@@ -21,7 +21,7 @@ coverImage: /img/google-adsense-google-adsense1.png
 
 提交后，Google会审核你的网站，一般来说，前几次都不会通过，不过，你非常幸运！读到了这篇文章，它能保障你的网站符合Adsense的标准，一次通过！
 
-# 正片：你需要对网站做什么
+## 正片：你需要对网站做什么
 
 1. **不要移除Adsense的JS代码** 。该JS是Google动态插入广告的方式
 2. **不要频繁更换域名** 。提交申请后请保证你的域名在长时间内始终可用
@@ -36,7 +36,7 @@ coverImage: /img/google-adsense-google-adsense1.png
 11. **保证网站稳定运行** 。推荐使用Cloudflare托管网站，可以零成本抵御DDoS攻击。保证在Adsense审核期间您的网站始终可用
 12. **始终申请，被拒后一直申请直到通过** 。Adsense并没有黑名单这类机制，如果申请被拒，请让你的网站变得更好，然后再次申请，直到通过审核即可
 
-# 我的心路历程
+## 我的心路历程
 
 自从25年8月开始（实际上更早），我就开始申请Adsense了。期间一直被拒，直到今天成功通过
 

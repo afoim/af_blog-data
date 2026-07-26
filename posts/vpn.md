@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/vpn-2024-11-21-08-24-54-image.webp
 ---
-# 将Cloudflare作为代理使用（Vless - EdgeTunnel）
+## 将Cloudflare作为代理使用（Vless - EdgeTunnel）
 
 下面内容参考自：[CF VLESS 从入门到精通 cmliu/edgetunnel 必看内容 免费节点 优选订阅 Workers & Pages CM喂饭干货满满24 | CMLiussss Blog](https://vercel.blog.cmliussss.com/p/CM24/) 请支持原创作者！
 
@@ -26,9 +26,9 @@ coverImage: /img/vpn-2024-11-21-08-24-54-image.webp
 14. 如图为博主半天的使用量：我只是上了上Telegram~
 15. ![](/img/vpn-2024-11-26-16-07-50-image.webp)
 
-# 将你自己的国外VPS作为代理使用
+## 将你自己的国外VPS作为代理使用
 
-## 使用新协议：Hysteria2
+### 使用新协议：Hysteria2
 
 可以前往这两个仓库进行一键安装~
 
@@ -44,7 +44,7 @@ coverImage: /img/vpn-2024-11-21-08-24-54-image.webp
 
 其他客户端在第二个Github Repo获取
 
-## 使用旧协议：V2Ray
+### 使用旧协议：V2Ray
 
 [https://github.com/233boy/v2ray](https://github.com/233boy/v2ray)
 

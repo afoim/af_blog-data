@@ -6,13 +6,13 @@ draft: false
 ---
 
 
-# 体验站点
+## 体验站点
 
 > https://imghide.2x.nz/
 > 
 > 视频教程： https://www.bilibili.com/video/BV1wdh3zYESe/
 
-# 原理
+## 原理
 
 首先将原图嵌入，然后将隐藏图的亮度降至极低，并以棋盘排列嵌入原图
 

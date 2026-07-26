@@ -6,13 +6,13 @@ draft: false
 coverImage: /img/mac-gal-d5441bcd48dca4226efe40ba6d522551.webp
 ---
 
-# 思路
+## 思路
 首先，新版的Mac用的是Arm架构的Apple自研芯片并且搭载基于Unix的MacOS系统。而大部分游戏则是专为Windows x64打造的。也就是说，我们需要翻译两层，首先将Unix转Win，再将Arm架构专为x64架构
 
 诚然，你可以使用 **[CrossOver](https://www.codeweavers.com/crossover)** 来自动化这个流程，或者手动在Apple开发者工具下载GPTK手动执行该操作。但是这两个操作一个要钱，一个要命（指时间和脑子）
 
 我们这里采用 **虚拟机** 来简化这些操作。由于是虚拟机，所以只需要准备一个Arm镜像就可以在Mac上完美运行一个Arm的Win11系统，又由于微软干的大好事，Arm版本的Windows11在运行x64程序是会自动转译，所以我们只需要保证必要的运行库安装即可。是的，这可能在性能上会大打折扣，但是兼容性是最高的，且如果你只玩Gal这种类PPT游戏，性能差距感知不强
-# 正式开始
+## 正式开始
 首先，我们下载虚拟机软件 **[VMware Fusion](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion&freeDownloads=true)** （需要注册一个博通账号）
 
 登录后你可能会被重定向到 Dashboard，再次访问一次链接即可进入下载软件界面

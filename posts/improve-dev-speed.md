@@ -6,14 +6,14 @@ draft: false
 tags: []
 coverImage: /img/improve-dev-speed-astro.png
 ---
-# 引言
+## 引言
 众所周知，目前我们用的是基于一个本来非常优雅的静态博客生成器 [Astro](https://docs.astro.build/zh-cn/getting-started/) 和一个本来非常优雅的博客主题 [Fuwari](https://github.com/saicaca/fuwari) 来制作的该网站
 
 在这长达2年的魔改中，我们加入了一些神秘的功能和页面，比如： 访问量统计，论坛等等
 
 这无疑会导致项目变重，最近我们每一次冷启动开发服务器的时间都长达 **几分钟** 。这显然是不正常的，因为 Astro 本着 0JS，按需加载，按需水合。就算我们有几百万个页面，dev也不应该需要这么长的时间来启动。所以，是时候来看看astro dev都干了些什么了
 
-# 正式开始
+## 正式开始
 我们观察到运行 `pnpm dev` （与 `astro dev` 等价）时，Vite在准备就绪后，日志会卡在这里很久
 ```sql
 16:40:06 [astro-icon] Loaded icons from public/icons, fa6-brands, fa6-regular, fa6-solid, material-symbols, material-symbols-light, mingcute, simple-icons

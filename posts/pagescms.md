@@ -6,11 +6,11 @@ date: 2026-07-04
 draft: false
 pin: false
 ---
-# 这是个啥
+## 这是个啥
 
 众所周知，我们在编写静态博客时，需要在客户端配置好Github，MarkDown编辑器以及一些杂七杂八的东西。但是，PagesCMS改变了这一切！你只需要将你的仓库连接到PagesCMS，然后就可以用任意设备创作文章了！只要它能用浏览器
 
-# 快速入门
+## 快速入门
 
 流水账式体验： [https://www.bilibili.com/video/BV18vTo6cEMD/](https://www.bilibili.com/video/BV18vTo6cEMD/)
 
@@ -19,7 +19,7 @@ pin: false
 1. 选择模板创建仓库/连接已有仓库
 2. 开写
 
-# 原理
+## 原理
 
 PagesCMS通过一个放置在仓库根目录的 `.pages.yml` 来声明式配置所有功能。比如：文章存储在哪？文章链接的媒体目录在哪？构建使用的工作流在哪？构建按钮在哪？
 

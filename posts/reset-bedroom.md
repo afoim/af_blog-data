@@ -6,13 +6,13 @@ draft: false
 coverImage: /img/reset-bedroom-37fc1d0b-533f-4905-a7ff-ab906fcb1860.webp
 ---
 
-# 前言
+## 前言
 
 我的卧室曾经是这样的，如你所见，非常杂乱且布线乱七八糟
 
 ![](/img/reset-bedroom-0c47e9a6-1544-4410-94d4-d319ea12ca70.webp)
 
-# 契机
+## 契机
 
 今天早上起来我灵机一动，想着要不要整理一下，于是变成了
 

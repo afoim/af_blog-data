@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/wtfmycfaccountlostthe2xssisshabi-index.png
 ---
-# 静唠b瞌
+## 静唠b瞌
 
 好久没写文章了，感觉上次写文章还是在上次
 
@@ -16,7 +16,7 @@ coverImage: /img/wtfmycfaccountlostthe2xssisshabi-index.png
 
 *我爱打字，键盘的敲击声让我感到愉悦~尽管这是一个“机械手感*”键盘
 
-# 很久很久以前
+## 很久很久以前
 
 想必大家应该对Cloudflare Business永久免费并不陌生，早在很早之前就有一位神人将该方法v1.0开源
 
@@ -43,7 +43,7 @@ coverImage: /img/wtfmycfaccountlostthe2xssisshabi-index.png
 
 那么，聪明的二叉树树选择？
 
-# 糖人记第一话：自暴自弃
+## 糖人记第一话：自暴自弃
 
 是的，由于当时的二叉树树在直播玩异环的时候开滴滴总是被通缉，于是一气之下将游戏退出，打开卡拉彼丘开了一把排位，发现队友只会送人头于是ALT+F4 ~~CS~~ 。最后被亲友告知发货的XXX错了，要自己贴点钱自己想办法整货
 
@@ -92,7 +92,7 @@ coverImage: /img/wtfmycfaccountlostthe2xssisshabi-index.png
 ![](/img/wtfmycfaccountlostthe2xssisshabi-index-5.png)
 
 毁号一定要彻底！域名肯定不能留！哈哈！这下完蛋啦！~~骗你的，就算留了域名也是完蛋，局面从邮箱成功改绑的那一刻就已经注定了，你就像个无能的丈夫，只能看着别人狠狠牛你那养了好些日子的宝贝，哈哈哈哈哈哈你什么都做不到~~ 
-# 唐人记第二传：求己不如求人
+## 唐人记第二传：求己不如求人
 
 这当然拦不住聪明的二叉树树，它立马叫出了鲸鱼娘~~非西斯特~~！
 
@@ -108,7 +108,7 @@ coverImage: /img/wtfmycfaccountlostthe2xssisshabi-index.png
 
 *乐乐，这就好比你刚刚Shift+Del删除了一个文件，你没有立即打开DiskGenius尝试扫描并恢复，而是佯装若无其事的开始打**崩坏：星穹铁道** ，嘻嘻，然后这个文件，就真的没啦哈哈哈哈哈哈哈* 
 
-# 神人记第一传：我有过硬的知识储备
+## 神人记第一传：我有过硬的知识储备
 
 看到这里，你可能会觉得这个b二叉树树糖完了，怎么还有自己给自己荣浩的啊哈哈哈哈哈
 
@@ -140,7 +140,7 @@ coverImage: /img/wtfmycfaccountlostthe2xssisshabi-index.png
 
 二叉树树石化了，有一说一，它这下终于知道了RIP不是Routing Information Protocol，而是你丫的安息吧哈哈哈哈哈哈哈哈哈哈
 
-# 智人TV：那你能帮我搬搬吗
+## 智人TV：那你能帮我搬搬吗
 
 到这思路已经很清晰了
 
@@ -168,7 +168,7 @@ coverImage: /img/wtfmycfaccountlostthe2xssisshabi-index.png
 
 二叉树树你是人啊
 
-# 后记
+## 后记
 
 - `b-live.2x.nz` 原依托于Cloudflare Worker，目前迁移到Oracle继续运营
 - `gh.2x.nz` 等域名（即Github镜像站）原依托于Cloudflare Worker，作者太懒，不想迁移了，就让它4那吧

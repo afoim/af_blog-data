@@ -5,7 +5,7 @@ description: 使用Zerotier，Tailscale，Cloudflare Tunnel可以实现多种内
 draft: false
 coverImage: /img/across-nat-2024-10-28-17-00-25-image.webp
 ---
-# 经实测，Zerotier的打洞能力明显优于Tailscale，所以建议通过Zerotier来实现内网穿透
+## 经实测，Zerotier的打洞能力明显优于Tailscale，所以建议通过Zerotier来实现内网穿透
 
 详细报表：
 
@@ -22,23 +22,23 @@ coverImage: /img/across-nat-2024-10-28-17-00-25-image.webp
 如何知道我是P2P还是中继？
 ping你的对端设备，如果延迟大于200ms或者经常丢包大概率就是中继节点（也有小概率是你的设备负载过高导致无法及时接收和返回ping包）
 
-# 啥是内网穿透？
+## 啥是内网穿透？
 
 当我们在家中有个NAS，想要在学校/公司的网络来访问，就需要用到内网穿透，实现外网访问内网服务。原理一般是P2P打洞和服务器中转流量
 
-# 前期准备
+## 前期准备
 
 路由器开启UPnP![](/img/across-nat-2024-10-28-17-08-00-image.webp)  
 
 关闭路由器的IPv4，IPv6防火墙 **（可选）**![](/img/across-nat-2024-10-28-17-09-19-image.webp)
 
-# *使用Zerotier/Tailscale进行内网穿透*
+## *使用Zerotier/Tailscale进行内网穿透*
 
 > 他们俩的原理都是尝试对端建立P2P连接，需要对端安装一个软件并且长期运行
 
-# 使用Zerotier进行内网穿透的详细教程
+## 使用Zerotier进行内网穿透的详细教程
 
-## 创建Zerotier账号
+### 创建Zerotier账号
 
 前往：[ZeroTier | Global Networking Solution for IoT, SD-WAN, and VPN](https://www.zerotier.com/)。如果你进不去，请尝试挂梯子。如果看不懂英文可以开启浏览器的翻译功能![](/img/across-nat-2024-10-28-17-12-51-image.webp)
 
@@ -50,7 +50,7 @@ ping你的对端设备，如果延迟大于200ms或者经常丢包大概率就�
 
 账号创建完毕后，登录即可![](/img/across-nat-2024-10-28-17-17-47-image.webp)
 
-## 创建一个新的Zerotier网络组
+### 创建一个新的Zerotier网络组
 
 当你账号登录成功后，会自动跳转到这个页面，点击`Create A Network`。如果没有，请访问[ZeroTier Central](https://my.zerotier.com/)
 
@@ -66,9 +66,9 @@ Zerotier默认的网络组模式为`Private`。即私密模式，哪怕别人知
 
 ---
 
-# 在设备上安装Zerotier应用
+## 在设备上安装Zerotier应用
 
-## Windows：
+### Windows：
 
 前往[Download - ZeroTier](https://www.zerotier.com/download/)，下载exe安装文件![](/img/across-nat-2024-10-28-17-25-52-image.webp)
 
@@ -82,7 +82,7 @@ Zerotier默认的网络组模式为`Private`。即私密模式，哪怕别人知
 
 **然后参考：[Zerotier授权设备](#zerotier授权设备)**
 
-## Linux（飞牛OS）：
+### Linux（飞牛OS）：
 
 通过SSH连接上你的Linux设备
 
@@ -96,7 +96,7 @@ Zerotier默认的网络组模式为`Private`。即私密模式，哪怕别人知
 
 **然后参考：[Zerotier授权设备](#zerotier%E6%8E%88%E6%9D%83%E8%AE%BE%E5%A4%87)**
 
-## Android（安卓）
+### Android（安卓）
 
 下载客户端
 
@@ -112,7 +112,7 @@ Zerotier默认的网络组模式为`Private`。即私密模式，哪怕别人知
 
 ---
 
-# Zerotier授权设备
+## Zerotier授权设备
 
 前往Zerotier的网页控制台：[ZeroTier Central](https://my.zerotier.com/)
 
@@ -122,7 +122,7 @@ Zerotier默认的网络组模式为`Private`。即私密模式，哪怕别人知
 
 ---
 
-# Zerotier访问测试
+## Zerotier访问测试
 
 如果你同一个网络组里已经有两台以上的设备了，可以尝试ping一下测试连通性，请先确保两台设备不在同一个局域网（比如手机开流量，NAS用家里的无线网）
 
@@ -132,9 +132,9 @@ ping测试：![](/img/across-nat-2024-10-28-18-07-13-image.webp)
 
 ---
 
-# 使用Tailscale进行内网穿透的详细教程
+## 使用Tailscale进行内网穿透的详细教程
 
-## 创建Tailscale账号
+### 创建Tailscale账号
 
 前往：[Tailscale](https://login.tailscale.com/start)。如果你进不去，请尝试挂梯子。如果看不懂英文可以开启浏览器的翻译功能
 
@@ -144,15 +144,15 @@ ping测试：![](/img/across-nat-2024-10-28-18-07-13-image.webp)
 
 ---
 
-# 在设备上安装Tailscale应用
+## 在设备上安装Tailscale应用
 
-## Windows：
+### Windows：
 
 前往[Download · Tailscale](https://tailscale.com/download)，下载exe安装文件
 
 官方教程：![](/img/across-nat-2024-10-28-18-31-48-image.webp)
 
-## Linux（飞牛OS）：
+### Linux（飞牛OS）：
 
 通过SSH连接上你的Linux设备
 
@@ -164,7 +164,7 @@ ping测试：![](/img/across-nat-2024-10-28-18-07-13-image.webp)
 
 打开弹出的浏览器窗口，登录你的账号即可
 
-## Android（安卓）
+### Android（安卓）
 
 下载客户端（Google Play）：[Download · Tailscale](https://tailscale.com/download/android)
 
@@ -172,7 +172,7 @@ ping测试：![](/img/across-nat-2024-10-28-18-07-13-image.webp)
 
 ---
 
-## Tailscale访问测试
+### Tailscale访问测试
 
 前往Tailscale的网页控制台：[Machines - Tailscale](https://login.tailscale.com/admin/machines)。可以查看到每个设备Tailscale分配的IP![](/img/across-nat-2024-10-28-18-26-58-image.webp)
 
@@ -180,7 +180,7 @@ ping测试![](/img/across-nat-2024-10-28-18-41-45-image.webp)
 
 ---
 
-# 使用Cloudflare Tunnel进行内网穿透
+## 使用Cloudflare Tunnel进行内网穿透
 
 > 这种方法可以不进行任何配置直接在公网上被访问，但是仅限Web服务。如果你想穿透游戏服务器等则不可用。你需要先将域名托管到Cloudflare
 
@@ -190,7 +190,7 @@ ping测试![](/img/across-nat-2024-10-28-18-41-45-image.webp)
 
 如图操作，创建一个Tunnel![](/img/across-nat-2024-10-28-18-45-41-image.webp)![](/img/across-nat-2024-10-28-18-45-54-image.webp)![](/img/across-nat-2024-10-28-18-46-22-image.webp)
 
-## Docker方式
+### Docker方式
 
 **使用1Panel**
 
@@ -214,7 +214,7 @@ ping测试![](/img/across-nat-2024-10-28-18-41-45-image.webp)
 
 然后前往[查看IP](#%E6%9F%A5%E7%9C%8Bcloudflared%E7%9A%84ip)
 
-### 查看cloudflared的IP
+#### 查看cloudflared的IP
 
 因为我们是Docker模式，所以IP需要通过SSH终端输入`ip a`来查看。我这里是`192.168.124.34`
 
@@ -239,7 +239,7 @@ root@n100-debian:~# ip a
 
 **然后前往[配置并访问Tunnel](#配置并访问tunnel)**
 
-## 原生模式（以Debian为例）
+### 原生模式（以Debian为例）
 
 选择Debian，然后复制底下的命令，直接到终端执行
 
@@ -257,7 +257,7 @@ root@n100-debian:~# ip a
 
 **然后前往[配置并访问Tunnel](#%E9%85%8D%E7%BD%AE%E5%B9%B6%E8%AE%BF%E9%97%AEtunnel)**
 
-## Android（Termux）
+### Android（Termux）
 
 在Android上安装[Termux | The main termux site and help pages.](https://termux.dev)
 
@@ -290,9 +290,9 @@ dpkg -i cloudflared-linux-amd64.deb
 
 ---
 
-# 配置并访问Tunnel
+## 配置并访问Tunnel
 
-## 通过网页配置
+### 通过网页配置
 
 > 这种方法需要直接在安装了cloudflared的设备上通过令牌运行
 
@@ -302,7 +302,7 @@ dpkg -i cloudflared-linux-amd64.deb
 
 填写你的IP和端口，非Docker模式可以直接填写localhost![](/img/across-nat-2024-10-28-18-53-37-image.webp)
 
-## 本地方式
+### 本地方式
 
 > 这种方法只需要在安装了cloudflared的设备上输入一些命令然后通过网页授权，后续更改配置也需要在本地操作
 
@@ -310,15 +310,15 @@ dpkg -i cloudflared-linux-amd64.deb
 
 创建隧道并设置隧道（HTTP模式穿透，目标地址`127.0.0.1`，端口：`8080`，外部域名：`test.onani.cn`）：`cloudflared tunnel --name test --url http://127.0.0.1:8080 --http2 --hostname test.onani.cn`
 
-## 访问测试
+### 访问测试
 
 成功访问![](/img/across-nat-2024-10-28-18-54-42-image.webp)
 
-# 使用STUN打洞
+## 使用STUN打洞
 
 > 这种方法可以不进行任何配置直接在公网上被访问，并且所有类型的服务都能正常使用。但是这种方式进行的内网穿透无法固定也无法指定IP和端口，在3~7天后会改变
 
-## 安装Lucky
+### 安装Lucky
 
 执行：`curl -o /tmp/install.sh http://6.666666.host:6/files/golucky.sh && sh /tmp/install.sh http://6.666666.host:6/files 2.13.4`
 

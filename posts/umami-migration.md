@@ -5,7 +5,7 @@ description: 早期的我很有先见之明，在使用Umami的时候是自建�
 draft: false
 coverImage: /img/umami-migration-umami-migration.webp
 ---
-# 正式开始
+## 正式开始
 首先，我们想要迁移，首先肯定是要拿到原来的Umami Cloud存放的数据
 
 在 [Umami Cloud Data | Settings](https://cloud.umami.is/settings/data) 中，我们可以选择，导出数据（Export）

@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/snippets-snippets-1.png
 ---
-# 你...买Cloudflare Pro了吗？
+## 你...买Cloudflare Pro了吗？
 
 虽然Snippets是一个Pro才能使用的功能
 
@@ -18,7 +18,7 @@ coverImage: /img/snippets-snippets-1.png
 
 *Pro 还可以自定义WAF，几乎所有的功能相比 Free 都会多不少的份额，并且还会开放类似 Snippets 这种独占功能*
 
-# Hmm...我拿到Snippets了，她能帮我做什么？
+## Hmm...我拿到Snippets了，她能帮我做什么？
 
 哦！那可以干很多事了！
 
@@ -48,7 +48,7 @@ Snippets ... 你可以把她看成 Worker 的妹妹，Snippets 只能在边缘�
 
 甚至还可以连上一些免费的数据库帮你做点全栈应用？ *太懒了，我还没写qwq*
 
-# 成果展示
+## 成果展示
 
 - Github全站反代： https://gh.2x.nz
 - Docker镜像源： https://docker.2x.nz

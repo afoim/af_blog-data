@@ -5,17 +5,17 @@ description: 将AList Web部署到CF Pages可以显著提升访问者的浏览�
 draft: false
 coverImage: /img/alist-web-QmSmcktDEJaWdDvFQeuNTJ9ps8R3PcLWyhSrbxoLEq2b2x.webp
 ---
-## 前情提要[#](https://afo.im/shen-me-Cloudflare-dai-li-AList-tai-man--jiao-ni-bu-shu-qian-duan-dao-Pages-ju-jue-hui-yuan-#user-content-%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81)
+### 前情提要[#](https://afo.im/shen-me-Cloudflare-dai-li-AList-tai-man--jiao-ni-bu-shu-qian-duan-dao-Pages-ju-jue-hui-yuan-#user-content-%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81)
 
 本教程**不是 AList 的无服务器部署**，仅将前端页面部署到 Cloudflare Pages，这样用户就能很快从 cf 的边缘节点拉取前端文件，而不用 cf 回源，提高浏览体验，后端仍然需要一台开放到公网的服务器部署 AList（无公网服务器可使用 Cloudflare Tunnels）
 
-### 首先，保证你的后端服务器支持v4v6双栈访问
+#### 首先，保证你的后端服务器支持v4v6双栈访问
 
 1. 使用Cloudflare Tunnel，套cf
 
 2. 分别设置A和AAAA解析，麻烦，如果你的IP很快，那其实可以不用前后端分离，暴露源站的前后端分离也不能避免被DDoS，因为你的源站会在HTTP报文中暴露
 
-### 然后，开始正式将AList前端部署到Cloudflare Pages
+#### 然后，开始正式将AList前端部署到Cloudflare Pages
 
 1. Fork仓库：
    
@@ -72,7 +72,7 @@ git push -f   //强制将更改提交到远程仓库
 15. 访问自定义域，查看 AList 是否正常  
     ![QmT8GLcaxtabhifKNL8kczEtozmNvdyhzJ823RfBrcFdpm.webp](/img/alist-web-345df496620a9d3faf0eceeb773813bc9ac98375.webp)
 
-### 定制 AList[#](https://afo.im/shen-me-Cloudflare-dai-li-AList-tai-man--jiao-ni-bu-shu-qian-duan-dao-Pages-ju-jue-hui-yuan-#user-content-%E5%AE%9A%E5%88%B6-alist)
+#### 定制 AList[#](https://afo.im/shen-me-Cloudflare-dai-li-AList-tai-man--jiao-ni-bu-shu-qian-duan-dao-Pages-ju-jue-hui-yuan-#user-content-%E5%AE%9A%E5%88%B6-alist)
 
 > 我们都知道 AList 支持自定义头部和内容，但是因为 Cloudflare Pages 是一个静态页面，所以我们采用硬编码方式，直接将需要自定义的内容写入仓库根目录的`index.html`  
 > ![Qmd47pgFsyh28NjhkLiCPPbf7iasXMWvAvZDupH8QspG64.webp](/img/alist-web-c3ff113558b368da9a7aeb70f70b978f49d0eb7a.webp)
@@ -89,6 +89,6 @@ git push -f   //强制将更改提交到远程仓库
 3. Cloudflare Pages 会自动重新构建，等待新网页构建完成即可  
    ![QmNZemsDHz5QLxW3V2eANghmVkfBccEpe5vMAWUCLik4o6.webp](/img/alist-web-863e5bb3ef65ec2a0af03303dd3afe13fb8dd8d4.webp)
 
-### 疑难解答
+#### 疑难解答
 
 1. 如果你遇到构建错误（找不到solid-route/src）的情况，可以尝试查看你fork的仓库通过本地拉取下来后根目录的 `solid-route` 文件夹是不是空的，如果是，请前往 https://github.com/alist-org/alist-web 手动将 `solid-route` 文件夹里的内容搬到你仓库中，然后尝试重新构建

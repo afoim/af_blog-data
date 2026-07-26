@@ -7,7 +7,7 @@ coverImage: /img/ipfs-api-2a104c9e-195b-4f16-b080-ee76c763a80a.webp
 ---
 
 
-# 正式开始
+## 正式开始
 
 > 该API为[xLog](https://xlog.app)的图床API
 

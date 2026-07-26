@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/swup-js-swup-js.webp
 ---
 
-# 正式开始
+## 正式开始
 正如标题所说，我的博客是在 [saicaca/fuwari: ✨A static blog template built with Astro.](https://github.com/saicaca/fuwari) 的基础上深度改造而来的。
 
 和 Fuwari 原版一样，它本质上仍然是一个 **静态博客**：文章以 Markdown 文件形式维护，构建后输出为 HTML。

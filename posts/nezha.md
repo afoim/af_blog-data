@@ -8,7 +8,7 @@ draft: false
 
 > 官方教程： https://nezha.wiki/
 
-# 安装面板端（Dashboard）
+## 安装面板端（Dashboard）
 
 > 面板端即WebUI，同时也接受后端连接。用户和面板连接使用WebSocket，后端和面板端使用gRPC通信
 
@@ -46,7 +46,7 @@ curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/instal
 
 ![](/img/nezha-2025-09-03-05-09-06-image.webp)
 
-# 安装后端（Agent）
+## 安装后端（Agent）
 
 打开哪吒探针的WebUI，在服务器一栏可以找到安装命令，选择对应系统的，然后前往终端执行即可。稍后你将会看到一个随机名称的新服务器上线
 
@@ -54,7 +54,7 @@ curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/instal
 
 ![](/img/nezha-2025-09-03-05-10-14-image.webp)
 
-# 配置服务
+## 配置服务
 
 哪吒探针也支持类似UptimeKuma那种的服务监测，支持HTTP Ping TCP，具体参见导航栏的服务
 
@@ -62,11 +62,11 @@ curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/instal
 
 ![](/img/nezha-2025-09-03-05-15-22-image.webp)
 
-# 配置通知
+## 配置通知
 
 哪吒探针支持配置通知，以在服务宕机等情况及时通知你，详见 [通知设置 | 哪吒服务器监控](https://nezha.wiki/guide/notifications.html)
 
-# 疑难解答
+## 疑难解答
 
 - 我套了CDN，服务器可以成功上线，但是获取到的IP为内网IP：请在系统设置中配置真实IP请求头![](/img/nezha-2025-09-03-05-19-32-image.webp)
 

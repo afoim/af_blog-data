@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/waf-waf.webp
 ---
-# 静态网站能不能被打死？
+## 静态网站能不能被打死？
 首先，先给结论：
 
 如果你托管在 **Cloudflare Page** ，那确实不用担心，因为它既不对静态请求计费，自身的CDN网络也足够强大，只要不是一天一PB，都是稳如老狗的
@@ -19,7 +19,7 @@ coverImage: /img/waf-waf.webp
 
 那么我们要解决的问题也就明晰了，其实跟动态网站一样，本质就是： **让网站尽可能服务真实用户** 。只不过对于动态站，这是为了 **防止源站被打死** ，而对于静态网站，是为了 **CDN看到大额流量** 
 
-# 如何做WAF？
+## 如何做WAF？
 首先，如果你使用的CDN是国内节点，就直接拦截海外访问
 
 因为大部分刷子的IP都来自海外（大陆IP金贵），直接拦截可以很好防止大文件被刷取，如图片等。我就是个例子
@@ -42,15 +42,15 @@ coverImage: /img/waf-waf.webp
 **经过实测，关闭HTTP 2.0后，攻击者从1分钟刷50G暴跌到了10分钟刷5G** 
 >视频： https://www.bilibili.com/video/BV1paryBeEbP/
 
-# 总结：如何成为最耐刷的网站？
+## 总结：如何成为最耐刷的网站？
 
 1. 拦截海外
 2. 所有请求JS质询（注意不要质询到API）
 3. 设置速率限制
 4. 关闭CDN的HTTP 2.0
-# 奇技淫巧
+## 奇技淫巧
 
-### ESA禁海外访问
+#### ESA禁海外访问
 针对于ESA，免费版用户可能无法设置区域限制
 ![](/img/waf-waf-3.webp)
 
@@ -62,7 +62,7 @@ coverImage: /img/waf-waf.webp
 
 视频： https://www.bilibili.com/video/BV1fKimBnE3T/
 
-### EdgeOne Page使用CDN WAF
+#### EdgeOne Page使用CDN WAF
 EdgeOne是个奇葩，它的CDN和Page的WAF是分开的，并且Page的WAF防护非常烂，只能 **针对单个IP** 进行拦截
 ![](/img/waf-waf-8.webp)
 

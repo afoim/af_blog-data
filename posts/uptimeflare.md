@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/uptimeflare-uptimeflare.webp
 ---
-# 从KV迁移
+## 从KV迁移
 由于原项目于26/1/3将数据存储从KV迁移到了D1，并且配备了完备的i18n，如果你仍在运营旧版的UptimeFlare，建议升级，下面是迁移教程
 
 首先，将你之前配置的Cloudflare API令牌添加一个新的权限 **编辑D1**
@@ -24,12 +24,12 @@ coverImage: /img/uptimeflare-uptimeflare.webp
 这迁移到D1何意味
 ![](/img/uptimeflare-uptimeflare-16.webp)
 
-# 前言
+## 前言
 本来这个教程应该是永远都不会出的，因为在此之前，我曾经给大家介绍了一个无需自托管的监控服务：[UptimeRobot](/posts/uptimerobot/) 
 
 但是，就在最近我再次查看控制台，发现之前创建的监控全部都没了，咱也不知道是被官方删了还是号被黑客大手子肘击了，总之，我现在不得不要重建监控服务了
 
-# 原理
+## 原理
 首先，UptimeFlare是一个基于Cloudflare Worker+D1的监控服务
 
 它的原理非常简单，一共由三个部分组成
@@ -39,7 +39,7 @@ coverImage: /img/uptimeflare-uptimeflare.webp
 
 ![](/img/uptimeflare-uptimeflare-14.webp)
 
-# 正式开始
+## 正式开始
 首先我们需要 **Fork** 项目，建议Fork我的项目（由于原项目不知道为什么不给在某些地方注入环境变量，所以建议Fork我的）
 
 [afoim/UptimeFlare](https://github.com/afoim/UptimeFlare)

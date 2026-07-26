@@ -6,14 +6,14 @@ draft: false
 coverImage: /img/sshfs-Linux-win.png
 ---
 
-# 引言
+## 引言
 你是否有一个Linux服务器？你是否曾经使用过各大IDE的远程开发？你是否被巨大的 `vscode-server` `trae-server` ... 占用巨额储存空间？
 
 实际上，当我们进行远程开发的时候，我们只需要 **在Windows上操作Linux的文件** 即可
 
 那我们为什么不尝试 **将Linux上的目录挂到Windows上** 呢？
 
-# 正式开始
+## 正式开始
 首先我们需要安装SSHFS，你可以前往Github下载发行版： [libfuse/sshfs: A network filesystem client to connect to SSH servers](https://github.com/libfuse/sshfs)，又或者通过Scoop安装： `scoop install nonportable/sshfs-np` 
 
 接着编写一个批处理脚本，方便我们每次的挂载

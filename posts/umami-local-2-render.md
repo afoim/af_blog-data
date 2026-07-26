@@ -8,7 +8,7 @@ draft: false
 
 > 回滚了
 
-# 备份本地数据库
+## 备份本地数据库
 
 在任何一台机子上安装 **pgAdmin4** 
 
@@ -24,7 +24,7 @@ draft: false
 
 ![](/img/umami-local-2-render-2025-08-28-10-04-44-image.webp)
 
-# 还原备份到云端数据库
+## 还原备份到云端数据库
 
 > 免费计划有 500MB 免费的数据库空间，完全够用了
 > 
@@ -58,7 +58,7 @@ draft: false
 
 ![](/img/umami-local-2-render-2025-08-28-10-16-25-image.webp)
 
-# 在Render上部署Umami
+## 在Render上部署Umami
 
 打开 https://dashboard.render.com/
 
@@ -94,7 +94,7 @@ draft: false
 
 ![](/img/umami-local-2-render-2025-08-28-10-29-46-image.webp)
 
-# 配置EdgeOne CDN变相支持CORS配置
+## 配置EdgeOne CDN变相支持CORS配置
 
 > 由于 Umami 没有独立的CORS设置，如果不设置CORS则他人将可以随便刷你的Umami，这会导致统计不准确，详见 [这篇文章](/posts/you-is-me-huh/) 。我们可以接入EdgeOne CDN来变相支持CORS
 

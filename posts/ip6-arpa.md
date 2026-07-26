@@ -6,14 +6,14 @@ draft: false
 ---
 
 
-# 这是什么
+## 这是什么
 
 > 以下内容来自GPT-5
 
 这是一个 **IPv6 反向解析（Reverse DNS）域名**，遵循 `ip6.arpa` 格式。  
 它是把 IPv6 地址每个十六进制数字倒序排列，加上 `.ip6.arpa` 后缀，用于 DNS 反查时将域名解析回原 IPv6 地址。
 
-# 将 x.x.x.x.x.x.x.x.x.x.x.x.ip6.arpa 弄到手
+## 将 x.x.x.x.x.x.x.x.x.x.x.x.ip6.arpa 弄到手
 
 > 视频教程： https://www.bilibili.com/video/BV1q8tBzsEPi/
 
@@ -57,7 +57,7 @@ draft: false
 
 等待域被激活即可
 
-# 为其签发SSL
+## 为其签发SSL
 
 默认 ipra 无法签发SSL，因为会被大部分SSL提供商拒签
 
@@ -73,6 +73,6 @@ curl --location --request PATCH 'https://api.cloudflare.com/client/v4/zones/<zon
 
 ![](/img/ip6-arpa-2025-08-09-05-07-40-image.webp)
 
-# 局限性
+## 局限性
 
 本人测试，如果您自己创建SSL.COM的账户尝试签发SSL会拒签。故该域名仅能在Cloudflare CDN下使用

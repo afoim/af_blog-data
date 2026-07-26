@@ -4,13 +4,13 @@ date: '2025-09-02'
 description: Zeabur是一个PaaS服务，它可以让你将自己的服务器托管上去，然后在网页上进行管理，就像传统服务器面板一样，这些都是免费！
 draft: false
 ---
-# 这是个啥？
+## 这是个啥？
 
 它可以连接你的VPS（前提，CPU≥1c，RAM≥2G）。然后在你的机子上面跑服务，包括
 
 ![](/img/zeabur-2025-09-03-06-54-43-5b8f9673e031a723ab2fb8a262d384d2.webp)
 
-# 正式开始
+## 正式开始
 
 进入 [My Servers - Zeabur](https://zeabur.com/servers)
 

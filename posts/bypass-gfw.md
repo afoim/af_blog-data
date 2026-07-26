@@ -6,7 +6,7 @@ draft: true
 coverImage: /img/bypass-gfw-Snipaste_2024-10-21_19-36-34.webp
 ---
 
-### 首先，我们要知道GFW是如何封锁我们的流量的
+#### 首先，我们要知道GFW是如何封锁我们的流量的
 
 1. IP黑洞：目前无解，但仅对部分服务黑洞，如谷歌系（谷歌、推特、YouTube等）
 
@@ -16,7 +16,7 @@ coverImage: /img/bypass-gfw-Snipaste_2024-10-21_19-36-34.webp
 
 4. SNI阻断：在客户端与服务器建立加密连接前，客户端会发送 `Client Hello` 报文，而这个报文是明文，并且一般都会携带 `server_name` ，GFW可以知道你要访问哪个网站，对不在白名单（如：discord.com）的域名进行阻断。因为 `server_name` 实际上是一个扩展，并不强制，你可以不发送它来规避SNI阻断
 
-### 那么，让我们分析一下GFW对于不同网站的封锁情况
+#### 那么，让我们分析一下GFW对于不同网站的封锁情况
 
 我们使用WireShark进行抓包
 
@@ -44,7 +44,7 @@ coverImage: /img/bypass-gfw-Snipaste_2024-10-21_19-36-34.webp
   
   5. 可见，在通过强制Hosts绑定后，在客户端发送 `Client Hello` 后被GFW检测到`Server Name` 字段，然后GFW向客户端发送一个 `RST` 报文，即要求重置客户端连接。在客户端侧，则会收到 `ERR_CONNECTION_RESET` 即：连接已重置。用户无法访问网页。![](/img/bypass-gfw-2024-10-21-20-33-23-image.webp)
 
-### 继续，尝试发送空 `Server Name` 报文
+#### 继续，尝试发送空 `Server Name` 报文
 
 ![](/img/bypass-gfw-2024-10-21-20-41-37-image.webp)
 
@@ -54,7 +54,7 @@ coverImage: /img/bypass-gfw-Snipaste_2024-10-21_19-36-34.webp
 
 那么，有没有什么软件可以帮我们不发送Server Name呢？有的，兄弟有的
 
-# 方法一：ECH
+## 方法一：ECH
 >注意：本方法实际上是启用一个尚未普及的技术：加密SNI。该方法并不能让所有明确被SNI阻断的网站恢复正常访问。尽管客户端（你）支持ECH，若服务器不支持，则在服务器看来那就是一个非法请求，不予受理
 >如果想要本方法奏效，你需要确保：
 >1. 网站托管在Cloudflare或者托管商声明支持ECH
@@ -63,14 +63,14 @@ coverImage: /img/bypass-gfw-Snipaste_2024-10-21_19-36-34.webp
 首先我提供一个网站：https://www.cloudflare-cn.com/ssl/encrypted-sni/#results
 这个网站可以查询你的浏览器是否正在使用ECH。进入网站点击 `检查我的浏览器` ，待检查完毕后，检查 `安全 SNI` 一项是否为 `√` 
 如果你为 `×` ，也不要气馁，我们现在来解决
-### Edge浏览器
+#### Edge浏览器
 右键桌面的快捷方式点击属性，在目标一栏中添加 `--enable-features=EncryptedClientHello`
 打开设置，搜索DNS，找到 `使用安全的 DNS 指定如何查找网站的网络地址` （当前版本我叫这个。反正就是配置DoH的地方）
 选择`Cloudflare （1.1.1.1）`
 再次测试即可
 （其他浏览器我没测试，应该大同小异，网上搜索一下XX浏览器开启ECH就行）
 接下来尝试访问：https://iwara.tv 。你应该能直连了
-# 方法二：Accesser
+## 方法二：Accesser
 >本方法采用一个神奇的方法来绕过SNI阻断，域前置。原理为客户端先找网站要一张SSL证书，然后再用这个通用证书写好要访问的网站发给服务器，这样，GFW也就看不见你要访问的网站，也就没法进行SNI阻断。
 >注意：本方法需要在本地运行一个程序并且劫持所有HTTP流量，可能会导致某些正常上网情况下不会出现的问题，请酌情使用
 >
@@ -80,7 +80,7 @@ Accesser是一个HTTP代理。它通过中间人的身份处理终端的HTTP出�
 
 而通过Accesser代理后，它会抹掉ServerName然后发送Client Hello。这个时候，如果服务端支持域前置，则会返回客户端一个默认的SSL证书（公钥），然后客户端就能使用这个公钥再次发送一个加密的Client Hello，此时携带上ServerName就不会被GFW阻断了。但是，如果客户端在第一次我们拿公钥的时候拒绝了空ServerName的Client Hello，那这个办法就失效了，不过大部分网站是支持这样做的
 
-### Windows
+#### Windows
 
 - 前往开头的的Github仓库
 
@@ -90,7 +90,7 @@ Accesser是一个HTTP代理。它通过中间人的身份处理终端的HTTP出�
 
 - 它的原理是自动设置系统代理，如果你使用了一些别的代理软件，会被覆盖![](/img/bypass-gfw-d0d8fac1-a2e5-4db2-8e25-ca5e04eb9951.webp)
 
-### Linux（以Debian12为例）
+#### Linux（以Debian12为例）
 
 - 安装Python：`apt install python3`
 

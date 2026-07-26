@@ -7,10 +7,10 @@ tags: []
 coverImage: /img/static-redirect-group-static-redirect-group.webp
 ---
 
-# 前言
+## 前言
 原本这篇内容更适合写进仓库的 `README`，因为它本质上就是一个简洁的自部署教程。不过在实际整理时，我发现如果强行拆成 GitHub Pages + Cloudflare Worker 的前后端分离方案，反而会增加不少额外工作。实际上，这个项目只需要一个 Cloudflare Worker 就能跑起来，所以干脆单独写成一篇文章，方便说明整体思路。
 
-# 项目原理
+## 项目原理
 这个项目和上一篇短链项目的思路比较接近，不过整体做得更精简一些。
 
 首先，这个项目把前后端逻辑合并到了同一套体系里。前端基本不做复杂校验，主要校验工作都放在后端处理，这样就不用在两个项目之间来回维护规则。
@@ -25,10 +25,10 @@ coverImage: /img/static-redirect-group-static-redirect-group.webp
 
 最后，这个项目还支持有效期。实现方式也很直接：前端在创建短链时把过期时间一并传给后端，后端将其写入规则文件，再借助 GitHub Action 定时巡检并清理过期短链。
 
-# 在哪搞个短链
+## 在哪搞个短链
 我的 `2x.nz` 是在 https://porkbun.com 购买的，价格大概是一年一百元左右。其他后缀也可以考虑，比如 `.im`、`.mk`。
 
-# 正式搭建你的短链服务
+## 正式搭建你的短链服务
 
 首先，Fork仓库
 
@@ -51,7 +51,7 @@ coverImage: /img/static-redirect-group-static-redirect-group.webp
 
 完成这些配置后，访问 `/_url` 就可以开始创建短链了。
 
-# 防护
+## 防护
 建议重点保护创建短链的入口，避免被滥刷。你可以使用 Cloudflare Turnstile、速率限制或其他方式进行防护。
 
 在Cloudflare创建一个WAF规则

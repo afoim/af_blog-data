@@ -7,7 +7,7 @@ coverImage: /img/gemini-nano-banana-2025-09-01-16-39-17-5976a1f7-3f14-4987-aa60-
 ---
 
 
-# 快速上手
+## 快速上手
 
 进入 [Google AI Studio](https://aistudio.google.com/prompts/new_chat)
 
@@ -15,7 +15,7 @@ coverImage: /img/gemini-nano-banana-2025-09-01-16-39-17-5976a1f7-3f14-4987-aa60-
 
 ![](/img/gemini-nano-banana-2025-09-01-16-33-14-1dc081b4dcb4eb99fd68c1d97322517a.webp)
 
-# 立绘转真人COS
+## 立绘转真人COS
 
 > Prompt：Generate a highly detailed photo of
 > 
@@ -41,7 +41,7 @@ coverImage: /img/gemini-nano-banana-2025-09-01-16-39-17-5976a1f7-3f14-4987-aa60-
 
 ![](/img/gemini-nano-banana-2025-09-01-16-37-48-572b1752-d279-4fc3-93a4-165a75640d84.webp)
 
-# 七夕生草图
+## 七夕生草图
 
 > Prompt： A photorealistic scene inside a McDonald’s restaurant.
 > 
@@ -65,7 +65,7 @@ coverImage: /img/gemini-nano-banana-2025-09-01-16-39-17-5976a1f7-3f14-4987-aa60-
 
 ![](/img/gemini-nano-banana-2025-09-01-16-39-17-5976a1f7-3f14-4987-aa60-3257b05f8b7b.webp)
 
-# 去除背景
+## 去除背景
 
 > Prompt： 将这张图去除背景，仅保留人物主体
 
@@ -75,7 +75,7 @@ coverImage: /img/gemini-nano-banana-2025-09-01-16-39-17-5976a1f7-3f14-4987-aa60-
 
 ---
 
-# 结语
+## 结语
 
 - 最好使用英语Prompt
 

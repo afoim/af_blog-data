@@ -5,19 +5,19 @@ description: 你有没想过自己部署一个第三方的Whois查询服务？�
 draft: false
 coverImage: /img/whois-16ab7a68-892e-429e-a0bc-02d829eead82.webp
 ---
-# 前言
+## 前言
 
-### Whois查询是什么？
+#### Whois查询是什么？
 
 如果了解域名，就知道域名一旦被注册就会在Whois服务器留下一些相关信息（比如：注册方，注册地，注册时间等等），可以被公开查询。
 
-### 如何快速查询一个域名的Whois？
+#### 如何快速查询一个域名的Whois？
 
 你是否用过某些Whois查询网站？如图为IP.SB的WHOIS查询服务，可以通过 [WHOIS - IP.SB](https://ip.sb/whois) 快速查询一个域名的Whois
 
 ![](/img/whois-578a2c58-5ad4-452a-be8b-a186a64fa058.webp)
 
-# 正片
+## 正片
 
 那么如果我们想自建一个Whois查询服务放到我们的Bot或者网页上，我们要怎么做呢？
 
@@ -66,7 +66,7 @@ coverImage: /img/whois-16ab7a68-892e-429e-a0bc-02d829eead82.webp
 
 那么我们的三方API就要既支持传统Whois，又支持新式RDAP
 
-# 正式开始构建三方Whois查询API
+## 正式开始构建三方Whois查询API
 
 由于传统Whois查询是通过TCP请求43端口获取信息，需要专用客户端来查询，所以针对于**只支持传统Whois查询的顶级域**就需要我们的服务器先查询到信息，再返回用户纯文本。如下图
 

@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/acg-randompic-api-2025-08-31-04-09-37-image.webp
 ---
 
-# API端点
+## API端点
 
 ~~门户： https://pic.072103.xyz~~
 
@@ -14,13 +14,13 @@ coverImage: /img/acg-randompic-api-2025-08-31-04-09-37-image.webp
 
 博客用的API端点： https://eopfapi.acofork.com/pic?img=ua （EdgeOne Pages Functions）
 
-# 新版实现
+## 新版实现
 
 图源存放EdgeOne Page，EdgeOne Pages Functions作为入口，当收到请求后首先区分 横屏、竖屏、自适应，即 `?img=h` `?img=v` `?img=ua` ，随后返回其内部存储的相应图片，关于更多详情，请参考源码： [EdgeOne_Function_PicAPI/functions/pic.js at main · afoim/EdgeOne_Function_PicAPI](https://github.com/afoim/EdgeOne_Function_PicAPI/blob/main/functions/pic.js)
-# 旧版实现
+## 旧版实现
 
 利用 cnb.cool 存储图片eopf做中间代理
-# 旧旧版实现
+## 旧旧版实现
 
 > 在Cloudflare R2被刷了 **7千万次（GET）请求** 并且扣款 **28.08 USD（折合人民币 207.93 CNY）** 后废弃 
 

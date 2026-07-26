@@ -6,11 +6,11 @@ draft: false
 ---
 
 
-# 前置环境准备
+## 前置环境准备
 
 由于Synapse、Matrix（下文简称”矩阵“）手搓部署非常麻烦。所以请安装 **1Panel面板**
 
-# 部署PostgreSQL
+## 部署PostgreSQL
 
 安装并创建名为 `synapse` 用户名也为 `synapse` 的数据库
 
@@ -40,7 +40,7 @@ draft: false
 
 ![](/img/self-host-matrix-2025-08-02-17-30-34-image.webp)
 
-# 部署Synapse
+## 部署Synapse
 
 首先参照1Panel官方的教程去创建一个存储卷，否则安装 `synapse` 会失败
 
@@ -177,7 +177,7 @@ auto_join_rooms:
 
 按需配置，更多高级配置参阅： [Homeserver Sample Config File - Synapse](https://element-hq.github.io/synapse/latest/usage/configuration/homeserver_sample_config.html)
 
-# 创建管理员账号
+## 创建管理员账号
 
 连接上容器的终端然后输入这串命令创建管理员账号
 
@@ -185,7 +185,7 @@ auto_join_rooms:
 register_new_matrix_user  http://localhost:8008 -c /data/homeserver.yaml  -a -u 管理员用户名 -p 密码
 ```
 
-# 开始聊天
+## 开始聊天
 
 前往 https://app.element.io 将家服务器改为你的（必须为HTTPS）
 

@@ -7,11 +7,11 @@ coverImage: /img/motrix-ee0efba8-8c27-449f-86d0-3e9367d12463.webp
 ---
 
 
-# 原理
+## 原理
 
 通过浏览器插件拦截下载请求，再将原始请求转发给 Motrix，就可以实现由 Motrix 接管下载。
 
-# 下载 Motrix
+## 下载 Motrix
 
 前往官网：https://motrix.app/ 下载 Motrix。
 
@@ -21,14 +21,14 @@ coverImage: /img/motrix-ee0efba8-8c27-449f-86d0-3e9367d12463.webp
 
 ![](/img/motrix-6a10d31c-0c39-456c-8402-ff3190a80dcc.webp)
 
-# 配置 Motrix
+## 配置 Motrix
 
 打开 Motrix，进入 `进阶设置 -> RPC`。你会看到 RPC 监听端口（默认为 `16800`）和一个随机生成的 RPC 授权密钥。
 ![](/img/motrix-53e255cf-965f-441d-a47a-81e20f272256.webp)
 
 记住监听端口，并复制好授权密钥（点击小眼睛后即可复制，旁边的骰子图标用于随机生成新密钥）。完成后点击“保存并应用”。
 
-# 配置浏览器
+## 配置浏览器
 
 > 仅支持 Chromium 系浏览器（如 Chrome 和新版 Microsoft Edge），Firefox 请另寻方案。
 

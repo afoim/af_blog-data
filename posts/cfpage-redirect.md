@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/cfpage-redirect-530d7a11-c9ea-45ed-905a-1e3965f3e3b3.webp
 ---
 
-# 快速上手！
+## 快速上手！
 
 直接 Fork我的 [仓库](https://github.com/afoim/Redirect_Group) 。
 

@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/mobile-git-Screenshot_2025-11-11-14-04-23-56_a2e3670364a4153bdb03dad30c8d4108.webp
 ---
 
-# 正式开始
+## 正式开始
 为了让我在出门时也能直接用手机写博客，我专门研究了一下，发现这套方案完全可行。
 
 首先，我们需要挑选一个手机上的 Git 客户端。这里我使用的是：https://github.com/catpuppyapp/PuppyGit

@@ -6,11 +6,11 @@ draft: false
 tags: []
 coverImage: /img/check-nat-webrtc-nat.png
 ---
-# 视频（非教程）
+## 视频（非教程）
 
 https://www.bilibili.com/video/BV1H4DuBWEes/
 
-# 原理
+## 原理
 
 我们都知道，NAT类型测试非常简单就可以实现，我们可以使用类似如下Python库在客户端本地跑一个脚本测试
 
@@ -40,7 +40,7 @@ https://www.bilibili.com/video/BV1H4DuBWEes/
 
 详细的技术文档参见： [webrtc_check_nat/nat_detector_explanation.md at main · afoim/webrtc_check_nat](https://github.com/afoim/webrtc_check_nat/blob/main/nat_detector_explanation.md)
 
-# 实现
+## 实现
 
 最终，我们只需要写好后端，再创建一个HTTP端点，即可实现 **完整的、全状态、纯浏览器的** NAT类型检测
 

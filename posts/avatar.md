@@ -8,10 +8,10 @@ coverImage: /img/avatar-avatar.webp
 ---
 
 
-# 这是什么？
+## 这是什么？
 只是随便搜集的一些头像接口，全部来自于我手机里目前安装的大部分APP服务。其中无 **Web** 标识的头像，如果你能看得见，那么证明该服务商并没有做严格的SSL校验，导致逆向极其简单。无该标识的默认为移动APP。以下所有资源均来自我个人使用的账号
 
-# 一些小发现
+## 一些小发现
 - 微软（Microsoft）的头像非常严格，使用Cookie校验，不能直接访问
 - 微信、支付宝，TapTap，钉钉不采用Web协议，故抓不到包
 - 小黑盒，网易云音乐，酷安，作业帮，豆包，肯德基，库街区都采用了严格的SSL校验，不能直接访问
@@ -40,7 +40,7 @@ coverImage: /img/avatar-avatar.webp
 | <img src="https://himg.bdimg.com/sys/portrait/item/public.1.32f8f9b.Naa8uLkNmy_npPPyAuyi-A.webp?1769944805341" width="50" height="100"> |   百度网盘  |
 | <img src="https://avatars.akamai.steamstatic.com/e603bd97da45790ad8bfb15648040f599c1aa52d.webp" width="50" height="100"> |   Steam（Web）  |
 
-# 这表明了什么？
+## 这表明了什么？
 对于图片，音乐，影片等静态资源，若直接使用 `img` `audio` `video` 等标签，无需CORS即可将远端资源在任意网页上展示。这是W3C规范的一部分，详情请参考 [HTML5 嵌入内容](https://www.w3.org/TR/2014/REC-html5-20141028/embedded-content-0.html?utm_source=chatgpt.com)
 
 当然，如果您是一个网站的维护者，您可能不想让陌生人直接将你的资源展示给别人看，或者怕被刷出账单，下面我将简单说明哪些措施是有效的，哪些是掩耳盗铃

@@ -7,7 +7,7 @@ coverImage: /img/discourse-2025-05-02-22-03-04-image.webp
 ---
 
 
-# 正式开始
+## 正式开始
 
 确保你安装了 `Docker` 和 `Docker-Compose` 
 

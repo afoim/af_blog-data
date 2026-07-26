@@ -4,7 +4,7 @@ date: '2025-09-07'
 description: 在钞能力的帮助下也是成功薅到了一个甲骨文账号，上手把玩发现坑点挺多的，遂记录
 draft: false
 ---
-# 老天保佑我不要ABC
+## 老天保佑我不要ABC
 
 首先是IP，**不要开任何魔法！** 直连即可，你在哪就用哪里的网络 
 
@@ -18,11 +18,11 @@ draft: false
 
 > [!caution]
 > 不要用虚拟卡，预付卡，甲骨文不支持，强行尝试还会黑你自己的IP！！！
-# 区域选择
+## 区域选择
 
 注册的时候会让你选择一个账户主区域，选择后 **不可更改** ，我选择的是 **Japan East (Tokyo)** 。由于甲骨文的arm免费机是需要抢的，你选择的区域越热门，能抢到arm机子的概率就越低
 
-# 安全性
+## 安全性
 
 > https://cloud.oracle.com/identity/domains/my-profile/security
 
@@ -38,7 +38,7 @@ draft: false
 
 ![](/img/oci-2025-09-08-00-08-48-image.webp)
 
-# 没有Debian系统？
+## 没有Debian系统？
 
 如果你前往 https://cloud.oracle.com/compute/instances/create 尝试创建实例。会发现没有 **Debian** 映像 。我们可以通过最下面 **我的映像** 来上传自己的自定义映像，详细步骤往下看
 
@@ -93,7 +93,7 @@ draft: false
 
 ![](/img/oci-2025-09-08-00-23-21-image.webp)
 
-# 创建VCN（网络）
+## 创建VCN（网络）
 
 前往 https://cloud.oracle.com/networking/vcns 点击 **创建VCN** 改个名称然后一路下一步即可
 
@@ -103,7 +103,7 @@ draft: false
 
 ![](/img/oci-2025-09-08-00-27-42-image.webp)
 
-# 为VCN附加IPv6前缀
+## 为VCN附加IPv6前缀
 
 前往 https://cloud.oracle.com/networking/vcns
 
@@ -122,7 +122,7 @@ draft: false
 
 ![](/img/oci-2025-09-09-06-20-50-image.webp)
 
-# 创建实例
+## 创建实例
 
 前往 https://cloud.oracle.com/compute/instances 点击 **创建实例**
 
@@ -164,7 +164,7 @@ Oracle 可能会回收闲置的“永久免费”计算实例。如果在 **7 �
 
 一路下一步，验收无误后点击 **创建**
 
-# 重装系统&删除实例
+## 重装系统&删除实例
 
 > 虽然甲骨文可以通过 **更换引导盘** 来进行重装系统，但更建议直接将实例删除。然后重新开一个
 
@@ -174,7 +174,7 @@ Oracle 可能会回收闲置的“永久免费”计算实例。如果在 **7 �
 
 ![](/img/oci-oci.png)
 
-# 更改防火墙
+## 更改防火墙
 
 > 我直接改为全允许，我更喜欢在Linux服务器上配置 ufw 来实现防火墙
 > 不过由于甲骨文依赖于网络启动，ufw配置出现问题可能会起不来机子
@@ -187,13 +187,13 @@ Oracle 可能会回收闲置的“永久免费”计算实例。如果在 **7 �
 
 ![](/img/oci-2025-09-08-00-38-25-image.webp)
 
-# 使用SSH连接实例
+## 使用SSH连接实例
 
 前往 https://cloud.oracle.com/compute/instances 可以看到 **公共IP** ，携带你的 **SSH私钥** 通过 **22 端口** 连接服务器即可
 
 ![](/img/oci-2025-09-08-00-39-59-image.webp)
 
-# 改root登录
+## 改root登录
 
 如果你使用root直接登录，会提示
 
@@ -231,7 +231,7 @@ systemctl restart sshd
 
 ![](/img/oci-2025-09-08-00-46-59-image.webp)
 
-# 自动脚本抢arm机
+## 自动脚本抢arm机
 
 > 我们制作了一个 **基于Cloudflare Worker** 的自动抢机脚本 https://github.com/afoim/oci_auto_cfworker
 

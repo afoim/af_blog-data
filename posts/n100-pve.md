@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/n100-pve-N100-PVE_cover.webp
 ---
 
-# 配置&需求
+## 配置&需求
 
 - N100 CPU 频率：最小 700 Mhz, 最大 3400 Mhz | TDP：6 W
 
@@ -22,7 +22,7 @@ coverImage: /img/n100-pve-N100-PVE_cover.webp
 
 - U盘（作PVE引导盘）
 
-# 目标
+## 目标
 
 1. 所有系统通过PVE管理
 
@@ -32,9 +32,9 @@ coverImage: /img/n100-pve-N100-PVE_cover.webp
 
 * * *
 
-# 1\. PVE
+## 1\. PVE
 
-## 安装
+### 安装
 
 - 下载Ventoy最新版可执行文件：
   
@@ -52,9 +52,9 @@ coverImage: /img/n100-pve-N100-PVE_cover.webp
 
 - 重启，进入PVE，通过IP+8006端口进入WebUI，登录进去
 
-## 配置
+### 配置
 
-### 安装PVE快捷管理脚本
+#### 安装PVE快捷管理脚本
 
 - 安装PVE快捷管理脚本：[pve\_source.tar.gz | AcoFork-AList](https://alist.onani.cn/pve_source.tar.gz) 或 [**https://wwp.lanzoul.com/ivHta1ngmo6d**](https://wwp.lanzoul.com/ivHta1ngmo6d) （密码:i1ws）（来自：在下莫老师）
   
@@ -68,7 +68,7 @@ coverImage: /img/n100-pve-N100-PVE_cover.webp
   
   - 扩容local：`lvextend -rl +100%FREE /dev/pve/root`
 
-### 配置Realtek R8168网卡
+#### 配置Realtek R8168网卡
 
 > 由于Debian系默认安装R8169驱动，我们需要手动安装R8168驱动，否则无法使用N100小主机自带的有线网口上网
 
@@ -374,7 +374,7 @@ coverImage: /img/n100-pve-N100-PVE_cover.webp
   项目配置完毕，开始使用吧！
   ```
 
-# 成果展示（域名已弃用）
+## 成果展示（域名已弃用）
 
 ![](/img/n100-pve-4b4680cc548e0c59ec18cef537c9b1f5412fbbcd.webp)
 

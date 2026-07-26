@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/cookie-consent-cookie-consent.webp
 ---
-# 前言
+## 前言
 你的网站是否有很多的跟踪器？如 **Google Analytics、Google Adsense、Microsoft Clarity、百度统计** 等等？
 
 他们有些是追踪用户体验，获取站点访问数据，有些是提供广告，为您提供收入...
@@ -21,7 +21,7 @@ coverImage: /img/cookie-consent-cookie-consent.webp
 
 [Download Cookie Consent Banner: GDPR + ePrivacy Directive](https://www.cookieconsent.com/) 它就是一个很好的选择，在该网站上提供你需要被管理的JS脚本片段，然后将该网站返回的JS脚本插入您的站点即可！无需编写额外的JS代码，无需管理复杂的Service Worker约定！这一切也都是通过该网站的客户端JavaScript实现的！
 
-# 正式开始
+## 正式开始
 
 首先，我们进入 [Download Cookie Consent Banner: GDPR + ePrivacy Directive](https://www.cookieconsent.com/) （搭配浏览器翻译），往下滚动，找到步骤图
 
@@ -64,7 +64,7 @@ Ok，终于到重头戏了，接下来，我们需要将我们网站上原来安
 
 ![](/img/cookie-consent-cookie-consent-5.webp)
 
-# 最终效果
+## 最终效果
 
 当用户第一次访问时，会弹出是否允许Cookie的弹窗。用户可以选择全部允许（I agree），全部拒绝（I decline）或高级配置（Change my preferences）
 

@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-# 正式开始
+## 正式开始
 
 前往 [afoim/EdgeOne_Function_PicAPI: 适用于EdgeOne边缘函数的随机图API](https://github.com/afoim/EdgeOne_Function_PicAPI)
 
@@ -49,6 +49,6 @@ var R2_CONFIG = {
 
 ![](/img/eo-function-33d931d4-e7cd-4d5d-afd8-85b787524391.webp)
 
-# 注意
+## 注意
 
 边缘函数每月有300万次的请求数限制，暂不知道超出是否扣费

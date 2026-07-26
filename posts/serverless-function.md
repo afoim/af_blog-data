@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/serverless-function-serverless-function.webp
 ---
 
-# 何为Serverless
+## 何为Serverless
 就像简介所说，传统来说我们搭建Web服务一般会选择买一个VPS，然后在其上安装管理面板，再安装所需软件，如Nginx，AList，最后运行，开放端口，再设置DNS解析，这样，一个网站就成功上线了
 
 而Serverless就简单多了，毕竟 **Server** 被 **Less** 掉了
@@ -17,7 +17,7 @@ coverImage: /img/serverless-function-serverless-function.webp
 
 不难看出，在上一个例子中，我并没有去从零开始搭建这个服务，而是仅做了两件事：1. 源码上传 2. 绑定域名，而其他事情全部交给平台的自动化，这不仅极大减少了运维成本，并且在做版本控制的时候也更加容易
 
-# Serverless的利与弊
+## Serverless的利与弊
 在Serverless中，你不再需要管理基础设施，只需要确保你的代码能跑，然后直接上传到平台，平台会帮你做好后续工作
 
 并且，这往往是 **免费** 的，或者说，大部分Serverless平台都有 **免费层** 。因为在平台看来，你只是租用了你所需要的东西，相比于哪些大客户，你的开销可以说是忽略不计
@@ -30,9 +30,9 @@ coverImage: /img/serverless-function-serverless-function.webp
 
 Serverless也比Server更容易做版本控制和Debug，由于Serverless和Git是天生一体的。在用户看来，只需要先将代码托管到Github，再将代码库连接到Serverless平台，此后，你的服务每一次更新就只需要更新源码了，平台会自动帮你构建。当你想要回滚版本的时候，直接将部署回退为之前的提交即可，而Debug无需再连到服务器上做，只需要有一台电脑，将代码拉下来，本地Dev Debug后，再将修复后的代码提交，平台就能自动部署了
 
-# 好用的Serverless平台
+## 好用的Serverless平台
 
-### [边缘全栈开发平台 - EdgeOne Pages](https://pages.edgeone.ai/zh)
+#### [边缘全栈开发平台 - EdgeOne Pages](https://pages.edgeone.ai/zh)
 
 :::caution
 请不要在其上部署日流量超 **10M** 的服务，很有可能会被停用账号
@@ -44,26 +44,26 @@ Serverless也比Server更容易做版本控制和Debug，由于Serverless和Git�
 
 示例服务：  [自建一个匿名文件上传终结点 - AcoFork Blog](/posts/unknown-upload/)
 
-### [Vercel Functions](https://vercel.com/docs/functions)
+#### [Vercel Functions](https://vercel.com/docs/functions)
 支持非常多的语言，如 Node.js、Python、Go、Wasm 等等。构建服务非常强劲！**默认分配 4C8G** 帮你构建！
 
 用量限制非常宽松，并且可以超过限制的 **2倍** 以上仍保持正常访问
 ![](/img/serverless-function-serverless-function-1.webp)
 示例服务： [来！让我们用Vercel来分享你的OneDrive！ - AcoFork Blog](/posts/onedrive-index/)
 
-### [Netlify Functions](https://www.netlify.com/platform/core/functions/)
+#### [Netlify Functions](https://www.netlify.com/platform/core/functions/)
 支持 JS/TS 和 Go。用量限制更宽松！仅限制每个月100G传输流量，但是一旦超限，即刻宕机
 
 示例服务： https://nf-gh.072103.xyz/afoim
 
-### [Cloudflare Workers | 利用易于使用的开发工具构建和部署代码 | Cloudflare](https://www.cloudflare-cn.com/developer-platform/products/workers/)
+#### [Cloudflare Workers | 利用易于使用的开发工具构建和部署代码 | Cloudflare](https://www.cloudflare-cn.com/developer-platform/products/workers/)
 支持众多语言，但是对JS/TS的支持最好，特别注意不支持完整的 **Node.js** 环境。Python目前无法通过pip安装包。优点在于可以和更多Cloudflare产品做协同，如Cloudflare R2 对象存储、Cloudflare KV 键值对存储、Cloudflare D1 SQL数据库
 
 每天限制 **10W** 请求，但是超了并不会 **始终返回** 不可用，而是 **可能会请求错误** 
 
 示例服务： [你可曾想过，直接将BitWarden部署到Cloudflare Worker？ - AcoFork Blog](/posts/warden-worker/)
 
-### [Hugging Face – The AI community building the future.](https://huggingface.co/)
+#### [Hugging Face – The AI community building the future.](https://huggingface.co/)
 
 :::caution
 请不要在其上部署 **AList** ！秒封！
@@ -75,18 +75,18 @@ Serverless也比Server更容易做版本控制和Debug，由于Serverless和Git�
 
 示例服务： [网易云音乐工具箱](https://acofork1-netease.hf.space/)
 
-### [ClawCloud Run | Build, Deploy, Manage & Run in Cloud-Native Platform](https://run.claw.cloud/)
+#### [ClawCloud Run | Build, Deploy, Manage & Run in Cloud-Native Platform](https://run.claw.cloud/)
 
 之前被干爆过，目前亚太爆炸，每个月有 **5 美元** 余额，直接跑Docker，按你分配的CPU核心数和内存来计费。不过 Hobby 计划还蛮便宜的，常用的话可以买
 ![](/img/serverless-function-serverless-function-2.webp)
 
-### [Render](https://render.com/)
+#### [Render](https://render.com/)
 ![](/img/serverless-function-serverless-function-3.webp)
 **每月免费100G流量**，支持非常多的服务，如：静态网站、Web服务（Docker）、定时服务、PostgreSQL数据库、Key Vaule存储
 
 唯一的缺点，性能不高
 
-### [Zeabur](https://zeabur.com/zh-CN/)
+#### [Zeabur](https://zeabur.com/zh-CN/)
 ![](/img/serverless-function-serverless-function-4.webp)
 **每月免费5刀额度** ，免费计划有两个地域可选
 ![](/img/serverless-function-serverless-function-5.webp)
@@ -97,5 +97,5 @@ Serverless也比Server更容易做版本控制和Debug，由于Serverless和Git�
 
 ![](/img/serverless-function-serverless-function-6.webp)
 
-# 结语
+## 结语
 Serverless不像传统的VPS，你并不完全拥有它，所以有些服务是不能跑的， **特别是在免费层** ，如特别吃IO和网络的 **AList** ，或是并发请求特别高以及商用服务。如果你用的舒心，请考虑购买各大平台的付费版套餐

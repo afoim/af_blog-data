@@ -7,7 +7,7 @@ coverImage: /img/sixqi-py-d359734c-1415-4ebc-8caf-4d807282fad6.webp
 ---
 
 
-# 前情提要
+## 前情提要
 
 本来大晚上被干醒了
 
@@ -25,7 +25,7 @@ coverImage: /img/sixqi-py-d359734c-1415-4ebc-8caf-4d807282fad6.webp
 
 于是就...
 
-# 开整！
+## 开整！
 
 首先使用最熟悉的Python Flask框架！
 
@@ -39,7 +39,7 @@ coverImage: /img/sixqi-py-d359734c-1415-4ebc-8caf-4d807282fad6.webp
 
 然后就写出来了！（~~并非，总共问了7次~~
 
-# 上线！
+## 上线！
 
 现已可在 https://sixqi.afo.im/ 游玩！
 

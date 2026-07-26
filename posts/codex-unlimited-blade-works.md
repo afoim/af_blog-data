@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/codex-unlimited-blade-works-codex.png
 ---
-# 原理
+## 原理
 
 ```mermaid
 flowchart TD
@@ -27,7 +27,7 @@ flowchart TD
     E --> F
 ```
 
-# 实操
+## 实操
 
 首先，获得“魔法”，获得大量 OAuth Token
 

@@ -4,7 +4,7 @@ date: '2025-09-03'
 description: 之前曾用过BetterStack这样的云端服务监控，但是免费计划的监控数量仅有10个，而今天推荐的这个支持高达50个！
 draft: false
 ---
-# 正式开始
+## 正式开始
 
 进入 https://dashboard.uptimerobot.com/
 

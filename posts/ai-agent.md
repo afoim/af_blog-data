@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/ai-agent-ai-agent.png
 ---
-# 引言
+## 引言
 
 了解我的人通常都知道，我平时写代码主要用 AI IDE，比如 Trae、Cursor 等。
 
@@ -14,7 +14,7 @@ AI IDE 的优势很明显：在保留 Git、代码高亮等高效手动工具的
 
 ![](/img/ai-agent-ai-agent-1.png)
 
-# AI Agent 是什么？
+## AI Agent 是什么？
 
 简单来说，AI Agent 一般提供的是一个“偏终端化”的工作环境。和 AI IDE 一样，它也能通过自然语言完成开发任务。
 
@@ -32,15 +32,15 @@ AI Agent 往往只给你一个输入框。你描述目标后，它不仅能写�
 
 ![](/img/ai-agent-ai-agent-2.png)
 
-# 各 AI Agent 的区别
+## 各 AI Agent 的区别
 
-### [OpenCode | 开源 AI 编程代理](https://opencode.ai/zh)
+#### [OpenCode | 开源 AI 编程代理](https://opencode.ai/zh)
 
 游客可以直接使用免费的公益模型，不需要付费。
 
 ![](/img/ai-agent-Image_1772724238045_770.png)
 
-### [Claude Code by Anthropic | AI Coding Agent, Terminal, IDE](https://claude.com/product/claude-code)
+#### [Claude Code by Anthropic | AI Coding Agent, Terminal, IDE](https://claude.com/product/claude-code)
 
 它需要一个 **POSIX Terminal**（比如 **Git Bash**）。否则很多终端命令无法正常执行，因为它的工作流高度依赖 Bash 命令（如 `cat`、`ls`）。
 
@@ -48,7 +48,7 @@ AI Agent 往往只给你一个输入框。你描述目标后，它不仅能写�
 
 ![](/img/ai-agent-Image_1772724294856_373.png)
 
-### [Codex](https://chatgpt.com/codex)
+#### [Codex](https://chatgpt.com/codex)
 
 > 目前我本人在用
 
@@ -58,7 +58,7 @@ AI Agent 往往只给你一个输入框。你描述目标后，它不仅能写�
 
 ![](/img/ai-agent-ai-agent-3.png)
 
-# 如何优雅地使用 AI Agent
+## 如何优雅地使用 AI Agent
 
 当然，你也可以手动配置各种 Agent，其实并不难。
 
@@ -66,7 +66,7 @@ AI Agent 往往只给你一个输入框。你描述目标后，它不仅能写�
 
 但目前已经有不少图形化、一键化工具，我更推荐先用这些工具快速上手。
 
-### [CC-Switch](https://github.com/farion1231/cc-switch)
+#### [CC-Switch](https://github.com/farion1231/cc-switch)
 
 它可以用图形界面为不同 Agent 配置模型。你只需要像填表一样填入 API Endpoint、API Key、模型名，它会自动生成并应用对应 Agent 的 JSON 配置。
 
@@ -74,13 +74,13 @@ AI Agent 往往只给你一个输入框。你描述目标后，它不仅能写�
 
 ![](/img/ai-agent-ai-agent-4.png)
 
-### [ZCF](https://github.com/UfoMiao/zcf)
+#### [ZCF](https://github.com/UfoMiao/zcf)
 
 这个工具可以自动帮你安装 Agent，并一键部署一些主流 MCP，还能设置模型系统提示词预设，并提供基础工作流。
 
 ![](/img/ai-agent-ai-agent-5.png)
 
-# 从零安装并配置一个 Agent
+## 从零安装并配置一个 Agent
 
 > 你需要事先准备一个模型 API
 

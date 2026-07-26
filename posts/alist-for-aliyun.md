@@ -5,24 +5,24 @@ description: 阿里云云函数 FC是一个弹性的计算平台，可托管多�
 draft: false
 coverImage: /img/alist-for-aliyun-47518d4403328a0fcb716f0e06fc7f608e6c65b7.webp
 ---
-# 还是建议购买一个便宜的云服务器来部署或者用家里云，这种方法很灵车
+## 还是建议购买一个便宜的云服务器来部署或者用家里云，这种方法很灵车
 
 推荐Akile：https://akile.io/register?aff_code=503fe5ea-e7c5-4d68-ae05-6de99513680e
 
 ---
 
-# 原理
+## 原理
 
 1. AList前端有一个专门的项目：https://github.com/AlistGo/alist-web 。可前往[AList-Web部署教程](/posts/alist-web/)。教程使用了Cloudflare Page进行前端部署，我们更建议你使用 https://vercel.com 来进行前端部署，因为更快。这些都完全免费
 2. 部署完毕前端后，我们就需要一个后端，它需要能够执行AList的二进制文件，并且能开放端口（默认为5244）来让前端可以和后端相互通信。在传统情况下我们会选择购买一台云服务器，或者用自己的电脑/家里云+Cloudflare Tunnel又或者是Serv00这种免费的托管。本篇我们使用阿里云FC函数计算，它虽然可以运行二进制文件，但是和传统架构大相径庭，我们要深入了解。
 3. FC函数是一个实例性服务。用户可以创建函数部署服务，当一定条件被触发（比如HTTP触发器）则创建新的实例开始运行用户的服务。也就是说这个实例是无状态的，如果直接拿来部署AList就会导致第一次配置完毕后过一段时间再访问就会变为初始状态。就算你一开始就使用一个全量包来部署，在部署后也无法对其进行更改，所以我们需要绑定一个NAS文件系统，用于数据持久化。但是NAS文件系统并不能直接绑定到代码的运行时 /code/xxx 目录，我们可以使用AList的指定配置文件参数，将NAS绑定到 /mnt/AList 然后指定配置文件到 /mnt/AList 。也就是通过 **./alist server --data /mnt/AList** 命令来启动，这样就做到了数据持久化。
 
-# 关于计费
+## 关于计费
 
 1. FC函数通过CU数来收费
 2. NAS通过存储空间来收费
 
-# 实操
+## 实操
 
 1. 我们假设你已经部署完毕了前端。前端和后端的通信地址在根目录的 env.production 文件定义
 2. 我们目前并不知道这个后端URL如何填写，因为这个URL是由阿里云在FC函数创建完毕的时候才会展示，所以我们暂且搁置到一遍
@@ -51,7 +51,7 @@ coverImage: /img/alist-for-aliyun-47518d4403328a0fcb716f0e06fc7f608e6c65b7.webp
 
 ---
 
-# 疑难解答
+## 疑难解答
 
 1. 如果出现正在加载储存：
    ![9aa460cd2dc84e1debe43e9df2d342fc](/img/alist-for-aliyun-QmZVewYnKwCJzcShnkGTTVZJiTSUUSQi9u6pZ5rXRDK3rK.webp)

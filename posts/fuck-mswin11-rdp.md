@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/fuck-mswin11-rdp-fkms.png
 ---
-# 症状
+## 症状
 
 一个带有远程桌面的版本（非家庭版），最新版Win11（25h2），启用了远程桌面服务
 
@@ -18,7 +18,7 @@ coverImage: /img/fuck-mswin11-rdp-fkms.png
 
 但是系统 **不监听3389端口**，**外部无法连接** （我还排查了好久是不是我STUN的问题😅）
 
-# 解决方案
+## 解决方案
 
 > 由于新版Win11更”安全“了。微软默认将RDP隔离出去了，我们需要做以下几件事让RDP恢复外部监听😅
 
@@ -48,7 +48,7 @@ runas /u:MicrosoftAccount\<你的微软账户邮箱 > winver
 
 ![](/img/fuck-mswin11-rdp-index-2.png)
 
-# 鸣谢
+## 鸣谢
 
 [[实战记录] Windows 11 远程桌面已开启，但 3389 端口无监听？终极排查与修复 - 技术栈](https://jishuzhan.net/article/2054187012247785474)
 

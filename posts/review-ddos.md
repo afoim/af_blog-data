@@ -7,7 +7,7 @@ tags: []
 coverImage: /img/review-ddos-review-ddos-5.png
 ---
 
-# 引言
+## 引言
 
 本站建站初使用 **静态** 架构就是防止别有用心之人进行DDoS
 
@@ -43,7 +43,7 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 ---
 
-# 第一次大规模攻击：6.65TB流量冲击
+## 第一次大规模攻击：6.65TB流量冲击
 
 *以下记录于2025年12月16日，是本站遭受的第一次大规模DDoS攻击*
 
@@ -78,7 +78,7 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 切完后逐步好转，虽然速度有些慢，然后我就睡觉了
 
-## 真相大白
+### 真相大白
 
 睡醒后我越想越奇怪，于是就登上了 **EdgeOne Pages** 控制台，然后一看，我嘞个大雷
 
@@ -118,7 +118,7 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 ![](/img/review-ddos-Screenshot_2025-12-16-08-08-33-65_149003a2d400f6a.webp)
 
-## 本次攻击总结
+### 本次攻击总结
 
 ![](/img/review-ddos-d16b7b134dec1224dcfc16e59a21942f.webp)
 
@@ -130,7 +130,7 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 ---
 
-# 作死回马枪：又切回了ESA
+## 作死回马枪：又切回了ESA
 
 切到Cloudflare之后，攻击消停了一段时间，网站也恢复了正常访问
 
@@ -148,9 +148,9 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 ---
 
-# 持续攻击：长达四个月的攻防战
+## 持续攻击：长达四个月的攻防战
 
-## 攻击升级：国内IP攻击
+### 攻击升级：国内IP攻击
 
 在我做了分流和L7海外屏蔽的情况下，攻击者并没有放弃，而是改变了策略——**开始使用大量的国内IP进行攻击**
 
@@ -170,7 +170,7 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 网站被攻击的时候所有人都无法打开，但我确实也已经无计可施了
 
-## 攻击扩散：API也被盯上
+### 攻击扩散：API也被盯上
 
 最后，攻击者不再执着仅攻击这个静态站点了，转而去攻击其他的API，比如Umami，随机图等等
 
@@ -188,7 +188,7 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 确实也是这样，尽管国内用户直连国内CDN能得到及其优异的访问，但是一旦被打，就连访问都访问不上，更别说速度了
 
-## 最终方案：迁移至Cloudflare
+### 最终方案：迁移至Cloudflare
 
 最终，又花了小半天时间将该网站本体以及其他API全部迁移到了Cloudflare，尽管攻击者仍在持续不断的攻击，但是还不至于打死Cloudflare
 
@@ -196,7 +196,7 @@ coverImage: /img/review-ddos-review-ddos-5.png
 
 ---
 
-# 疑难解答
+## 疑难解答
 
 > 至此还有非常多的内容没说，但是他们没法串在一起，就用QA的形式回答吧
 
@@ -222,11 +222,11 @@ Cloudflare曾抵御过高达 22.2Tbps 的攻击，对于攻击我们的流量来
 
 ---
 
-# 所有攻击报表
+## 所有攻击报表
 
 > 我们是最近刚切到Cloudflare的，在此之前我们使用的是EdgeOne/ESA
 
-### Cloudflare
+#### Cloudflare
 
 ![](/img/review-ddos-review-ddos-6.png)
 
@@ -236,7 +236,7 @@ Cloudflare曾抵御过高达 22.2Tbps 的攻击，对于攻击我们的流量来
 
 ![](/img/review-ddos-review-ddos-9.png)
 
-### ESA
+#### ESA
 
 ![](/img/review-ddos-review-ddos-10.png)
 
@@ -244,7 +244,7 @@ Cloudflare曾抵御过高达 22.2Tbps 的攻击，对于攻击我们的流量来
 
 ---
 
-# 最终复盘
+## 最终复盘
 
 经过这四个月的攻防战，总结出以下几点：
 

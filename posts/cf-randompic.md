@@ -5,15 +5,15 @@ description: 使用R2存储图片，通过Workers连接，最后使用a标签或
 draft: false
 coverImage: /img/cf-randompic-QmVgqgoC7G8NLS21WvR8j9gf5amu33XvuV68ZrgM5B9iFf.webp
 ---
-### **结果图**
+#### **结果图**
 
 ![QmVgqgoC7G8NLS21WvR8j9gf5amu33XvuV68ZrgM5B9iFf.webp](/img/cf-randompic-408795f3ec1a5a9baf91b6cd7564d6f1d7dbc5bd.webp)
 
-### **原理**
+#### **原理**
 
 图源由 Cloudflare R2 托管，通过两个 Workers 连接 R2 以展示随机横屏/竖屏图片，静态页面引用 Workers 的 URL 以实现以上界面
 
-### **创建 Cloudflare R2 存储桶**
+#### **创建 Cloudflare R2 存储桶**
 
 R2 实际上是一个对象存储。Cloudflare 提供 10G 的免费存储和每月 1000 万次的免费访问
 
@@ -37,7 +37,7 @@ R2 实际上是一个对象存储。Cloudflare 提供 10G 的免费存储和每�
 
 9. 确保你已经妥善保存你的 R2 API 令牌，然后进行下一步
 
-### **为你的存储桶添加文件**
+#### **为你的存储桶添加文件**
 
 因为 Web 界面传输文件较慢且不支持传输大于 300MB 的文件。这里使用本地部署 AList 然后连接你的 R2 存储桶实现高速上传
 
@@ -80,7 +80,7 @@ R2 实际上是一个对象存储。Cloudflare 提供 10G 的免费存储和每�
 
 ![QmNdD8UU8fkVDBz5dXdJhCF2fZg8P1FwrcMaaTsG6a7ENy.webp](/img/cf-randompic-3bde577194580e4d17aa457231360733175e2b0d.webp)
 
-### **创建 Workers，连接 R2**
+#### **创建 Workers，连接 R2**
 
 1. 进入[Cloudflare 仪表盘](https://dash.cloudflare.com/)，进入 Workers 和 Pages 页面，如图![QmW5UaUap8T2R37u5dzmKGLmUgk4qKnSMFwHBVHqvVbkVA.webp](/img/cf-randompic-49ccd51771082fdc94eecb270caf987d257cd987.webp)
 
@@ -210,7 +210,7 @@ bucket_name = "114514"
 
 10. 访问效果，每次刷新都不一样![QmQgEdjXxF9oph2jYKzFMJToX9WfG11jUmPiNJnjhYVN4N.webp](/img/cf-randompic-0ba1efee8174e0d3db761bbd613a7b94b9738cee.webp)
 
-### **通过使用 HTML 的 `<img>` 标签引用即可达到开头的效果**
+#### **通过使用 HTML 的 `<img>` 标签引用即可达到开头的效果**
 
 如：`<img src="你的域名" alt="">`
 <img title="" src="https://hpic.072103.xyz" alt="loading-ag-4760">

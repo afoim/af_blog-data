@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/self-host-cdn-scdn.png
 ---
-# 前情提要
+## 前情提要
 
 因为最近搞了甲骨文，有俩1c1g的甲骨文机子，但是不知道能拿来干嘛
 
@@ -16,7 +16,7 @@ coverImage: /img/self-host-cdn-scdn.png
 
 于是就想着是否能在我的俩甲骨文上托管我的静态博客？
 
-# 思路
+## 思路
 
 首先，我们需要一个Web服务器，用来提供HTML内容，因为我是静态博客。所有我们不需要高级功能，故选择最快的 [static-web-server/static-web-server: A cross-platform, high-performance and asynchronous web server for static files-serving. ⚡](https://github.com/static-web-server/static-web-server)
 
@@ -50,7 +50,7 @@ flowchart TD
     s2 --> r
 ```
 
-# 正式开始！
+## 正式开始！
 
 首先，使用 [MobaXterm free Xserver and tabbed SSH client for Windows](https://mobaxterm.mobatek.net/) 连上两台机子并且启用 Multi Shell！
 
@@ -313,7 +313,7 @@ crontab -e
 * * * * * /root/vps-cicd/build.sh >> /var/log/vps-cicd-build.log 2>&1
 ```
 
-# 接入
+## 接入
 
 将两个甲骨文IP写入 `oraclecdn.2x.nz` 中
 
@@ -323,7 +323,7 @@ crontab -e
 
 ![](/img/self-host-cdn-self-host-cdn-4.png)
 
-# 高级
+## 高级
 
 > 由于我们有两台Linux的完整控制权限，我们就可以实现一些高级功能...
 

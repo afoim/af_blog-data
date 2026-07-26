@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/aicode-prompt-65f8862e-2a66-4acc-8fef-c8b3dc7f5c29.webp
 ---
 > 视频链接： https://www.bilibili.com/video/BV1jw38z9EEn/
-# 正确的引导方法
+## 正确的引导方法
 
 先搞清楚你自己具体的需求。比如代码用什么语言编写？用什么技术栈？要具体实现什么功能？应用的场景是什么？是前端、后端还是全栈等等
 
@@ -38,7 +38,7 @@ AI也会犯错，并且极其容易瞎猜。不要尽信AI给出的内容，在�
 
 最后，请善用AI，你也可以询问AI： `你的最佳调用方式是什么`。~~当然，她也有可能欺骗你~~。
 
-# AI推荐
+## AI推荐
 
 [ChatGPT](https://chatgpt.com)：快速，不限额。适合解决你的疑问
 ![](/img/aicode-prompt-c2e37057-78c9-403f-b3af-e84bdad98f1e.webp)

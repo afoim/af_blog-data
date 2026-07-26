@@ -7,19 +7,19 @@ coverImage: /img/edgeone-3a9096b2-cee8-448b-952a-d9f68cb01be6.webp
 ---
 
 
-# 这是个啥？
+## 这是个啥？
 
 在我的[早期文章](/posts/static-web)中提过EdgeOne，当时它还仅有Page业务，而且IP是很垃圾的新加坡，并且还会吞提交。故我当时给出了不如Cloudflare Page的评价
 
 不过这玩意最近出了CDN业务，并且还是免费。所以我又重拾起来了
 
-# 我要怎么用上？
+## 我要怎么用上？
 
 浏览器访问： https://edgeone.ai 注册账号
 
 或者看视频： https://www.bilibili.com/video/BV1KmNUzVEEL
 
-# 关于EdgeOne CDN - 网站安全加速
+## 关于EdgeOne CDN - 网站安全加速
 
 > 以下言论仅适用于**未备案**用户
 
@@ -41,7 +41,7 @@ coverImage: /img/edgeone-3a9096b2-cee8-448b-952a-d9f68cb01be6.webp
 
 ![](/img/edgeone-3063dcd0-857d-4280-8ed2-21f4beddb69a.webp)
 
-# 关于EdgeOne Pages（新）
+## 关于EdgeOne Pages（新）
 
 不用花钱，注册账号后即可用
 

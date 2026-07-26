@@ -5,7 +5,7 @@ description: 使用SaaS、Worker以及各种奇技淫巧来让你的网站解析
 draft: false
 coverImage: /img/cf-fastip-cf-fastip-11.webp
 ---
-# 相关视频：
+## 相关视频：
 - **全解**： <https://www.bilibili.com/video/BV1QpSoBqERj>
 - ~~SaaS原理：<https://www.bilibili.com/video/BV1A5rpBqENh/>~~
 - ~~Worker/Pages优选：<https://www.bilibili.com/video/BV1KNmtB6EU7/>~~
@@ -16,17 +16,17 @@ coverImage: /img/cf-fastip-cf-fastip-11.webp
 
 > [!tip]
 > 所有优选一个域名即可，无需两个域名。如： `s.2x.nz` 和 `s-s.2x.nz` 即可完成优选
-#### 未优选
+##### 未优选
 
 ![QmZoinxZgAzu7Skh7BqsxmDQGU1sXtLLskJcyQuRAQNKww.webp](/img/cf-fastip-098f9ee71ae62603022e542878673e19bdcaf196.webp)
 
-#### 已优选
+##### 已优选
 
 ![](/img/cf-fastip-cf-fastip-11.webp)
 
 ---
 
-# 什么是优选？
+## 什么是优选？
 
 简单来说，**优选就是选择一个国内访问速度更快的Cloudflare节点**。
 
@@ -38,7 +38,7 @@ Cloudflare官方分配给我们的IP，在国内访问时延迟往往较高，�
 
 ---
 
-# 优选原理
+## 优选原理
 
 首先我们要知道CDN是如何通过不同域名给不同内容的。
 
@@ -64,27 +64,27 @@ Cloudflare官方分配给我们的IP，在国内访问时延迟往往较高，�
 
 ---
 
-# 选择优选域名
+## 选择优选域名
 
 优选的核心就是选择一个国内访问速度更快的Cloudflare节点IP或域名。
 
-## 传统优选域名
+### 传统优选域名
 
 常用的社区优选域名：https://cf.090227.xyz
 
 这些优选域名通常是通过扫描Cloudflare官方IP段，找出国内延迟最低的IP整理而成。
 
-## Cloudflare Byoip 优选
+### Cloudflare Byoip 优选
 
 > 还在用传统优选？来看看Cloudflare Byoip！
 
-### 什么是Byoip？
+#### 什么是Byoip？
 
 Cloudflare Byoip（Bring Your Own IP），即如果用户自己拥有一个IP、IP段，可以将其托管给Cloudflare，并使其受益于Cloudflare全球网络的加速与安全。
 
 人话讲就是，有一些IP不直接隶属于Cloudflare，但是我们CNAME到这个IP后仍然可以正常访问到我们部署在Cloudflare上的服务。这些IP可能并不是Anycast，但是国内延迟可能会明显优于Cloudflare的官方IP段。
 
-### 如何找到Cloudflare Byoip？
+#### 如何找到Cloudflare Byoip？
 
 可以前往 [AS209242 Cloudflare London, LLC details | Ipregistry](https://ipregistry.co/AS209242#ranges)
 
@@ -94,19 +94,19 @@ Cloudflare Byoip（Bring Your Own IP），即如果用户自己拥有一个IP、
 
 ![](/img/cf-fastip-838f685e-3913-4b21-995e-5ee149f4bffa.webp)
 
-### 注意事项
+#### 注意事项
 
 有一些Byoip可能会强制跳转到它自己的网站。需要查看ITDog的测试日志是否有重定向，别让你的网站成为他人的引流站。
 
-### 可以长久使用吗？
+#### 可以长久使用吗？
 
 这些Byoip固然比Cloudflare官方IP段质量更好，但如果你真的要用，请设置好一个机器定时筛选不可用的IP，以及添加一些Cloudflare官方IP段，防止您的服务宕机。
 
 ---
 
-# 各类优选方案
+## 各类优选方案
 
-## Worker项目优选（最简单）
+### Worker项目优选（最简单）
 
 如果你需要优选 Page/Worker项目：
 
@@ -124,7 +124,7 @@ Cloudflare Byoip（Bring Your Own IP），即如果用户自己拥有一个IP、
 
 ---
 
-## Worker路由反代全球并优选（进阶）
+### Worker路由反代全球并优选（进阶）
 
 > 本方法的原理为通过Worker反代你的源站，然后将Worker的入口节点进行优选。此方法不是传统的优选，源站接收到的Hosts头仍然是直接指向源站的解析
 
@@ -229,7 +229,7 @@ function getProxyPrefix(hostname) {
 
 ---
 
-## Cloudflare R2 优选
+### Cloudflare R2 优选
 
 首先，你先得有个R2实例
 
@@ -251,9 +251,9 @@ function getProxyPrefix(hostname) {
 
 ---
 
-## 传统SaaS优选
+### 传统SaaS优选
 
-### SaaS做了什么？
+#### SaaS做了什么？
 
 Cloudflare SaaS是一个不需要你改变一个域名的NS服务器，就可以让其受益于Cloudflare网络的功能。
 
@@ -269,7 +269,7 @@ Worker中的路由规则也适用：
 
 ![](/img/cf-fastip-cf-saas-4.webp)
 
-### SaaS优选步骤
+#### SaaS优选步骤
 
 > 简单易懂（pro.yourdomain.com 是最终访问域名）：
 > CF SaaS DNS
@@ -285,7 +285,7 @@ Worker中的路由规则也适用：
 > Cloudflare最近将新接入的域名SSL默认设为了完全，记得将 SSL 改为灵活。
 > ![](/img/cf-fastip-cf-fastip-1.webp)
 
-#### 准备工作
+##### 准备工作
 
 我们需要**一个域名或两个域名**（单域名直接用子域名即可。双域名比如：onani.cn和acofork.cn）。
 
@@ -297,7 +297,7 @@ Worker中的路由规则也适用：
 
 ![](/img/cf-fastip-cf-fastip.webp)
 
-#### 具体步骤
+##### 具体步骤
 
 1. 首先新建一个DNS解析，指向你的**源站**，**开启cf代理**
    ![QmfBKgDe77SpkUpjGdmsxqwU2UabvrDAw4c3bgFiWkZCna.webp](/img/cf-fastip-c94c34ee262fb51fb5697226ae0df2d804bf76fe.webp)
@@ -325,13 +325,13 @@ Worker中的路由规则也适用：
 
 ---
 
-# 针对于Cloudflare Page
+## 针对于Cloudflare Page
 
 1. 你可以直接将你绑定到Page的子域名直接更改NS服务器到阿里云\华为云\腾讯云云解析做线路分流解析
 
 2. 将您的Page项目升级为Worker项目，使用Worker优选方案（更简单）。详细方法见：【CF Page一键迁移到Worker？好处都有啥？-哔哩哔哩】 https://www.bilibili.com/video/BV1wBTEzREcb
 
-# 针对于Cloudflare Workers
+## 针对于Cloudflare Workers
 
 1. 在Workers中添加路由，然后直接将你的路由域名从指向`xxx.worker.dev`改为优选域名即可
 2. 如果是外域，SaaS后再添加路由即可，就像：
@@ -339,7 +339,7 @@ Worker中的路由规则也适用：
 
    ![](/img/cf-fastip-cf-fastip-13.webp)
 
-# 针对于Cloudflare Tunnel（ZeroTrust）
+## 针对于Cloudflare Tunnel（ZeroTrust）
 
 请先参照 [传统SaaS优选](#传统saas优选) 设置完毕，源站即为 Cloudflare Tunnel。正常做完SaaS接入即可：
 
@@ -358,10 +358,10 @@ Worker中的路由规则也适用：
 
 ---
 
-# 针对于使用了各种CF规则的网站
+## 针对于使用了各种CF规则的网站
 
 你只需要让规则针对于你的 **最终访问域名** ，因为CF的规则是看主机名的，而不是看是由谁提供的。
 
-# 针对于虚拟主机
+## 针对于虚拟主机
 
 保险起见，建议将源站和优选域名同时绑定到你的虚拟主机，保证能通再一个个删。

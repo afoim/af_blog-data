@@ -5,7 +5,7 @@ description: USTC在下载一些资源的时候会使用JS验证，有没有不�
 draft: false
 coverImage: /img/bypass-ustc-verifying-58e8e41a-0755-4e6a-ab1e-a9dbaa1042d5.webp
 ---
-# 前言
+## 前言
 
 当我们去下载类似于 https://mirrors.ustc.edu.cn/debian-cd/12.10.0/amd64/iso-dvd/debian-12.10.0-amd64-DVD-1.iso 这样的大文件时，USTC大概率会给你一个这样的：正在验证你的浏览器 的页面
 
@@ -28,7 +28,7 @@ HTTP request sent, awaiting response... 403 Forbidden
 
 于是我便想深挖一下，然后发现其实根本不是什么JS验证！！！
 
-# 分析
+## 分析
 
 让我们首先打开这类链接，然后查询网页源代码
 
@@ -57,7 +57,7 @@ HTTP request sent, awaiting response... 403 Forbidden
 
 让我们来试一试
 
-# 实战
+## 实战
 
 首先我们使用默认的wget。403
 
@@ -126,4 +126,4 @@ Saving to: ‘debian-12.10.0-amd64-DVD-1.iso.2’
 debian-12.10.0-amd64-DVD-1.iso.2-   5%[>                          ] 207.26M  72.9MB/s 
 ```
 
-# 
+## 

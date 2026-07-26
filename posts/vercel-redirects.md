@@ -4,7 +4,7 @@ date: '2025-09-01'
 description: 如果你的站点（无论静态/动态）正在使用Vercel，则配置重定向是一件非常轻松的事情
 draft: false
 ---
-# 正式开始
+## 正式开始
 
 > 官方文档： [Redirects](https://vercel.com/docs/redirects)
 

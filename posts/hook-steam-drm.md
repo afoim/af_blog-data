@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/hook-steam-drm-hook-steam-drm.webp
 ---
 
-# 正式开始
+## 正式开始
 
 首先我们需要有一个完整的Steam版的游戏包体
 

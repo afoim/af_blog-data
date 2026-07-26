@@ -9,11 +9,11 @@ draft: false
 > 仅供学习交流，请在下载后24h内删除。体验地址： https://lsky.2x.nz
 > 视频教程： https://www.bilibili.com/video/BV1UieUzQEvq/
 
-# 方案一：本地开心版（推荐）
+## 方案一：本地开心版（推荐）
 
 突然发现交付给我的项目是源码，那还逆向什么授权，直接永远返回true呗~
 
-## 安装包体
+### 安装包体
 
 - http://r2.072103.xyz/2xnzlskypro223.zpaq 
 - [OneDrive - 2xnzlskypro223.zpaq](https://acofork-my.sharepoint.com/:u:/g/personal/af_acofork_onmicrosoft_com/Eenhpe5Kt0RLopi_n6Ud-qMBh6fmDsXKaB8csLIVLu-FEQ?e=Z6QLGn)
@@ -21,13 +21,13 @@ draft: false
 
 zpaq可以使用 [Bandizip 官方网站 - 免费压缩软件下载 (Windows)](https://www.bandisoft.com/bandizip/) 进行解压，旧版不支持
 
-## 我们做了什么？
+### 我们做了什么？
 
 - 安装过程中无论输入授权密钥为任何值直接内部返回true，不再请求授权服务器
 - 版本更新不再请求授权服务器，始终返回当前版本为最新版本
 - 所有操作不经过授权服务器，全部本地执行
 
-## 环境配置
+### 环境配置
 
 自行参考： https://docs.lsky.pro/guide/install
 
@@ -57,7 +57,7 @@ zpaq可以使用 [Bandizip 官方网站 - 免费压缩软件下载 (Windows)](ht
     }
 ```
 
-## 安装过程
+### 安装过程
 
 授权密钥随便填直接过
 
@@ -71,17 +71,17 @@ zpaq可以使用 [Bandizip 官方网站 - 免费压缩软件下载 (Windows)](ht
 
 ![](/img/hack-lskypro-2025-08-22-04-22-37-image.webp)
 
-# 方案二：手动破解
+## 方案二：手动破解
 
 如果你想自己动手破解，或者需要获取最新版本包体，可以参考此方案。
 
 > 注意。如果需要更新新版本，仍然需要有效的授权密钥，否则无法得到新版包体
 
-## 下载包体
+### 下载包体
 
 兰空图床Pro付费版包： https://r2.072103.xyz/lp223.zpaq （解压密码：2x.nz二叉树树）
 
-## 破解授权
+### 破解授权
 
 首先为你的Linux配置一个HTTP代理，指向 Burp Suite（软件自己找）
 
@@ -130,7 +130,7 @@ export https_proxy="http://127.0.0.1:8080"
 
 ![](/img/hack-lskypro-79f0f4645235e7cb3ecbe554cb13295bed326be5.webp)38dd52c6e.webp)
 
-# 进阶：自建授权服务器
+## 进阶：自建授权服务器
 
 可以通过Cloudflare Worker自建授权。感谢一位不愿透露姓名的小伙伴提供的代码
 

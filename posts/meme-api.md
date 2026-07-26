@@ -7,11 +7,11 @@ coverImage: /img/meme-api-ee29b679-3355-453e-917b-2b85ae9106a0.webp
 ---
 
 
-# 正式开始
+## 正式开始
 
 视频教程： https://www.bilibili.com/video/BV1i53PzUEzE/
 
-## 后端部署
+### 后端部署
 
 > Github： https://github.com/MemeCrafters/meme-generator
 
@@ -86,7 +86,7 @@ Fontconfig warning: "/usr/share/fontconfig/conf.avail/05-reset-dirs-sample.conf"
 06-30 05:32:48 [INFO] logging | Uvicorn running on http://127.0.0.1:2233 (Press CTRL+C to quit)
 ```
 
-## 前端对接
+### 前端对接
 
 Koishi插件市场安装此插件的1.0.3版本
 
@@ -98,7 +98,7 @@ Koishi插件市场安装此插件的1.0.3版本
 
 ![](/img/meme-api-50da2a0d-7e49-491a-bad3-d9fde22a9df6.webp)
 
-## 使用
+### 使用
 
 向Bot发送 `表情列表` 
 

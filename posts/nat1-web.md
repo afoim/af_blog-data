@@ -7,23 +7,23 @@ coverImage: /img/nat1-web-0aa77bad-482a-4b65-9a19-4f35acb570ba.webp
 ---
 
 
-# 配套视频
+## 配套视频
 
 <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114597528936170&bvid=BV1hY7szUEbu&cid=30235755189&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-# 原理
+## 原理
 
 ![](/img/nat1-web-7c517b72-8287-4707-8dff-12690a71d592.webp)
 
-# 正式开始
+## 正式开始
 
-### 创建必要的Cloudflare API令牌
+#### 创建必要的Cloudflare API令牌
 
 创建拥有如下图权限的令牌，使得Lucky可以使用此令牌设置DDNS、签发SSL、更新Cloudflare动态重定向
 
 ![](/img/nat1-web-890468f0-7e7f-42b9-ba57-f98e3b964626.webp)
 
-### 创建基底Cloudflare动态重定向规则
+#### 创建基底Cloudflare动态重定向规则
 
 如图填写，替换为你的域名
 ![](/img/nat1-web-9c4a1cb0-d1c6-4e9b-b2bb-dfd6b6fe6306.webp)
@@ -55,29 +55,29 @@ https://api.cloudflare.com/client/v4/zones/f305febd3a25b5bb3a46b802328a75a8/rule
 {"description":"stun","expression":"(http.host wildcard \"*.072103.xyz\" and not http.host in {\"pic.072103.xyz\" \"hpic.072103.xyz\"})","action":"redirect","action_parameters":{"from_value":{"status_code":301,"preserve_query_string":true,"target_url":{"expression":"wildcard_replace(http.request.full_uri, \"*://*.072103.xyz/*\", \"https://${2}.stun.072103.xyz:#{port}/${3}\")"}}},"enabled":true}
 ```
 
-### 让Cloudflare接管 *.072103.xyz 的流量
+#### 让Cloudflare接管 *.072103.xyz 的流量
 
 ![](/img/nat1-web-72dd5daa-a10f-4fa1-816f-8be18abc2587.webp)
 
-### 配置Lucky DDNS
+#### 配置Lucky DDNS
 
 ![](/img/nat1-web-bf6eafd3-3f7b-4a71-8c4f-c0bd34703eee.webp)
 
-### 配置Lucky SSL/TLS证书
+#### 配置Lucky SSL/TLS证书
 
 ![](/img/nat1-web-80fc1bda-334d-4444-b063-2d3202de8296.webp)
 
-### 配置Lucky Web服务
+#### 配置Lucky Web服务
 
 ![](/img/nat1-web-8f64210e-2bb3-4014-96e7-3af577a722f0.webp)
 
-### 配置Lucky STUN
+#### 配置Lucky STUN
 
 注：我这里使用了路由器的端口转发，将Lucky的16666（Web服务）端口转发到了路由器的17777端口。如果你不会端口转发，请**不要启用** `不使用Lucky内置端口转发` 并且**目标端口**填写16666
 
 ![](/img/nat1-web-88f5e404-271b-4d20-98c7-b7f39a9247b2.webp)
 
-### 配置WebHook
+#### 配置WebHook
 
 如图配置
 
@@ -96,4 +96,4 @@ Content-Type: application/json
 
 请求体：你之前记录的 `{"description":...` 
 
-# End.
+## End.

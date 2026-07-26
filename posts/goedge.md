@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-# 安装GoEdge
+## 安装GoEdge
 
 > [使用脚本快速安装GoEdge管理系统 - 文档 - GoEdge CDN | 自建CDN](https://goedge.cloud/docs/Admin/install-script.md)
 
@@ -16,7 +16,7 @@ draft: false
 curl -s https://goedge.cloud/install.sh | bash
 ```
 
-# 卸载GoEdge
+## 卸载GoEdge
 
 查看监听端口为 **7788** 的程序PID
 
@@ -46,7 +46,7 @@ root@AcoFork-NAS:~/oci#
 
 接着前往 [卸载管理平台 - 文档 - GoEdge CDN | 自建CDN](https://goedge.cloud/docs/Admin/Uninstall.md) 按照教程一步步卸载即可
 
-# API节点的配置
+## API节点的配置
 
 安装阶段会让你配置API节点，会让你配置端口和公网
 
@@ -54,7 +54,7 @@ root@AcoFork-NAS:~/oci#
 
 你需要保证 **公网** 可以被你之后添加的节点 **主动访问** 到（我的做法是使用IPv6公网，并保证之后添加的节点都有IPv6地址）
 
-# 添加DNS服务商
+## 添加DNS服务商
 
 首先前往
 
@@ -68,7 +68,7 @@ root@AcoFork-NAS:~/oci#
 
 ![](/img/goedge-2025-09-09-06-44-54-image.webp)
 
-# 设置CDN域名
+## 设置CDN域名
 
 前往
 
@@ -78,7 +78,7 @@ root@AcoFork-NAS:~/oci#
 
 ![](/img/goedge-2025-09-09-06-46-12-image.webp)
 
-# 添加节点
+## 添加节点
 
 前往
 
@@ -88,7 +88,7 @@ root@AcoFork-NAS:~/oci#
 
 然后填写节点IP+SSH认证方式（密码/密钥），之后goedge会主动通过SSH连接节点安装服务
 
-# 配置节点的DNS IP
+## 配置节点的DNS IP
 
 前往
 
@@ -96,7 +96,7 @@ root@AcoFork-NAS:~/oci#
 
 会让你填写每个节点的DNS IP，填写节点的 **公网IP** 即可
 
-# 签发SSL
+## 签发SSL
 
 前往
 
@@ -120,13 +120,13 @@ root@AcoFork-NAS:~/oci#
 
 ![](/img/goedge-2025-09-09-06-52-20-image.webp)
 
-# 禁止未绑定域名访问/禁止IP直接访问
+## 禁止未绑定域名访问/禁止IP直接访问
 
 字面意思，如图设置
 
 ![](/img/goedge-2025-09-09-06-53-52-image.webp)
 
-# 创建网站
+## 创建网站
 
 前往
 

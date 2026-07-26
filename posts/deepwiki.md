@@ -6,13 +6,13 @@ draft: false
 tags: []
 coverImage: /img/deepwiki-deepwiki.png
 ---
-# 这是什么？
+## 这是什么？
 
 在AI大道当行的时代，DeepWiki提供免费的AI用以分析全球的Github仓库，只要你的仓库有一些Star，稍微流行一些，就有可能被DeepWiki收录，并且自动通过AI大模型创建专属于你的Github仓库的强大Wiki！
 
 ![](/img/deepwiki-deepwiki.png)
 
-# 如何查看我的仓库是否被收录？
+## 如何查看我的仓库是否被收录？
 
 前往 [DeepWiki | AI documentation you can talk to, for every repo](https://deepwiki.com/) 搜索你的 **Github 用户名** 即可看到当前DeepWiki收录的你的所有仓库
 
@@ -30,7 +30,7 @@ DeepWiki爬取的频率不算很高，我们可以通过在仓库README添加一
 
  ![](/img/deepwiki-deepwiki-2.png)
 
-# 接下来...？
+## 接下来...？
 
 你可以将DeepWiki贴到你的网站，服务，App上，让用户遇到问题直接询问DeepWiki！无需再手动搭建你的知识库了！
 

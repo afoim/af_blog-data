@@ -7,7 +7,7 @@ tags: []
 coverImage: /img/fenliu-fenliu.webp
 ---
 
-# 需分流的网站
+## 需分流的网站
 博客本体，主站
 [https://blog.acofork.com](https://blog.acofork.com)
 Umami，用于在网站插入一个JS来进行访客统计以及展示访客信息
@@ -19,24 +19,24 @@ Umami，用于在网站插入一个JS来进行访客统计以及展示访客信�
 其他： https://acofork.com , https://www.acofork.com
 这些都是要 **301** 重定向到 https://blog.acofork.com 的域名，我们也需要为其配置分流
 
-# 各CDN SSL申请方案
+## 各CDN SSL申请方案
 
-### EdgeOne
+#### EdgeOne
 
 由于NS直接在EdgeOne，故直接申请
 ![](/img/fenliu-fenliu-1.webp)
-### ESA
+#### ESA
 使用DCV委派
 ![](/img/fenliu-fenliu-2.webp)
-### Cloudflare
+#### Cloudflare
 使用HTTP验证，由于ACME验证节点在国外，所以它只会看到CNAME到Cloudflare的记录，从而签发SSL
 ![](/img/fenliu-fenliu-3.webp)
 针对重定向的域名，由于默认所有请求都会被重定向到新域，ACME自然无法验证，所以我们需要写一条排除规则，让ACME验证路径直接返回200 OK，其余的路径再重定向
 ![](/img/fenliu-fenliu-17.webp)
 
-# 源站类型
+## 源站类型
 
-### 静态型
+#### 静态型
 
 国内使用对应CDN的Page业务，海外使用Cloudflare Worker。至于为什么不将 `blog.acofork.com` 也放在EdgeOne Page，一是因为EdgeOne CDN和Page的WAF规则是分开的，而Page业务的WAF规则不是很好做海外封锁，二是因为EO在之前被打的时候将这个子域封了。而ESA Page可以很简单做到海外封禁
 ![](/img/fenliu-fenliu-4.webp)
@@ -44,21 +44,21 @@ Umami，用于在网站插入一个JS来进行访客统计以及展示访客信�
 ![](/img/fenliu-fenliu-5.webp)
 
 ![](/img/fenliu-fenliu-16.webp)
-### 动态型
+#### 动态型
 
 国内使用IPv6回源（用户 - IPv4 - EO/ESA CDN - IPv6 - 源站）。至于为什么不用ESA，是因为ESA CDN回源非标端口需要像Cloudflare一样写一条回源规则，占用免费规则集5条中的其中之一
 ![](/img/fenliu-fenliu-6.webp)
 海外采用Cloudflare Tunnel（用户 - IPv4 - CF CDN - 内部连接 - 源站）
 ![](/img/fenliu-fenliu-7.webp)
 
-# 浏览器客户端实现监看当前访问节点
+## 浏览器客户端实现监看当前访问节点
 
 利用浏览器JavaScript发送HEAD请求拿取对端响应头Server字段并回显（若跨域则需要设置 **Access-Control-Expose-Headers** 响应头，值为 **server**
 ![](/img/fenliu-fenliu-12.webp)
 
 ![](/img/fenliu-ae6f93ce318fa428e94256c2b4a501e1.webp)
 
-# 注意事项
+## 注意事项
 
 - ESA Page对超多资源和大文件支持很差。例如静态随机图项目无法部署到ESA Page（超出了2000个静态资产）
 - ESA CDN针对于回源非标端口和Cloudflare一样要通过写回源规则实现，很浪费规则，推荐使用EdgeOne CDN，可以随意指定回源端口
@@ -78,12 +78,12 @@ Umami，用于在网站插入一个JS来进行访客统计以及展示访客信�
 ![](/img/fenliu-fenliu-14.webp)
 
 ![](/img/fenliu-fenliu-15.webp)
-# 成果展示
+## 成果展示
 
-### 博客本体
+#### 博客本体
 
 ![](img/https___blogacoforkcom__多地区多线路HTTP测速(1).webp)
-### Umami
+#### Umami
 ![](/img/fenliu-https___umamiacoforkcom__多地区多线路HTTP测速.webp)
-### 随机图
+#### 随机图
 ![](/img/fenliu-https___picacoforkcom__多地区多线路HTTP测速.webp)

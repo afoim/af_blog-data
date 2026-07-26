@@ -7,11 +7,11 @@ coverImage: /img/eo-cf-50839e45-bb5c-4fd5-8e88-3959295fb9bb.webp
 ---
 
 
-# 引言
+## 引言
 
 主播也是搞到了EdgeOne免费版激活码了，终于可以大展宏图了😋
 
-# 我怎么换到EdgeOne免费版？
+## 我怎么换到EdgeOne免费版？
 
 前往 [腾讯云EdgeOne免费计划兑换码 - 立即体验](https://edgeone.ai/zh/redemption)
 
@@ -21,7 +21,7 @@ coverImage: /img/eo-cf-50839e45-bb5c-4fd5-8e88-3959295fb9bb.webp
 
 ![](/img/eo-cf-9ccbf7c1-6006-45f6-a9f4-e1979df8b12b.webp)
 
-# 默认EdgeOne给的Anycast CNAME过于垃圾？
+## 默认EdgeOne给的Anycast CNAME过于垃圾？
 
 默认在EO添加域名EO会发给你一个类似 `afo.im.eo.dnse4.com` 这样的CNAME
 
@@ -35,7 +35,7 @@ emm 这玩意吧 你们自己看速度吧
 
 ![](/img/eo-cf-ab4cfd6f-ef23-4670-8577-02850f372124.webp)
 
-# 换了CNAME后无法自动申请免费SSL？
+## 换了CNAME后无法自动申请免费SSL？
 
 如果你将你的域名托管给EO并且没有用EO给你的CNAME，则这个选项不可用
 
@@ -45,7 +45,7 @@ emm 这玩意吧 你们自己看速度吧
 
 ![](/img/eo-cf-59cf2a66-2717-4291-b027-6cd2f270ece4.webp)
 
-# EdgeOne怎么做重定向？
+## EdgeOne怎么做重定向？
 
 在这里
 
@@ -72,7 +72,7 @@ EO边缘函数也支持重定向，支持更细化的重定向规则
 
 原理：用户 - EO - CF - CF识别到Host匹配重定向规则 - 301
 
-# EdgeOne反代一切？
+## EdgeOne反代一切？
 
 > 大部分情况将 `回源HOST头` 改为源站就能解决反代后网站无法访问的问题
 > 

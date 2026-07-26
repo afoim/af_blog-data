@@ -7,7 +7,7 @@ coverImage: /img/fuwari-f286ef4d-326c-4c7c-8a1e-ed150937a12b.webp
 ---
 
 
-### 你需要准备的东西
+#### 你需要准备的东西
 
 1. 一点基础的折腾能力。遇到问题先自己排查，实在解决不了再搜索或借助 AI，这样搭建过程会顺利很多。
 
@@ -23,13 +23,13 @@ coverImage: /img/fuwari-f286ef4d-326c-4c7c-8a1e-ed150937a12b.webp
 
 7. 需要会一些基础的 Markdown 语法。如果暂时不熟悉，可以先看这个教程：[Markdown 基本语法 | Markdown 官方教程](https://markdown.com.cn/basic-syntax/)。
 
-### 流程图
+#### 流程图
 
 本地部署Fuwari，编写文章 -> 推送更改到远程Github仓库 -> Cloudflare Pages检测到仓库更新自动构建新的网站静态文件 -> 网站成功更改
 
-### 让我们开始吧
+#### 让我们开始吧
 
-#### 首先，在本地部署 Fuwari
+##### 首先，在本地部署 Fuwari
 
 1. Fork仓库：
    
@@ -51,7 +51,7 @@ coverImage: /img/fuwari-f286ef4d-326c-4c7c-8a1e-ed150937a12b.webp
 > 
 > 你也可以使用创建一个新的空仓库然后手动上传文件，并且可以将仓库可见性设为：Private
 
-#### 改写Fuwari的基本信息并且清理多余文件
+##### 改写Fuwari的基本信息并且清理多余文件
 
 > 刚创建的 Fuwari 可能带有默认的博主名称、图标、链接、简介和示例文章。为了让站点更符合你的使用场景，建议先把这些内容改成自己的信息。
 
@@ -233,7 +233,7 @@ coverImage: /img/fuwari-f286ef4d-326c-4c7c-8a1e-ed150937a12b.webp
 
 8. 配置完成后，你就可以比较高效地用 MarkText 编写 Markdown 博文了。
 
-#### 本地预览，然后发布到Github
+##### 本地预览，然后发布到Github
 
 1. 当你觉得文章写得差不多时，可以在项目根目录执行：`pnpm dev`。稍等片刻后，就能在本地预览博客效果。![](/img/fuwari-2024-10-14-13-03-44-image.webp)
 
@@ -251,7 +251,7 @@ coverImage: /img/fuwari-f286ef4d-326c-4c7c-8a1e-ed150937a12b.webp
 
 3. 完成后，你的 GitHub 仓库里就应该能看到新的提交记录了。![](/img/fuwari-2024-10-14-13-10-12-image.webp)
 
-#### 让Cloudflare连接上Github，使用Pages服务展示你的博客（FREE！）
+##### 让Cloudflare连接上Github，使用Pages服务展示你的博客（FREE！）
 
 1. 前往Cloudflare的 Workers 和 Pages 页面，创建一个新Pages![](/img/fuwari-2024-10-14-13-14-28-image.webp)
 

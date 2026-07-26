@@ -5,10 +5,10 @@ description: warden-worker就是这样一个项目，它将Rust编译为WASM，�
 draft: false
 coverImage: /img/warden-worker-warden-worker.webp
 ---
-# 原理
+## 原理
 项目参考开源的 [dani-garcia/vaultwarden: Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs](https://github.com/dani-garcia/vaultwarden) 将Rust源码编译为WASM以支持在Cloudflare Worker上运行。其中Worker负责REST API，D1负责存储加密后的数据
 
-# 部署
+## 部署
 
 首先确保你安装了Rust，若无可前往： [安装 Rust - Rust 程序设计语言](https://rust-lang.org/zh-CN/tools/install/)
 
@@ -89,7 +89,7 @@ Poweshell可以这样生成
 
 将所有已登录的设备登出后再登入则会被要求TOTP
 
-# 导入密码库
+## 导入密码库
 
 如果您有旧的密码库，请先前往 **设置 - 密码库选项 - 导出 - .json** 
 

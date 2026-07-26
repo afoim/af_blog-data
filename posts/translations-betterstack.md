@@ -6,17 +6,17 @@ draft: false
 ---
 
 
-# 速览
+## 速览
 
 现在点击 [这里](https://ss.2x.nz)，或者通过顶部导航栏里的 `状态` 页面，就可以看到已经汉化好的 BetterStack 状态面板。
 
-# 汉化过程
+## 汉化过程
 
 在 [BetterStack](https://uptime.betterstack.com/) 左侧导航栏进入 `Status pages`，打开你的状态页域名后，再进入 `Translations`，就可以开始汉化了。
 
 ![](/img/translations-betterstack-2025-08-28-18-52-03-image.webp)
 
-# 一些小插曲
+## 一些小插曲
 
 由于 BetterStack 并没有很好照顾中文语境，所以像 `日` 和 `年` 这样的翻译默认不会自动补上后缀。不过这个问题可以通过硬编码处理。
 

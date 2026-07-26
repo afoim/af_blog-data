@@ -6,11 +6,11 @@ draft: false
 tags: []
 coverImage: /img/email-posts-sub-email.png
 ---
-# 视频
+## 视频
 
 https://www.bilibili.com/video/BV1hpDKBbES9/
 
-# 正式开始
+## 正式开始
 
 众所周知，目前如果你想订阅本博客，可以采用以下几种方式
 - **瞪眼法** 在多次浏览中通过大脑的逻辑中枢来判断有哪些新文章，或有哪些文章更新了

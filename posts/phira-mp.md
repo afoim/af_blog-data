@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/phira-mp-2024-11-06-08-20-39-image.webp
 ---
 
-# 直接下载服务端文件并运行
+## 直接下载服务端文件并运行
 
 [https://github.com/afoim/phira-mp-autobuild](https://github.com/afoim/phira-mp-autobuild)
 
@@ -20,11 +20,11 @@ coverImage: /img/phira-mp-2024-11-06-08-20-39-image.webp
 
 如果这些文件不适用于你正在使用的系统请前往[自行构建（高级）](#自行构建高级)继续阅读
 
-# 自行构建（高级）
+## 自行构建（高级）
 
 由于phira-mp使用Rust编写，若想要自行构建需要在你的操作系统上安装Rust环境
 
-## 对于Windows
+### 对于Windows
 
 前往[Rust 下载页](https://www.rust-lang.org/zh-CN/learn/get-started)，下载 Rust  ![](/img/phira-mp-2024-11-06-09-57-44-6b333b87e835dfa299b0c3c95e5ea4e0.webp)
 打开后会弹出一个 CMD 窗口，输入 1（Quick Install）回车，等待 Visual Studio 安装（如果此步 Visual Studio 下载很慢也可以[手动下载](https://visualstudio.microsoft.com/zh-hans/downloads/)）  
@@ -32,7 +32,7 @@ coverImage: /img/phira-mp-2024-11-06-08-20-39-image.webp
 ![](/img/phira-mp-2024-11-06-09-57-49-61b4d36dc8cd1ce47da66be5e2a920cd.webp)在 Visual Studio 中，勾选**使用 C++ 的桌面开发**，然后安装  
 ![](/img/phira-mp-2024-11-06-09-58-05-390c775c83dc245b0690fda699bfee5f.webp)然后请跳过 Linux 教程直接阅读[构建 phira-mp]()
 
-## 对于Linux
+### 对于Linux
 
 执行：`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
@@ -40,7 +40,7 @@ coverImage: /img/phira-mp-2024-11-06-08-20-39-image.webp
 
 执行：`source $HOME/.cargo/env`
 
-# 使用Rust构建phira-mp
+## 使用Rust构建phira-mp
 
 克隆仓库：`git clone https://github.com/TeamFlos/phira-mp.git`（不支持IPv6）或`git clone https://github.com/afoim/phira-mp-autobuild.git`（支持IPv6）
 

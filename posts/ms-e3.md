@@ -7,14 +7,14 @@ coverImage: /img/ms-e3-ms-e3.webp
 ---
 > [!CAUTION]
 > 已封车
-# 参考文献
+## 参考文献
 [微软Office365 E3订阅回归？25个E3 Dev免费开通指南 - 极圈 奶昔论坛](https://forum.naixi.net/thread-6702-1-1.html)
 
 [垃圾Dev！Office E3 Symphony可以订阅200万个授权许可 - 极圈 奶昔论坛](https://forum.naixi.net/forum.php?mod=viewthread&tid=6723)
 
 > 注： 不建议碰Symphony
 
-# 正式开始
+## 正式开始
 注册一个全局管理员，一路下一步，到绑卡那里直接退出然后用你的 `xxx@xxx.onmicrosoft.com` 去登录就行，纳税人识别号随便填（认认真真写，地址精确到你区县就好了，国家一定要填CN，不然后面没办法走支付宝） https://signup.microsoft.com/get-started/signup?products=35dffc92-9eb4-4d5c-82c2-2582b37bb9c4&culture=zh-cn&country=cn 
 
 买 E3（选择支付宝即可） https://admin.cloud.microsoft/?pid=C69E7747-2566-4897-8CBA-B998ED3BAB88&quan=25&bc=1&sku=189a915c-fe4f-4ffa-bde4-85b9628d07a0&ru=PDP#/Purchase/checkout

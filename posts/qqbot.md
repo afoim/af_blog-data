@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/qqbot-QmcMSSKysZmgUCUk9W7hQUvZCtVSFH6hGKHctg99yo1yDE.webp
 ---
 
-# 安装 NapCat(Win)
+## 安装 NapCat(Win)
 
 > 用于登录 QQ 实现收发消息
 
@@ -20,7 +20,7 @@ coverImage: /img/qqbot-QmcMSSKysZmgUCUk9W7hQUvZCtVSFH6hGKHctg99yo1yDE.webp
 
 5. 直接进入，如图配置即可（端口号可以自己修改，但是要和下部分NoneBot2监听的端口一致。这里是9090）![](/img/qqbot-2024-11-20-19-21-21-2024-11-20-19-15-39-image.webp)
 
-# 安装 NoneBot2
+## 安装 NoneBot2
 
 用于实现逻辑，控制 NapCat 收发消息
 

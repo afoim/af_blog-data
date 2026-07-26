@@ -6,13 +6,13 @@ draft: false
 tags: []
 coverImage: /img/aliyun-ecs-4rm-aliyun-ecs-4rm.webp
 ---
-# 正式开始
+## 正式开始
 > [!CAUTION]
 > 抢占型实例在高峰期可能会进行回收，不要跑生产业务
 
 > [!NOTE]
 > 下文都是以 **阿里云国内版** 演示的，注意在国内版按量付费业务需要账户内可用余额要 >=100 CNY。国际版无限制，但是要海外手机号+海外卡，有可能还需要KYC
-### 下载Alpine镜像
+#### 下载Alpine镜像
 >由于我们主要的成本在硬盘上面，所以呢为了极致压缩空间，我们需要一个非常小巧的Linux镜像，以便我们可以用1G的 ESSD 云盘来安装。如果你也是极致玩家，仅用1G盘装系统，那么一定就要用我下面给你的Alpine镜像
 >如果你财大气粗，不在乎，或者说想跑一些正常业务，想用Debian或Ubuntu，那就10G起步，也不需要自定义镜像了
 
@@ -21,14 +21,14 @@ Alpine 60M镜像链接
 https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-virt-3.23.2-x86_64.iso
 ```
 
-### 将镜像上传至阿里云OSS
+#### 将镜像上传至阿里云OSS
 > 由于我们需要自定义镜像，但是镜像又必须要通过OSS提供，所以我们需要临时性的创建一个OSS Bucket实例，来上传我们的ISO镜像。在实例成功创建后，我们可以将其删除，以避免不必要的扣费
 
 首先，来到 [OSS管理控制台](https://oss.console.aliyun.com/bucket) ，创建一个 Bucket，**地域一定要选中国香港** ，并且上传ISO，最后，复制URL备用
 
 ![](/img/aliyun-ecs-4rm-aliyun-ecs-4rm-1.webp)
 
-### 导入镜像
+#### 导入镜像
 前往 [云服务器管理控制台](https://ecs.console.aliyun.com/image/region/cn-hongkong) ，选择右上角的 导入镜像
 ![](/img/aliyun-ecs-4rm-aliyun-ecs-4rm-2.webp)
 
@@ -42,17 +42,17 @@ https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-virt-3.23.2-x
 接下来勾选配置云盘属性，并且将 **云盘容量设置为1GB** ，确认无误，导入
 ![](/img/aliyun-ecs-4rm-aliyun-ecs-4rm-5.webp)
 
-### 创建ECS抢占型实例
+#### 创建ECS抢占型实例
 前往 [云服务器管理控制台](https://ecs.console.aliyun.com/server/) ，创建 **中国香港** 实例，注意红框区域要保持一致
 
 另外，对于 **网络及可用区** ，香港一共有 **B、C、D** 三个区，D区比B、C区贵不少，可以都开开测个速，留下最好的
 ![](/img/aliyun-ecs-4rm-ALIECSSNPSHOT.webp)
 
-### 开通CDT
+#### 开通CDT
 前往 [云数据传输](https://cdt.console.aliyun.com/overview) 将升级状态全部变为已升级即可
 ![](/img/aliyun-ecs-4rm-aliyun-ecs-4rm-6.webp)
 
-### 创建&绑定弹性公网IP并且挂上CDT
+#### 创建&绑定弹性公网IP并且挂上CDT
 > 因为弹性公网IP可以绑定CDT的每月200G免费流量，并且在绑定实例后，弹性公网IP将不会再扣费。如果后续删机的时候不要忘记释放弹性公网IP，否则会一直扣费
 
 进入 [专有网络管理控制台](https://vpc.console.aliyun.com/eip/cn-hongkong/eips) 如图选择，然后购买即可（这里显示的费用是纯持有不绑定的费用，一旦绑定就不计费了）
@@ -66,7 +66,7 @@ https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-virt-3.23.2-x
 接下来在这里绑定CDT，带宽最高可以拉到 2000Mbps，但是不推荐，一般300M够用了
 ![](/img/aliyun-ecs-4rm-aliyun-ecs-4rm-9.webp)
 
-### 配置Alpine
+#### 配置Alpine
 > 如果你安装了Alpine，默认是需要VNC进入手动配置系统的。如果是公共镜像，则已经可以用了，但不要忘了保证系统纯净
 
 进入 [云服务器管理控制台](https://ecs.console.aliyun.com/server/) 选择你刚买的ECS，接下来点击 **远程连接** ，展开更多，选择 **通过VNC远程连接**
@@ -222,7 +222,7 @@ apk update
 ```sql
 apk add curl unzip jq openssl tar iproute2 bash
 ```
-### 设置保活&用量封顶策略
+#### 设置保活&用量封顶策略
 虽然我们将弹性公网IP连接了CDT，默认流量会从CDT的免费流量份额里面扣
 
 但是一旦超出上限，那就会扣我们的真金白银了
@@ -249,7 +249,7 @@ apk add curl unzip jq openssl tar iproute2 bash
 部署成功后，Cloudflare Worker将在每分钟检查一次CDT，如果超出流量阈值，会将指定ID的ECS停止
 ![](/img/aliyun-ecs-4rm-aliyun-ecs-4rm-10.webp)
 
-# 计费流程图
+## 计费流程图
 带宽费（按固定带宽计费收取）：根据您指定的带宽峰值和计费时长后付费，与实际使用的流量无关。
 
 流量费（按使用流量计费收取）：根据每小时公网的实际流量计费。

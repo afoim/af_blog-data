@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/fnos-QmUBuX9qmsNP1NHeEeUmuPNdS5ctvk4LchcSsFARDC4vZJ.webp
 ---
 
-### 吸引我的东西
+#### 吸引我的东西
 
 1. 影视刮削：飞快，薄纱Plex几条街。通过[AutoBangumi](/posts/autobangumi/)可以完美自动追番+刮削一条龙服务。偶尔会有不准，但可以手动匹配，数据源来自[TMDB](https://www.themoviedb.org/)和[IMDB](https://www.imdb.com/)
    ![QmbNXd4FJ8FM8mwkKxJNdBoNbvhawJ2HdSvW5tFUt3o4ub.webp](/img/fnos-f1bd7089efdf00097d5474ef967a62dcfca42e98.webp)
@@ -14,7 +14,7 @@ coverImage: /img/fnos-QmUBuX9qmsNP1NHeEeUmuPNdS5ctvk4LchcSsFARDC4vZJ.webp
 2. 相册：可以通过手机APP自动备份，支持仅备份图片，可以多用户使用，存储互不干扰，也可以设置要共享的图片
    ![QmeLJ7in4xcokPWUgkkSobDLUTrFrXep2o38qUXQ1njQR9.webp](/img/fnos-2f9981f8397cc1278807ed28f8a2e15954868fec.webp)
 
-### 注意事项
+#### 注意事项
 
 1. 飞牛NAS在安装的时候会叫你选择安装盘，然后会将安装盘的一部分空间（默认为64GB）作为系统分区，其余空间可用于创建存储空间（但是系统盘不能和别的盘组存储池，只能单独建存储池） 
    ![QmNfRbvHu1fuYoincACcP2MG4yV4pgRni3rb4Y9J7uw4FW.webp](/img/fnos-6403ef19d941abdc93d8c7da01364a8983c98109.webp)

@@ -7,7 +7,7 @@ coverImage: /img/github-webhook-69389a6f-da33-4f53-be34-408b9f88d9e1.webp
 ---
 
 
-# 原理解析
+## 原理解析
 
 静态博客一般会托管在Github来方便静态网站构建服务提供商进行自动构建和发布站点。
 
@@ -22,9 +22,9 @@ coverImage: /img/github-webhook-69389a6f-da33-4f53-be34-408b9f88d9e1.webp
 
 **Push** → **Github WebHook 通知Bot（记录变动文章）** → **Netlify WebHook 通知构建完成** → **Bot 即刻推送文章更新消息**
 
-# 正式开始
+## 正式开始
 
-## 设置你的自托管WebHook接收器
+### 设置你的自托管WebHook接收器
 
 我使用Koishi编写一个插件创建一个HTTP服务器用于接受WebHook，并且在接收到指定提交信息的WebHook后将在2分钟后在我的群里广播文章更新消息
 
@@ -32,7 +32,7 @@ coverImage: /img/github-webhook-69389a6f-da33-4f53-be34-408b9f88d9e1.webp
 
 如果你的服务在内网，可以使用Cloudflared将WebHook接收服务器开放到公网。否则Github将无法将WebHook信息发送到你的服务
 
-## 配置Github Repo WebHook
+### 配置Github Repo WebHook
 
 打开你的博客仓库，在仓库设置找到WebHooks
 
@@ -42,7 +42,7 @@ coverImage: /img/github-webhook-69389a6f-da33-4f53-be34-408b9f88d9e1.webp
 
 ![](/img/github-webhook-7fa35782-2d3c-4d18-afca-cb7db8ee36fc.webp)
 
-## 配置Netlify WebHook
+### 配置Netlify WebHook
 
 如果你的站点部署在 Netlify，可以进一步配置构建完成通知。
 
@@ -54,7 +54,7 @@ coverImage: /img/github-webhook-69389a6f-da33-4f53-be34-408b9f88d9e1.webp
 
 ![](/img/github-webhook-2025-08-09-23-15-40-image.webp)
 
-## Bot端配置
+### Bot端配置
 
 设置一个双监听WebHook服务器，同时接受Github和Netlify的WebHook
 
@@ -64,6 +64,6 @@ coverImage: /img/github-webhook-69389a6f-da33-4f53-be34-408b9f88d9e1.webp
 
 ![](/img/github-webhook-2025-08-09-23-57-02-image.webp)
 
-## 开发测试
+### 开发测试
 
 在你的博客仓库进行一次Push操作，检查是否收到了WebHook信息并且分析信息配置你的WebHook接收器做后续操作

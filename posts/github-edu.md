@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-# Github学生认证教程
+## Github学生认证教程
 
 > 视频： https://www.bilibili.com/video/BV1kAtrzzEkG
 
@@ -42,7 +42,7 @@ draft: false
 
 ![](/img/github-edu-2025-08-08-01-07-22-image.webp)
 
-## 认证疑难解答
+### 认证疑难解答
 
 报错什么姓名不符，确保你的Github Payment Information姓名和你提交的证明文件姓名一样，如果不一样，改完一定要注销重新登录Github才行
 
@@ -50,13 +50,13 @@ draft: false
 
 ---
 
-# GitHub Education 福利领取
+## GitHub Education 福利领取
 
 通过学生认证后，你就可以前往 [GitHub Student Developer Pack](https://education.github.com/pack) 领取各种免费福利啦！
 
 下面介绍一些免费的域名福利：
 
-## 免费领取一年 .tech 域名
+### 免费领取一年 .tech 域名
 
 前往 [GitHub Student Developer Pack - GitHub Education](https://education.github.com/pack)
 
@@ -98,7 +98,7 @@ draft: false
 
 ![](/img/github-edu-2025-08-11-21-54-51-db66a30e7c1fa897656df0c4e0d90390.webp)
 
-## 免费领取一年 .me 域名
+### 免费领取一年 .me 域名
 
 前往 [GitHub 学生开发者包 - GitHub Education](https://education.github.com/pack)
 
@@ -148,7 +148,7 @@ NameCheap的NS传播似乎有些慢，等等咯~
 
 ![](/img/github-edu-2025-08-11-22-54-37-image.webp)
 
-## 再领取两个免费一年域名
+### 再领取两个免费一年域名
 
 除了 .tech 和 .me 之外，还可以再领取两个免费域名！
 
@@ -198,7 +198,7 @@ NameCheap的NS传播似乎有些慢，等等咯~
 
 ---
 
-# 总结
+## 总结
 
 通过GitHub Education学生认证，你一共可以领取：
 - 1个免费的 .tech 域名（一年）

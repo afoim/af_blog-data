@@ -7,7 +7,7 @@ coverImage: /img/record-record.png
 ---
 
 
-# zt重置设备ID
+## zt重置设备ID
 
 在 ZeroTier 中，如果你通过克隆 VM 或复制系统镜像导致 设备 ID（Node ID）重复，需要重置设备 ID。ZeroTier 的设备 ID 是基于本机生成的私钥，无法在软件内直接修改，但可以通过以下方法重置：
 
@@ -33,13 +33,13 @@ sudo rm -rf /var/lib/zerotier-one/identity.*
 sudo systemctl start zerotier-one
 ```
 
-# r2.py所需依赖
+## r2.py所需依赖
 
 ```shell
 pip install keyboard pyperclip pillow boto3 pyautogui
 ```
 
-# ShellClash
+## ShellClash
 
 > 用于在Linux上使用CLI来进行正向代理。通过导入标准的Clash `config.yaml` 来实现
 
@@ -56,7 +56,7 @@ bash -c "$(curl -kfsSl https://r2.072103.xyz/shellclash.sh)" && source /etc/prof
 安装本地Web面板：9-4-1
 开机自启：4-1
 
-# Vless通用配置（不加密）
+## Vless通用配置（不加密）
 
 ```json
 {
@@ -94,7 +94,7 @@ bash -c "$(curl -kfsSl https://r2.072103.xyz/shellclash.sh)" && source /etc/prof
 
 ---
 
-# AMD笔记本优化
+## AMD笔记本优化
 
 > 目标：关闭fTPM并且禁止系统重新安装、关闭Windows自动更新
 
@@ -107,7 +107,7 @@ bash -c "$(curl -kfsSl https://r2.072103.xyz/shellclash.sh)" && source /etc/prof
 
 ---
 
-# VPS融合怪测试脚本
+## VPS融合怪测试脚本
 
 ```shell
 bash <(curl -sL kejilion.sh)
@@ -118,13 +118,13 @@ bash <(curl -sL kejilion.sh)
 
 ---
 
-# 哪吒探针Cloudflare版
+## 哪吒探针Cloudflare版
 
 https://github.com/yumusb/nezha-new
 
 ---
 
-# VPS一键魔法脚本
+## VPS一键魔法脚本
 
 - Hysteria2（UDP）：
   
@@ -146,7 +146,7 @@ https://github.com/yumusb/nezha-new
 
 ---
 
-# Hysteria2 服务端搭建（全平台通用）
+## Hysteria2 服务端搭建（全平台通用）
 
 1. 下载 Hysteria2 可执行文件： https://github.com/apernet/hysteria/releases
 
@@ -186,35 +186,35 @@ masquerade:
 
 ---
 
-# Cloudflare一键魔法
+## Cloudflare一键魔法
 
 下载 https://github.com/cmliu/edgetunnel/archive/refs/heads/main.zip 将它上传到Cloudflare Pages设置UUID。访问 https://你的域名.pages.dev/UUID
 
 ---
 
-# Cloudflare 优选方法
+## Cloudflare 优选方法
 
-### A、AAAA、CNAME
+#### A、AAAA、CNAME
 
 1. B域名直接套CDN指向源站
 2. B域名开启SaaS，设置回退源为指向源站的域名，自定义主机名为A域名
 3. B域名指向优选域名，不套CDN
 4. A域名指向B域名指向的优选域名的域名 ，不套CDN
 
-### Cloudflare Pages
+#### Cloudflare Pages
 
 1. 直接在Pages创建自定义域
 2. 更改子域NS到阿里云云解析DNS
 3. 在阿里云云解析DNS设置解析分流
 
-### Cloudflare Workers
+#### Cloudflare Workers
 
 1. 直接在Workers创建路由，如：example.com/*
 2. 将被设置路由的域名解析到优选域名
 
 ---
 
-## Cloudflare 优选域名
+### Cloudflare 优选域名
 
 二叉树树自用： fenliu.072103.xyz
 
@@ -228,7 +228,7 @@ masquerade:
 
 ---
 
-# 魔法软件
+## 魔法软件
 
 Windows：
 
@@ -240,7 +240,7 @@ https://github.com/2dust/v2rayNG
 
 ---
 
-# 使用Cloudflared中继RDP流量
+## 使用Cloudflared中继RDP流量
 
 ```shell
 cloudflared access rdp --hostname rdp.onani.cn --url rdp://localhost:3380
@@ -248,19 +248,19 @@ cloudflared access rdp --hostname rdp.onani.cn --url rdp://localhost:3380
 
 ---
 
-# FRP相关
+## FRP相关
 
-### FRP基本认证参数
+#### FRP基本认证参数
 
 ```yaml
 auth.token = "07210721"
 ```
 
-### FRP systemd服务配置（开机自启）
+#### FRP systemd服务配置（开机自启）
 
 https://gofrp.org/zh-cn/docs/setup/systemd/
 
-# Linux Deb系安装Speedtest-cli
+## Linux Deb系安装Speedtest-cli
 
 ```shell
 apt install -y lsb-release ca-certificates apt-transport-https curl gnupg dpkg
@@ -273,7 +273,7 @@ apt install -y speedtest
 
 ---
 
-# Linux监控面版：
+## Linux监控面版：
 
 ```shell
 apt install s-tui
@@ -281,11 +281,11 @@ apt install s-tui
 
 ---
 
-# Windows超级牛逼包管理器：https://scoop.sh
+## Windows超级牛逼包管理器：https://scoop.sh
 
 ---
 
-# Linux各发行版安装注意
+## Linux各发行版安装注意
 
 1. 非常新的版本一般才会有Realtek有线网卡的驱动
 2. 安装Debian要使用CLI安装（GUI安装会出现问题 ~~具体的问题我忘了~~）
@@ -294,18 +294,18 @@ apt install s-tui
 
 ---
 
-# 国内Linux镜像注意事项
+## 国内Linux镜像注意事项
 
 1. ~~USTC（中科大源）经常会用JavaScript进行客户端验证，会导致wget和curl命令无法正确下载到文件~~[绕过USTC的浏览器JS验证 | AcoFork Blog](/posts/bypass-ustc-verifying/)。建议使用TUNA（清华源）
 
 ---
 
-# 国内Docker镜像
+## 国内Docker镜像
 
 - 1Panel Docker监控：https://status.1panel.top/status/docker
 - 南京大学GHCR镜像源：https://ghcr.nju.edu.cn
 
 ---
 
-# 安徽财贸职业学院教务学生正确入口（课表导入）
+## 安徽财贸职业学院教务学生正确入口（课表导入）
 https://authserver.afc.edu.cn/authserver/login

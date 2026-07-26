@@ -6,11 +6,11 @@ draft: false
 coverImage: /img/chevereto-f31ca517-8f5b-4e53-af08-c32aabc224ab.webp
 ---
 
-# 视频教程
+## 视频教程
 
 https://b23.tv/E8Z34KM
 
-# 正式开始
+## 正式开始
 
 资源： https://r2.2x.nz/chevereto_4.3.6-Pro_unlock.zip （感谢宝塔开心版站长！）
 
@@ -48,7 +48,7 @@ MYSQL 需要 8.0 以上
 
 一切就绪，访问你的站点进行Chevereto的安装向导
 
-# 疑难解答
+## 疑难解答
 
 如果出现问题，请尝试以管理员身份登录Chevereto，在管理员设置 -> 系统中开启调试模式。这样设置后，Chevereto在出现错误就会告诉你具体发生了什么问题
 
@@ -56,7 +56,7 @@ MYSQL 需要 8.0 以上
 
 如果我连系统设置都进不去？请自行找你的PHP Error Log来分析问题
 
-# 我搭建好的
+## 我搭建好的
 
 https://chevereto.php.afo.im/upload
 

@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/index-tts2-index-tts2-4.webp
 ---
 
-# 正式开始
+## 正式开始
 
 > 视频教程： https://www.bilibili.com/video/BV1qv41zgEjE/
 
@@ -30,7 +30,7 @@ coverImage: /img/index-tts2-index-tts2-4.webp
 
 浏览器打开 `7860` 端口
 
-# 简单使用
+## 简单使用
 
 WebUI页面长这样
 ![](/img/index-tts2-index-tts2-1.webp)
@@ -41,7 +41,7 @@ WebUI页面长这样
 
 最终点击生成
 
-# 调教
+## 调教
 
 推荐使用 **使用情感向量控制** 
 

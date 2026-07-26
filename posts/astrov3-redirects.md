@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-# 正式开始
+## 正式开始
 
 > Astro v3 正式支持了原生的重定向 [路由 | 文档 - Astro 文档](https://docs.astro.js.cn/en/guides/routing/#configured-redirects)
 

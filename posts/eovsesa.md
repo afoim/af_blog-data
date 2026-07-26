@@ -7,7 +7,7 @@ tags: []
 coverImage: /img/eovsesa-eovsesa.webp
 ---
 
-# 前言
+## 前言
 
 首先，EdgeOne是来的最早的，于25年7月就开始测试了，而ESA是10月才开放的。
 
@@ -17,7 +17,7 @@ coverImage: /img/eovsesa-eovsesa.webp
 
 就当前（26年1月）来说，两家的体验大差不差，但是EdgeOne和ESA的底层逻辑是有点区别的。
 
-# 底层逻辑对比
+## 底层逻辑对比
 
 EdgeOne这个项目，特别是Page，在24年就已经初具雏形并且能够像那些大厂如Cloudflare Page，Github Page，Vercel等静态托管平台一样使用了，但是当时一是腾讯是悄咪咪上的，二是节点实在是太烂了，只有海外新加坡节点，也不支持国内节点。
 
@@ -25,7 +25,7 @@ EdgeOne这个项目，特别是Page，在24年就已经初具雏形并且能够�
 
 ![](/img/eovsesa-eovsesa-1.webp)
 
-# 规则引擎与WAF
+## 规则引擎与WAF
 
 ESA的很多东西直接是照抄Cloudflare的，比如：
 
@@ -37,7 +37,7 @@ ESA的很多东西直接是照抄Cloudflare的，比如：
 
 ![](/img/eovsesa-eovsesa-4.webp)
 
-## EdgeOne 的优势
+### EdgeOne 的优势
 
 反观EdgeOne，它没有照抄Cloudflare，而是自己写了一套规则引擎，所有类型的规则都在一处地方配置，并且可以互相联动。
 
@@ -52,19 +52,19 @@ ESA的很多东西直接是照抄Cloudflare的，比如：
 
 ![](/img/eovsesa-eovsesa-8.webp)
 
-### 优先级陷阱
+#### 优先级陷阱
 
 并且要注意一点，虽然你可以在规则引擎里伪装一个WAF拦截，但是在EdgeOne中，流量会先经由规则引擎，再经过WAF，也就是如果你在WAF写了个非CN拦截，然后在规则引擎里写个非CN给空，海外IP访问只能看到空响应，看不到拦截页面，流量也照记（难绷）。
 
 ![](/img/eovsesa-eovsesa-9.webp)
 
-## ESA 的策略
+### ESA 的策略
 
 而ESA这边，WAF的优先级始终是最高的，流量会先被WAF网关审查，通过后才应用规则，但是免费套餐不支持在WAF中设置地域级别的拦截（难绷）。
 
 ![](/img/eovsesa-eovsesa-10.webp)
 
-### 曲线救国方案
+#### 曲线救国方案
 
 但是有个曲线救国的方案，就是先写个规则将流量全拦截，然后再写个白名单规则，将可信流量绕过该规则。
 
@@ -72,7 +72,7 @@ ESA的很多东西直接是照抄Cloudflare的，比如：
 
 ![](/img/eovsesa-eovsesa-12.webp)
 
-# 回源配置
+## 回源配置
 
 再接着就是因为ESA照抄Cloudflare，所以创建加速站点的时候默认是HTTP走80，HTTPS走443回源，如果你要更改回源的端口，还需要浪费一个回源规则。
 
@@ -82,7 +82,7 @@ ESA的很多东西直接是照抄Cloudflare的，比如：
 
 ![](/img/eovsesa-eovsesa-14.webp)
 
-# SSL 证书签发
+## SSL 证书签发
 
 再到SSL签发，首先两家都支持默认的CNAME签发，也就是你把域名解析到我这，我帮你签SSL，但是EdgeOne的CNAME签发是每一个站点单独签一次。
 
@@ -92,13 +92,13 @@ ESA的很多东西直接是照抄Cloudflare的，比如：
 
 ![](/img/eovsesa-eovsesa-16.webp)
 
-# 规则隔离与互通
+## 规则隔离与互通
 
 然后就是最重磅的，EdgeOne独属的左右脑互搏时刻。
 
 在EdgeOne CDN和EdgeOne Page中，他俩的规则竟然不是互通的，CDN业务走CDN的规则，Page的规则走Page的规则，也行吧，他想做干湿分离，我配两套没问题。
 
-## 功能阉割
+### 功能阉割
 
 但是！阉割是什么意思，为什么CDN可以写地域判断，Page就只能写IP？
 
@@ -110,7 +110,7 @@ ESA的很多东西直接是照抄Cloudflare的，比如：
 
 ![](/img/eovsesa-eovsesa-19.webp)
 
-# Page 服务对比
+## Page 服务对比
 
 接着到Page部分。
 
@@ -122,6 +122,6 @@ EdgeOne的Page你可以直接看作是Cloudflare Page的本地化，甚至突破
 
 ![](/img/eovsesa-eovsesa-21.webp)
 
-# 速度与限速
+## 速度与限速
 
 最后就是速度相关，根据多方数据以及自测，两个CDN都会在长时间的单IP上下行请求逐渐将速率削减至大约 500KB/s，但如果只是正常业务使用，短时间的突发速率都可以飙到50MB/s左右（但不能长期），所以这俩CDN都不适合反向代理对象存储以及大文件分发，如果有类似业务需求还是老实用Cloudflare，CF是不限速的。

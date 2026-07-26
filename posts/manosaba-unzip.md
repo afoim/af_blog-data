@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/manosaba-unzip-212792e5-8634-4121-984b-c3477f463897.webp
 ---
 
-# 正式开始
+## 正式开始
 前往 https://github.com/AssetRipper/ ，下载 **AssetRipper** 并打开
 
 这会自动调用浏览器并导向 `http://127.0.0.1:64203` 暂时放一边

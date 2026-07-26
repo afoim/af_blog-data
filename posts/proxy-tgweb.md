@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-# 注意，将该项目直接绑定到你的域名会吃Abuse
+## 注意，将该项目直接绑定到你的域名会吃Abuse
 
 推荐将 `index.html` 重命名。让别人访问根路径无法访问到正常页面即可，但不保证永远不会吃Abuse
 
@@ -691,7 +691,7 @@ draft: false
 
 ![](/img/proxy-tgweb-2025-08-02-18-30-40-75bf069f14b199651db36b1bda015bc2_720.webp)
 
-# 原理
+## 原理
 
 TG Web采用前后端分离
 
@@ -701,7 +701,7 @@ TG Web采用前后端分离
 
 然后将前端请求的 `.web.telegram.org`  改为你的域名即可
 
-# 正式开始
+## 正式开始
 
 > 以 TG Web K举例子
 
@@ -728,6 +728,6 @@ Fork 仓库： [morethanwords/tweb: Telegram Web K, GPL v3](https://github.com/m
 
 将该仓库部署到Cloudflare Page，构建命令为 `pnpm build` ，构建输出目录为 `public` 
 
-# 成功
+## 成功
 
 ![](/img/proxy-tgweb-2025-08-02-18-21-46-0c8fc3ac93604c65401132aaa59c803d_720.webp)

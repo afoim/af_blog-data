@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/web-bomb-web-bomb.png
 ---
-# 前言
+## 前言
 很早之前，我有一位朋友给我发了一个神秘的网站，打开以后就是一直转圈圈
 
 但是正常来说，浏览器的转圈圈是有超时的，我在那等了好几分钟还是在转圈圈
@@ -23,7 +23,7 @@ coverImage: /img/web-bomb-web-bomb.png
 
 接下来手把手教各位做这个压缩炸弹！
 
-# 原理
+## 原理
 
 在现代网页中，服务器一般不提供原始的源文件（如：.html），而是提供一个压缩后的文件（如：.br, .gz, .zstd）
 
@@ -54,7 +54,7 @@ coverImage: /img/web-bomb-web-bomb.png
 > 
 > 一个 **8.20 KB** 的压缩炸弹，解压后可以释放高达 **10 GB** 的文件！
 
-# 实操
+## 实操
 
 首先我们需要准备这个特制的压缩炸弹，你可以手动制作，也可以直接从这里下载 [吃内存的网页炸弹 – 晨旭的博客~](https://www.chenxublog.com/2020/11/16/web-bomb-eat-memory.html)
 
@@ -100,12 +100,12 @@ ok，接下来我们只需要将这个压缩炸弹放到web上，然后设置压
 
 ![](/img/web-bomb-msedge_xYm7TNsMiq.gif)
 
-# 压缩炸弹的用处？
+## 压缩炸弹的用处？
 
 没啥用，只能拿来炸炸你朋友的浏览器
 
 如果你想拿来替代WAF拦截，该方法确实有效，但是对于一些带宽敏感的CDN，还是建议返回CDN自带的拦截页面避免CDN误判 *你没做好防护* 
 
-# 鸣谢
+## 鸣谢
 
 [吃内存的网页炸弹 – 晨旭的博客~](https://www.chenxublog.com/2020/11/16/web-bomb-eat-memory.html)

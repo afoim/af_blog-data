@@ -7,7 +7,7 @@ coverImage: /img/giscus-akismet-2025-08-04-12-14-21-image.webp
 ---
 
 
-# 配置Giscus
+## 配置Giscus
 
 > Giscus使用Github Discussion实现存储用户评论，无需自托管
 
@@ -63,7 +63,7 @@ root@AcoFork-NAS:~#
 
 ![](/img/giscus-akismet-2025-08-04-12-23-41-image.webp)
 
-# 配置Akismet
+## 配置Akismet
 
 > Akismet (Automattic Kismet) 是应用广泛的一个垃圾留言过滤系统，其作者是大名鼎鼎的 WordPress 创始人 Matt Mullenweg，Akismet 也是 WordPress 默认安装的插件，其使用非常广泛，设计目标便是帮助博客网站来过滤垃圾留言。
 
@@ -89,7 +89,7 @@ root@AcoFork-NAS:~#
 
 ![](/img/giscus-akismet-2025-08-04-12-30-37-image.webp)
 
-# 封禁用户
+## 封禁用户
 
 > 如果有人一直刷屏但是反垃圾未检测到？
 
@@ -99,7 +99,7 @@ root@AcoFork-NAS:~#
 
 
 
-# 防止新用户刷评
+## 防止新用户刷评
 
 > 如果有人一直开小号刷评？
 

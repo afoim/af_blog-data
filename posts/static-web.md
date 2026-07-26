@@ -7,7 +7,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 ---
 
 
-# [Netlify](https://www.netlify.com)
+## [Netlify](https://www.netlify.com)
 
 注册门槛高，需要使用谷歌邮箱注册。支持IPv6回源。用量限制较宽松，仅有带宽和构建时间限制。 **我认为是免费计划里最快的CDN！并且限制很少！**
 
@@ -21,7 +21,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 
 ![](/img/static-web-e11f4d07-4135-411e-943e-cf27690bc9c7.webp)
 
-# [Vercel](https://vercel.com)
+## [Vercel](https://vercel.com)
 
 零成本用上。注册无门槛，延迟良好。用量限制较严格。仅支持IPv4回源。默认的 `*.vercel.app` 在国内会被SNI阻断，需要绑定自己的域名
 
@@ -33,7 +33,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 
 ![](/img/static-web-eb1ef62c-f50c-4f89-a287-c74e18353b9c.webp)
 
-# [EdgeOne CDN](https://edgeone.ai)
+## [EdgeOne CDN](https://edgeone.ai)
 
 目前处于内测，需要兑换码。获取方式前往 [腾讯云EdgeOne免费计划兑换码 - 立即体验](https://edgeone.ai/zh/redemption) 。无流量和请求数限制。
 
@@ -43,7 +43,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 
 ![](/img/static-web-a1517d8e-1664-4819-ba08-d78ae13299a4.webp)
 
-## 全球可用区（不含中国大陆）
+### 全球可用区（不含中国大陆）
 
 > 本人博客目前使用的CDN
 
@@ -51,7 +51,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 
 ![](/img/static-web-b2937ed2-0f8d-4179-a9b5-b465902ca9ab.webp)
 
-## EdgeOne CDN 中国大陆可用区
+### EdgeOne CDN 中国大陆可用区
 
 需要**实名认证**，需要**域名备案**
 
@@ -59,7 +59,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 
 ![](/img/static-web-c44674d3-d37e-4f00-a7ee-cdac7798b293.webp)
 
-# [Cloudflare](https://www.cloudflare.com/)
+## [Cloudflare](https://www.cloudflare.com/)
 
 无流量和请求数限制。**无法被打死**
 
@@ -69,7 +69,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 
 ![](/img/static-web-f0785c5d-b31a-40d1-9da9-ac50a94f6b0a.webp)
 
-# [Render](https://render.com)
+## [Render](https://render.com)
 
 注册简单，具有严格的用量限制
 
@@ -77,7 +77,7 @@ coverImage: /img/static-web-da8b7a38-7247-43af-b272-f012f2dd024d.webp
 
 ![](/img/static-web-2b6104d5-9cee-4e2b-adb5-9aefe02240d2.webp)
 
-# [Github Page](https://pages.github.com/)
+## [Github Page](https://pages.github.com/)
 
 需要使用Github Action发布。**中国大陆大部分地区会间歇性阻断**，不推荐使用
 

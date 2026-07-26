@@ -6,11 +6,11 @@ draft: false
 tags: []
 coverImage: /img/cfvideo-cfvideo.png
 ---
-# 引言
+## 引言
 
 你可能看过 [这一期文章](/posts/jkw/) ，在该文章中，我们嵌入了一个视频，并且是由Cloudflare“原生”提供的，你是否想知道这是怎么做到的？
 
-# 原理
+## 原理
 
 众所周知，视频其实就是文件
 
@@ -32,7 +32,7 @@ coverImage: /img/cfvideo-cfvideo.png
 
 那么我们怎么从0实现它呢？
 
-# 实操
+## 实操
 
 接下来，我就以刚才提到的文章中的视频的源文件举例，可以看到，它是一个AV1编码的MP4，并且有1GB之大
 

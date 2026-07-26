@@ -6,10 +6,10 @@ draft: false
 coverImage: /img/rvc-rvc-19.webp
 ---
 
-# 视频教程
+## 视频教程
 
 https://www.bilibili.com/video/BV19F41zPEnM/
-# 流程
+## 流程
 
 RVC：训练角色音色模型
 
@@ -17,11 +17,11 @@ Replay：利用音色模型+原曲进行AI翻唱
 
 UVR&MSST：进行人声伴奏分离
 
-# 准备音源
+## 准备音源
 
 至少10分钟，推荐1小时。音频内仅允许有一种音色，可以有停顿，如果想要更高质量可以自己裁剪停顿处
 
-# 利用RVC训练模型
+## 利用RVC训练模型
 
 进入 [RVC-Project/Retrieval-based-Voice-Conversion-WebUI: Easily train a good VC model with voice data 10 mins!](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI) 根据你的系统和显卡来进行下载，或者使用该链接下载（国内高速） [语音克隆&变声器 整合包下载](https://www.yuque.com/flowercry/hxf0ds) 注意不要下错了
 
@@ -59,7 +59,7 @@ UVR&MSST：进行人声伴奏分离
 
 ![](/img/rvc-rvc-9.webp)
 
-# 利用Replay做AI翻唱
+## 利用Replay做AI翻唱
 
 下载 [Replay](https://www.weights.com/replay)
 
@@ -75,9 +75,9 @@ UVR&MSST：进行人声伴奏分离
 
 ![](/img/rvc-rvc-11.webp)
 
-# 伴奏和人声分离
+## 伴奏和人声分离
 
-### UVR
+#### UVR
 
 > 如果你是50系显卡请前往[GPU Acceleration Hangs on RTX 5070Ti (Driver 576.80, CUDA 12.9) · Issue #1889 · Anjok07/ultimatevocalremovergui](https://github.com/Anjok07/ultimatevocalremovergui/issues/1889)通过[UVR_Patch_4_24_25_20_11_BETA_full_cuda_12.8](https://www.mediafire.com/file_premium/4jg10r9wa3tujav/UVR_Patch_4_24_25_20_11_BETA_full_cuda_12.8.zip/file)下载适用于50系显卡的UVR
 
@@ -107,7 +107,7 @@ UVR&MSST：进行人声伴奏分离
 
 ![](/img/rvc-rvc-15.webp)
 
-### MSST
+#### MSST
 
 下载 [SUC-DriverOld/MSST-WebUI: A WebUI app for Music-Source-Separation-Training and we packed UVR together!](https://github.com/SUC-DriverOld/MSST-WebUI)
 

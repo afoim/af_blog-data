@@ -5,14 +5,14 @@ description: ArchiSteamFarm是一个Steam自动挂卡工具，它可以自动识
 draft: false
 coverImage: /img/asf-QmPEHve8DdVZdwxAZ26BPgbc6cDCBaKC76VVijqVoMBY2k.webp
 ---
-# 可用的目标作业系统
+## 可用的目标作业系统
 
 Windows x86/Arm64
 Linux x86/Arm64/Arm32
 OS X x86/Arm64
 （和其余任何可以获取有效 .NET Core 运行时的地方工作。基于Github仓库源码手动编译）
 
-# 安装&使用 ArchiSteamFarm
+## 安装&使用 ArchiSteamFarm
 
 https://github.com/JustArchiNET/ArchiSteamFarm
 

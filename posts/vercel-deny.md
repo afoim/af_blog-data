@@ -5,11 +5,11 @@ description: 很讨厌别人用ITDog等拨测服务疯狂测试你的站点？�
 draft: false
 coverImage: /img/vercel-deny-d81562f3-8efb-45f3-8dd1-72cb9c032bc2.webp
 ---
-# 配套视频
+## 配套视频
 
 https://www.bilibili.com/video/BV1w7GTzMEy7
 
-# 获取ITDog等拨测服务的IP
+## 获取ITDog等拨测服务的IP
 
 > 因为Vercel不支持IPv6，所以我们只需要获取v4IP
 
@@ -21,11 +21,11 @@ https://www.bilibili.com/video/BV1w7GTzMEy7
 
 ![](/img/vercel-deny-91daff1e-b248-4f90-9b97-31bff7fa2c14.webp)
 
-# 创建Vercel API Token
+## 创建Vercel API Token
 
 前往 https://vercel.com/account/settings/tokens 创建一个Token
 
-# 抓取防火墙创建/更新接口
+## 抓取防火墙创建/更新接口
 
 前往 https://vercel.com/your-projects/fuwari/firewall
 
@@ -49,7 +49,7 @@ PATCH https://vercel.com/api/v1/security/firewall/config/draft?projectId=prj_Ufv
 
 ![](/img/vercel-deny-b87a06b5-e33c-4d1d-aede-18ecba95d8cc.webp)
 
-# 使用Python脚本创建大批量IP拒绝规则
+## 使用Python脚本创建大批量IP拒绝规则
 
 根据本人测试，Vercel虽然在创建规则的时候有一个 `is any of` 支持填入多个IP，但是单规则最多只能填写**75**个，所以我们需要一个Python脚本批量帮我们规划。脚本已经写好
 
@@ -1441,7 +1441,7 @@ if __name__ == "__main__":
 86.51.92.0/24
 ```
 
-# 调用脚本更新规则
+## 调用脚本更新规则
 
 ![](/img/vercel-deny-3b44fed2-5dda-4dec-a009-8618b18370ee.webp)
 
@@ -1453,12 +1453,12 @@ if __name__ == "__main__":
 
 ![](/img/vercel-deny-831bf953-5895-4a62-894c-ab8b24dc8697.webp)
 
-# ITDog测试
+## ITDog测试
 
 大部分测试节点已经403
 
 ![](/img/vercel-deny-127a5bc0-6504-4c98-a573-1e3da60b9c8e.webp)
 
-# 有什么用？
+## 有什么用？
 
 纯好玩 纯闲着没事干 汐汐 有空点下[这](https://www.afo.im/posts/pin)来加群或者下方评论吧！

@@ -7,7 +7,7 @@ coverImage: /img/reality-709453e8-3a6a-4e2c-8618-fcf542ee0d37.webp
 ---
 
 
-# 正式开始
+## 正式开始
 
 > 源码： [afoim/one-times-reality: 一行命令帮你装好reality](https://github.com/afoim/one-times-reality)
 

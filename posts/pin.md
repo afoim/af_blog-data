@@ -8,11 +8,11 @@ coverImage: /img/pin-cute.webp
 ---
 
 
-# 官方
-## Telegram群组
+## 官方
+### Telegram群组
 
 [Telegram: Join Group Chat [2x.nz]](https://t.me/+_07DERp7k1ljYTc1)
-## QQ群
+### QQ群
 
 > 为什么仅QQ群需要赞助？因为QQ作为国内平台，很容易被内鬼举报致使封群，但相对的，门槛更低，交流更方便。当然，如果您是高级用户，可以加入非QQ群。
 
@@ -21,7 +21,7 @@ coverImage: /img/pin-cute.webp
 
 ![](/img/pin-2025-08-15-03-24-11-image.webp)
 
-# 非官方
+## 非官方
 
 > 粉丝自建
 

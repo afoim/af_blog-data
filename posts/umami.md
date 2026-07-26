@@ -5,7 +5,7 @@ description: Umami是一个站点统计服务，只需要插入一行js即可获
 draft: false
 coverImage: /img/umami-6eedb10a-08d3-4268-8caf-370bc093a668.webp
 ---
-# 正式开始
+## 正式开始
 
 > 本教程针对于Umami Cloud的上手使用，如果你需要自托管Umami请自行寻找相关文档
 
@@ -61,7 +61,7 @@ coverImage: /img/umami-6eedb10a-08d3-4268-8caf-370bc093a668.webp
 
 ![](/img/umami-21681684-8a26-4d15-8d3e-c51183febaf0.webp)
 
-# 注意事项
+## 注意事项
 
 Umami Cloud对于免费用户限制3个站点
 

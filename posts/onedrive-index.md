@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/onedrive-index-onedrive-index.webp
 ---
 
-# 正式开始
+## 正式开始
 你可以根据[前文](/posts/ms-e3/)免费拿E3，得到至高免费5T的OneDrive存储空间，也可以用你个人永久免费的5G空间，都可以！
 
 前往 [高级 - OneDrive Vercel Index](https://ovi.swo.moe/zh/docs/advanced#%E4%BD%BF%E7%94%A8%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84-client-id-%E4%B8%8E-secret) 拿到 clientid 和 secret
@@ -41,7 +41,7 @@ Vercel部署完毕后，会报错连不上Redis，因为我们还没创建和绑
 成功部署！
 ![](/img/onedrive-index-onedrive-index-7.webp)
 
-# 同项目更改OneDrive账号
+## 同项目更改OneDrive账号
 首先在Vercel上更改这三个环境变量
 ![](/img/onedrive-index-onedrive-index-8.webp)
 

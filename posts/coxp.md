@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/coxp-coxp.webp
 ---
-# 正式开始
+## 正式开始
 如果你做过网站（HTML），你就会知道，一个网页除了自身提供内容，如 `<p>hello world</p>` ，还可以 **内嵌外链资源** ，如 `<img src="https://othersite.com/hello.webp">`
 
 一方面，HTML允许我们非常自由的引用资源，另一方面，这也会造成一些问题
@@ -145,7 +145,7 @@ COEP 并不会阻止浏览器发起网络请求，但会在资源返回后决定
 
 ---
 
-### 什么时候浏览器才会检查 COOP 和 COEP？
+#### 什么时候浏览器才会检查 COOP 和 COEP？
 
 这两个标头**只有在页面被作为“文档（document）加载”时才会被浏览器检查**，通常包括：
 
@@ -167,11 +167,11 @@ COEP 并不会阻止浏览器发起网络请求，但会在资源返回后决定
 
 ---
 
-### COOP 与 COEP 的联合效果
+#### COOP 与 COEP 的联合效果
 
 当一个页面同时启用了 COOP 和 COEP，并且所有嵌入资源都满足对应要求时，浏览器会将该页面视为**跨源隔离（cross-origin isolated）**状态。在这种状态下，页面可以安全地使用一些高权限 Web API，例如 `SharedArrayBuffer` 和高精度计时器。
 
-# 浏览器安全模型完整流程图
+## 浏览器安全模型完整流程图
 
 ```mermaid
 flowchart TD

@@ -7,9 +7,9 @@ coverImage: /img/obsidian-obsidian.webp
 ---
 
 > 视频链接： https://www.bilibili.com/video/BV1C7pDzpEHY
-# 下载
+## 下载
 前往 [Download - Obsidian](https://obsidian.md/download) 下载对应你系统版本的软件。安装界面就可以选择语言为 **简体中文**
-# 初次上手
+## 初次上手
 Obsidian（下文简称“黑曜石”）将每一个存放了多个MarkDown文件的文件夹都叫做 **仓库** 
 
 首先，点击左下角的 **Obsidian  Vault** 
@@ -18,7 +18,7 @@ Obsidian（下文简称“黑曜石”）将每一个存放了多个MarkDown文�
 ![](/img/obsidian-obsidian-2.webp)
 黑曜石会在每个仓库下创建 `.obsidian` ，存放了工作区的配置信息
 **注意：** 黑曜石的配置都是针对于单个仓库的，若该配置文件丢失你需要重新配置黑曜石。所以，请确保写文章时不要频繁更改仓库
-# 针对于Fuwari的图片配置
+## 针对于Fuwari的图片配置
 首先我们要知道几个坑点
 1. 黑曜石对图片默认是 **内部链接** ，该链接的路径配置在私有配置文件实现，仅在黑曜石内可见
 2. 黑曜石对图片默认是 **带空格的链接** ，部分框架不支持转义空格导致找不到图片
@@ -40,7 +40,7 @@ Obsidian（下文简称“黑曜石”）将每一个存放了多个MarkDown文�
 ```bash
 ![](/img/obsidian-obsidian.webp)
 ```
-# 黑曜石如何强大？
+## 黑曜石如何强大？
 `published` 字段可以通过点点点实现
 ![](/img/obsidian-obsidian-6.webp)
 通用字段可以直接填充曾经写过的

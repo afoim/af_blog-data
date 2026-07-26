@@ -6,7 +6,7 @@ draft: false
 tags: []
 coverImage: /img/win11-native-nvme-win11-native-nvme.png
 ---
-# 前言
+## 前言
 
 简单来说，Windows为了兼容性，始终都在让我们的NVMe固态硬盘模拟为SCSI跑
 
@@ -14,7 +14,7 @@ coverImage: /img/win11-native-nvme-win11-native-nvme.png
 
 但是就在前不久，微软为新版Windows11提供了一个开关，允许将NVMe固态硬盘使用原生的NVMe驱动
 
-# 实测
+## 实测
 
 ![](/img/win11-native-nvme-4833b89c-f0b6-42f0-9430-55dafc770678.png)
 
@@ -26,7 +26,7 @@ coverImage: /img/win11-native-nvme-win11-native-nvme.png
 
 总之推荐开启
 
-# 为我的Win11启用原生NVMe驱动
+## 为我的Win11启用原生NVMe驱动
 
 > [!caution]
 > 数据无价，谨慎操作
@@ -54,7 +54,7 @@ vivetool.exe /enable /id:48613417,48433719,49453572
 
 ![](/img/win11-native-nvme-win11-native-nvme-3.png)
 
-# 参考文献 · 鸣谢
+## 参考文献 · 鸣谢
 
 为此文编写奠定了基础 - https://www.bilibili.com/video/BV1CHi8BjELT
 

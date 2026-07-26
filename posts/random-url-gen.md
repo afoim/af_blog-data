@@ -7,7 +7,7 @@ tags: []
 coverImage: /img/random-url-gen-random-url-gen.webp
 ---
 
-# 探索架构
+## 探索架构
 我们先不讲一个抽象的概念，我们首先来做一个小项目
 
 **一个随机图API，每次请求都返回不同的图片**
@@ -139,7 +139,7 @@ flowchart TB
     R2 --> S
     R3 --> S
 ```
-# 探索随机图（随机URL）的本质
+## 探索随机图（随机URL）的本质
 我们刚刚只是在抽象的说明某种架构 **好像** 可行，**好像** 又有什么问题，然后又有一种什么新思路 **好像** 可以解决这个问题
 
 但我们要走的路才刚刚开始，我们不妨思考一下，随机图，又或者说随机URL这类项目，服务器（如果有）究竟发送了什么给客户端，客户端又对服务器发回的报文执行了什么动作
@@ -165,7 +165,7 @@ flowchart TB
 [afoim/EdgeOne_Function_PicAPI](https://github.com/afoim/EdgeOne_Function_PicAPI)
 
 上线的API： https://eopfapi.acofork.com/pic?img=ua
-# 奇技淫巧1：利用Cloudflare Origin Rules实现无计费的随机URL
+## 奇技淫巧1：利用Cloudflare Origin Rules实现无计费的随机URL
 > Video: https://www.bilibili.com/video/BV19ZBzB8EDQ/
 起因于有一天一位粉丝在我视频下留言
 ![](/img/random-url-gen-random-url-gen-9.webp)
@@ -221,7 +221,7 @@ K --> L
 
 上线的API： https://img.072103.xyz/h | https://img.072103.xyz/v
 
-# 奇技淫巧2：丢掉后端，让前端JS自己拼URL
+## 奇技淫巧2：丢掉后端，让前端JS自己拼URL
 > Video: https://www.bilibili.com/video/BV1tNB4BEEaE/ 
 > Video2: https://www.bilibili.com/video/BV1mMBKBREkB/
 
@@ -253,7 +253,7 @@ flowchart LR
 
 上线的 API： https://pic1.acofork.com
 
-# 总结
+## 总结
 我们共探索了三种流派
 
 - 传统派：中规中矩，在边缘函数找图，取图

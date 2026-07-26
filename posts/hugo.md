@@ -6,7 +6,7 @@ draft: false
 coverImage: /img/hugo-3d1b097d-7e31-4312-b3e5-d213e2903f4d.webp
 ---
 
-# 引言
+## 引言
 
 曾经我写过一篇文章叫做：[Fuwari静态博客搭建教程](/posts/fuwari/)。
 
@@ -20,7 +20,7 @@ coverImage: /img/hugo-3d1b097d-7e31-4312-b3e5-d213e2903f4d.webp
 
 于是我便花了2小时深入研究、部署、调优。发现Hugo确实很强大：迁移方便，二改简单，构建迅速
 
-# 正式开始
+## 正式开始
 
 > 请全程在Windows上操作
 
@@ -238,7 +238,7 @@ hugo server
 
 ---
 
-### 对象存储存图中间件代码：
+#### 对象存储存图中间件代码：
 
 ```python
 import keyboard

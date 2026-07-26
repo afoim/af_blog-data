@@ -7,12 +7,12 @@ coverImage: /img/netlify-vercel-proxy-nvp.webp
 ---
 
 
-# 原理思路
+## 原理思路
 
 现阶段大部分家宽拿不到公网IPv4，但是可以拿到公网IPv6，借助Netlify做一个v6 -> v4的回源就可以让所有人都访问到你的站点了。同时这也是一个Netlify的通用反代教程。本文还教了Vercel的通用反代教程，不过这玩意在2025年仍然不支持IPv6，只能拿来反代小黄站了ToT
-# 正式开始
+## 正式开始
 
-## Netlify篇
+### Netlify篇
 
 首先前往 https://app.netlify.com/ 注册账号。（注意！最好使用谷歌邮箱去注册，其他方式注册可能会出现什么你的账号需要验证/激活，然后巴拉巴拉很麻烦）
 接下来去Github开一个新仓库，根目录创建一个 `netlify.toml`。在其中写入
@@ -30,7 +30,7 @@ coverImage: /img/netlify-vercel-proxy-nvp.webp
 接下来回到 https://app.netlify.com/ 创建一个新项目，导入你刚创建的Github项目，部署即可
 最后绑定一下你的域名，完成！
 
-## Vercel篇
+### Vercel篇
 
 首先前往 https://vercel.com/ 注册并登录你的账号
 电脑安装Nodejs，我们需要用到npm

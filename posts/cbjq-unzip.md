@@ -7,13 +7,13 @@ draft: false
 
 > 参考了 [虚幻4游戏解包导出及Mod制作指南 - 知乎](https://zhuanlan.zhihu.com/p/7144045084)
 
-# 下载尘白禁区
+## 下载尘白禁区
 
 前往 https://www.cbjq.com/ 下载并安装尘白禁区，确保启动器内可以直接开始游戏（即游戏完整包体已下载到你的电脑）
 
 ![](/img/cbjq-unzip-2025-08-24-01-16-37-image.webp)
 
-# 确认虚幻引擎版本
+## 确认虚幻引擎版本
 
 导航到放置尘白禁区游戏本体的EXE的目录，如
 
@@ -25,7 +25,7 @@ C:\SeasunCBJQos\Game\cbjq\game\Game\Binaries\Win64
 
 ![](/img/cbjq-unzip-2025-08-24-01-18-47-image.webp)
 
-# 将有关CG的PAK文件分离出来
+## 将有关CG的PAK文件分离出来
 
 前往
 
@@ -39,7 +39,7 @@ C:\SeasunCBJQos\Game\cbjq\game\Game\Content\Paks
 
 ![](/img/cbjq-unzip-2025-08-24-01-22-23-image.webp)
 
-# 解包
+## 解包
 
 下载解包脚本 https://r2.072103.xyz/snowbreak.bms
 
@@ -71,7 +71,7 @@ C:\SeasunCBJQos\Game\cbjq\game\Game\Content\Paks
 
 ![](/img/cbjq-unzip-2025-08-24-01-28-27-image.webp)
 
-# 查看解包后的文件
+## 查看解包后的文件
 
 解包后我们就得到了一般UE引擎封装的 `.uasset` 文件
 
@@ -95,7 +95,7 @@ C:\SeasunCBJQos\Game\cbjq\game\Game\Content\Paks
 
 ![](/img/cbjq-unzip-2025-08-24-01-36-37-image.webp)
 
-# 获取CG图
+## 获取CG图
 
 全局搜索关键字 `PlotCG` 就可以啦
 

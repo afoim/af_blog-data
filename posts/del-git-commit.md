@@ -7,7 +7,7 @@ tags: []
 coverImage: /img/del-git-commit-del-git-commit-1.webp
 ---
 
-# 引言
+## 引言
 接简介
 
 这个时候我们实际上是需要将那个错误提交的文件在所有Git提交上抹掉，并且逻辑自洽
@@ -18,7 +18,7 @@ coverImage: /img/del-git-commit-del-git-commit-1.webp
 
 假设这个仓库有1000+提交又不想合并所有提交历史呢？
 
-# 正式开始
+## 正式开始
 
 有个PIP包正好可以满足我们的需求， **git-filter-repo** 
 

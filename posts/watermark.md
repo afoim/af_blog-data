@@ -15,7 +15,7 @@ coverImage: /img/watermark-watermark.webp
 > 
 > 你真的牛大了，给我桂霞！
 
-# 前言
+## 前言
 
 这是很早之前的事了，简单来说就是有人盗了我的这一篇文章： [关于我折腾了一晚上 EdgeOne - AcoFork Blog](https://acofork.com/posts/edgeone/)
 
@@ -49,7 +49,7 @@ coverImage: /img/watermark-watermark.webp
 
 那么开始水印战争吧，我要让盗文章的就算盗了，也要让最终读者知道到底是谁做的
 
-# 正式开始
+## 正式开始
 
 终于又到了我最喜欢的技术环节，那么既然要加水印，我最先想到的就是一个十分古老的LSB水印项目： [guofei9987/blind_watermark: Blind&Invisible Watermark ，图片盲水印，提取水印无须原图！](https://github.com/guofei9987/blind_watermark)
 
@@ -69,6 +69,6 @@ coverImage: /img/watermark-watermark.webp
 
 至此，应该再无任何人能得到无水印的原图了，只要我不再写完新文章后忘记运行加水印的脚本，结束
 
-# 题外话
+## 题外话
 
 让文章不被盗是不可能的，对于文本内容，几乎无计可施，因为别有用心之人仅需爬RSS即可获取你的文章，但是对于图片，我们也只有加水印这一种方式，虽然这会让原本干净的图片变得有点遭
