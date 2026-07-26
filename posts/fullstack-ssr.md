@@ -27,13 +27,19 @@ tags:
 
 这篇文章就是这次迁移的完整记录。不吹不黑，把架构决策、踩过的坑、以及最终落地的运维方案都摊开来。
 
-# 为什么是 React Router 7，不是 Next.js？
+# 为什么是 React Router 7，不是 Next.js，也不是 Astro？
 
 这个问题在社区里被问烂了，但我确实认真比较过。
 
 我的上一个版本用的就是 Next.js Pages Router。Next.js 本身没问题，但它是一套全栈框架——Server Components、`"use client"` 边界、App Router 的文件约定……这些能力在你真的需要的时候是利器，但对我这种「外壳 SSR + 交互做岛」的场景来说，它们更像是必须绕开的约束。
 
 React Router 7 的 Framework Mode 是另一个极端：它就做一件事——**把路由映射到 loader → component 这条链路，loader 在服务端跑、component 同构渲染**。没有 Server Components，没有 `"use client"` 分界线，一个组件就是一份代码。对我要做的事刚刚好。
+
+那 Astro 呢？它在内容驱动型网站这个赛道确实很能打，但我有明确的理由不选它：
+
+1. **AI 辅助开发的代码质量不过关。** 之前用 Astro 开发的时候，AI 生成的 `.astro` 模板代码经常出低级错误——语法混搭、作用域理解偏差、组件边界模糊。这不是 Astro 本身的问题，但在 2026 年 AI 辅助编程已经成为日常的背景下，工具的 AI 友好度就是一个真实的选型考虑。React/JSX 生态在训练数据量上天然占优，AI 生成的 React 代码质量明显更高。
+2. **交互多了以后还是得缝框架。** Astro 是为内容驱动型网站设计的，核心是 `.astro` 模板零 JS 输出。但我的站点有大量交互——论坛发帖编辑器、工具页的 canvas 操作、全站搜索——这些在 Astro 里要么用 `client:load` 挂 React/Vue 组件，要么用 Island Architecture 拼。问题是这些交互之间共享状态（比如全局搜索框和搜索结果页），拼 Island 的结果是状态管理变成一场灾难。React Router 一个路由树就能搞定的事情，在 Astro 里要拆成若干个互相不知道对方存在的孤岛。
+3. **代码演进路径不支持。** 这个项目的代码演进路径是 Next.js → `next export` → 静出 SPA → React Router SPA → React Router SSR。全程在 React 生态内，组件库、状态管理、路由逻辑一路复用。引入 Astro 意味着大量重写，而它带来的收益——内容型页面的零 JS 输出——对于已经用 SSR + `useEffect` 做好客户端能力分离的项目来说，边际收益很小。
 
 而且我本来就用的 React Router，API 上是顺迁而不是重写：
 
@@ -113,7 +119,15 @@ DOMPurify 依赖真实 DOM API，Node 里没有。SSR 之前，SPA 时代的净�
 
 为什么不做 SSG？原因非常简单：**我不想把博客文章和图片打包到主项目的源码里面。** 一百多篇带全文的 markdown、上千张原图（单张最大 714KB），塞进源码里构建时间和体积都会爆炸。旧项目时代我甚至专门写过一篇文章讲这件事——[整个博客非得塞到网站源码吗？不！纯前端的前后端分离全部搞定！](/posts/micro-blog-service)。
 
-所以博客内容始终放在独立的仓库里（eleventy-blog-pagescms），每次发文通过 PagesCMS → GitHub Action → `generate-posts.js` 产出 `posts.json`、`rss.xml`、sitemap 等产物，部署到 Cloudflare 的 `raw-posts.2x.nz`。主站这边**不在构建时读博客数据**——而是在 VPS 上存一份仓库副本，请求时按本地文件渲染，靠 `/internal/revalidate` webhook 保持更新。这其实就是 ISR 的思路：内容变了就拉、没变就用缓存，不用重新构建整个站点。
+所以博客内容始终放在独立的仓库里（eleventy-blog-pagescms）。实际写博客的体验分两种情况：
+
+**人来写。** 登录 Pages CMS 的 Web 后台，直接在浏览器里写 Markdown、上传封面图、填好 frontmatter，点「发布」就完事了。Pages CMS 会替你把内容推到 GitHub，触发 Action 自动构建，构建完成后通过 webhook 回调 VPS 上的 `/internal/revalidate`——ISR 缓存失效、新文章即时上线。全程不用碰 Git、不用打开终端、甚至不用知道自己写的东西最后跑在哪个服务器上。
+
+**AI 来写。** 更简单。AI 直接读博客仓库的 `posts/` 目录了解现有风格和 frontmatter 约定，写完一篇 Markdown 推到仓库，手动触发一下 GitHub Action 就上线了。整个流程 AI 不需要理解主站的 SSR 架构，也不需要知道论坛的 D1 表结构——它只需要面对一个纯内容仓库。
+
+反过来想，如果把博客内容直接缝在主项目的源码里，会有什么问题？人来写的话，要么在本地电脑上存一份主项目源码、改完文章再推送——这过程中你完全可能不小心改到别的文件，误伤功能代码。要么把 Pages CMS 接到主项目仓库——但你在后台写博客的时候，AI 可能正在帮你改论坛的反滥用逻辑，两边的 commit 搅在一起，rebase 和 merge 冲突是家常便饭，commit 历史会乱得没法看。再加上文章 + 图片 + 业务逻辑全塞在一个仓库里，clone 一次等半天，构建一次喝杯咖啡——拆分是唯一合理的决定。
+
+不过旧项目的拆分方式过于激进了：它不光把内容拆出去，连前端的壳也拆了——博客数据在 Cloudflare Workers 上、渲染在浏览器端，两者之间只有 JSON。用户感知到的是多一次网络请求、多一秒白屏。而现在用 SSR + ISR 的方案，博客内容和主站 UI 在服务端就合在一起了——**用户完全感知不到博客是外部数据源，只有开发者才知道它们是分开的。**
 
 论坛的数据源是本机的 D1 数据库，帖子实时变化，同样不需要构建。
 
