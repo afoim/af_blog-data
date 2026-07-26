@@ -39,3 +39,19 @@ jobs:
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           wranglerVersion: "4"
           command: deploy
+
+      # 通知大前端（VPS）拉取本仓库并重跑 generate-posts.js。
+      #
+      # 少了这一步，博客的 RSS / sitemap / 正文在 2x.nz 上会停在旧版本：
+      # 大前端不生成任何博客产物，只代理 VPS 上那份仓库副本，而那份副本除了
+      # 这个 webhook 之外没有任何自动更新机制（无 cron、无 timer）。
+      #
+      # 端点是幂等的（git pull + 重新生成），失败不该阻断已经成功的 CDN 部署，
+      # 所以标记 continue-on-error —— 但仍会在 Action 里显红，便于发现。
+      - name: Revalidate svaf-next (VPS)
+        continue-on-error: true
+        run: |
+          resp=$(curl -sS -m 300 -X POST \
+            "https://2x.nz/internal/revalidate?token=${{ secrets.SVAF_REVALIDATE_TOKEN }}")
+          echo "$resp"
+          echo "$resp" | grep -q '"ok":true' || { echo "::error::revalidate 未返回 ok"; exit 1; }
