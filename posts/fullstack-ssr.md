@@ -16,14 +16,14 @@ tags:
 
 # 引言
 
-我在上篇文章[纯前端 SPA 的 SEO 自救指南](/posts/svaf-next-seo)里详细讲了一遍我是怎么靠边缘 Worker + 路由级元数据 + 结构化数据那套组合拳，让一个纯 SPA 网站在搜索引擎和社交爬虫面前装成传统多页网站的。这套方案跑了大半年，Google 和百度都收得挺好，分享卡片也正常展开——表面上看起来，SEO 问题已经解决了。
+我在上篇文章[纯前端 SPA 的 SEO 自救指南](/posts/svaf-next-seo)里详细讲了一遍我是怎么靠边缘 Worker + 路由级元数据 + 结构化数据那套组合拳，让一个纯 SPA 网站在搜索引擎和社交爬虫面前装成传统多页网站的。这套方案跑了不到三天就被我放弃了——不是因为 SEO 效果不行，而是架构太复杂了。各种 Worker 路由叠在一起，你完全搞不清主站某个路径到底是主站本身提供的，还是被别的 Worker 路由截胡了；再加上回源规则的重写，这个路径到底是真的还是被改写过的，根本无从判断。Google 和百度确实收得挺好，分享卡片也正常展开——表面上看起来 SEO 问题解决了，但底下的复杂度已经失控。
 
 但有两个硬伤是边缘补丁怎么都盖不住的：
 
 1. **禁用 JavaScript 后，页面是什么样？** SPA 嘛，`<div id="root">` 里什么都没有，用户看到的是一片白。虽说现实中没多少人关 JS，而且我们已经做了内容分流——搜索引擎和社交爬虫看到的是边缘 Worker 预烘焙的 HTML，收录不成问题——但「看人下菜碟」本身就说明架构有根本性的缺陷，靠补丁过日子不是长久之计。
 2. **架构越叠越复杂。** 一个页面三套渲染路径：边缘 Worker 给爬虫拼 HTML、SPA 自己给浏览器画界面、还有一堆 `<noscript>` 兜底。同一功能两份实现，改一处忘一处是常态。
 
-于是在把博客从 SSG 拆出去、论坛独立部署、工具页稳定运行之后，我终于腾出手来做了一件事——**把整个 svaf-next 从纯 SPA 迁到 React Router 7 Framework Mode 的全站服务端渲染（SSR）**。
+于是在把博客拆到独立仓库、论坛独立部署、工具页稳定运行之后，我终于腾出手来做了一件事——**把整个 svaf-next 从纯 SPA 迁到 React Router 7 Framework Mode 的全站服务端渲染（SSR）**。
 
 这篇文章就是这次迁移的完整记录。不吹不黑，把架构决策、踩过的坑、以及最终落地的运维方案都摊开来。
 
@@ -105,13 +105,17 @@ DOMPurify 依赖真实 DOM API，Node 里没有。SSR 之前，SPA 时代的净�
 
 解法是 `app/lib/sanitize.server.ts`——用 jsdom 模拟 DOM，在上面跑 DOMPurify，与客户端逐字节等价。**不要自造标签白名单**，和客户端不一致会导致内容漂移。
 
-# 博客是 SSG，论坛是 SSR：RSS 和 Sitemap 的职责划分
+# 博客不绑在主项目里：为什么不做 SSG
 
-架构上有一个很重要的决策点：**博客和论坛的本质不同，产物的生成地点也应该不同。**
+这一段值得单独拿出来讲，因为它决定了整个站点的内容获取策略。
 
-博客的数据源是 `posts/*.md` 文件，存在 GitHub 上，每次发文通过 PagesCMS → GitHub Action → `generate-posts.js` 产出 `posts.json`、`rss.xml`、sitemap 等产物，部署到 Cloudflare 的 `raw-posts.2x.nz`。
+无论是旧项目还是新项目，**2x.nz 从来没有用过 SSG**。旧项目是纯 CSR——前端在浏览器里发请求拉博客后端的 `posts.json` 索引，拿到列表后再按需取单篇 markdown 回来渲染。新项目是 SSR+ISR——服务端在请求时读本地文件渲染 HTML，缓存按 `generatedAt` 版本标记失效。
 
-论坛的数据源是本机的 D1 数据库，帖子实时变化，不存在「构建」这个动作。
+为什么不做 SSG？原因非常简单：**我不想把博客文章和图片打包到主项目的源码里面。** 一百多篇带全文的 markdown、上千张原图（单张最大 714KB），塞进源码里构建时间和体积都会爆炸。旧项目时代我甚至专门写过一篇文章讲这件事——[整个博客非得塞到网站源码吗？不！纯前端的前后端分离全部搞定！](/posts/micro-blog-service)。
+
+所以博客内容始终放在独立的仓库里（eleventy-blog-pagescms），每次发文通过 PagesCMS → GitHub Action → `generate-posts.js` 产出 `posts.json`、`rss.xml`、sitemap 等产物，部署到 Cloudflare 的 `raw-posts.2x.nz`。主站这边**不在构建时读博客数据**——而是在 VPS 上存一份仓库副本，请求时按本地文件渲染，靠 `/internal/revalidate` webhook 保持更新。这其实就是 ISR 的思路：内容变了就拉、没变就用缓存，不用重新构建整个站点。
+
+论坛的数据源是本机的 D1 数据库，帖子实时变化，同样不需要构建。
 
 所以我把职责一刀切了：
 
@@ -144,7 +148,7 @@ GitHub Action deploy 完成
 
 这次迁移表面上是 SPA → SSR，底层其实还有一个更大的转向：**从边缘函数 / 静态托管退回到自己管一台 VPS。**
 
-上一代架构——纯 SPA + 边缘 Worker 预烘焙——理论上可以部署在任何静态托管服务上：Cloudflare Workers 拼路由、Cloudflare Pages 放静态资源、Vercel 跑构建。实际上我也是这么干的：博客拆在 Cloudflare Workers 上跑 SSG、论坛跑在 `wrangler dev` 上、主站静态资源放在 Cloudflare Pages。三个域名、三套部署流水线、三处日志分散在不同的仪表盘里。
+上一代架构——纯 SPA + 边缘 Worker 预烘焙——理论上可以部署在任何静态托管服务上：Cloudflare Workers 拼路由、Cloudflare Pages 放静态资源、Vercel 跑构建。实际上我也是这么干的：博客拆在 Cloudflare Workers 上当远程数据源、论坛跑在 `wrangler dev` 上、主站静态资源放在 Cloudflare Pages。三个域名、三套部署流水线、三处日志分散在不同的仪表盘里。
 
 迁到 VPS 之后，所有这些变成了一台机器上的一个进程。听起来像是倒退，但有几个实打实的好处：
 
@@ -152,14 +156,20 @@ GitHub Action deploy 完成
 2. **开发成本显著降低。** 本地 `node server.js` 起来就是完整环境——博客代理、论坛代理、RSS 代理、静态资源服务全在，和线上 1:1。之前每加一个子域名 Worker 就要在 `wrangler.toml` 里补路由、在 `_headers` 里补 CORS、在 GitHub Actions 里补部署步骤——现在都不需要了。
 3. **用户体验更好。** 所有页面全站 SSR，首屏 HTML 直出，不再依赖客户端 JS 渲染 → 水合这一整条链路。禁用 JS 也能看到完整内容。
 
-但代价也很明确：**你需要一台 VPS，而且你得自己管它。** supervisor、ufw、TLS 证书续期、日志轮转、磁盘告警——这些都是静态托管不会让你操心的事。
+但代价也很明确：**你需要一台 VPS，而且你得自己管它。** supervisor、ufw、日志轮转、磁盘告警——这些都是静态托管不会让你操心的事。好在本站的 TLS 不需要自己续：VPS 只开 80 端口，Cloudflare 开小黄云代理回源，SSL 完全归 CF 管，证书到期自动续。
+
+另外有两个迁移中特别明显的降级：
+
+**1. 数据库失去了秒级回滚。** Cloudflare D1 自带 point-in-time recovery，删库了能从任意时间点恢复到秒级。但 D1 的查询层跑在 Cloudflare 边缘，`wrangler dev` 只能做远程代理——迁到 VPS 后论坛后端要跑在本机，D1 不再可用。我最终选了 SQLite 平替——功能对等，但秒级回滚没了。现在只能靠自己：定时 `sqlite3 .dump` 备份、上线前先在 staging 验证——说白了就是回到了传统 DBA 的谨慎模式。
+
+**2. VPS 没有 Cloudflare 的云安全护盾。** D1 跑在 CF 的 VPC 里、Workers 默认隔离、DDoS 在边缘就被消化了。自己管 VPS 意味着你要自己盯安全公告、自己配 ufw、自己堵漏洞——SSRF、SQL 注入、依赖供应链攻击，每一样都得自己兜底。Cloudflare 那层小黄云挡了 DDoS，但应用层的安全问题它不会替你修。
 
 如果你财力雄厚、不担心被刷账单，那直接把 SSR 应用部署在边缘函数上也是可行的。Cloudflare Workers 配合 [OpenNext](https://opennext.js.org) 这样的适配器就能在边缘起一个完整的 Next.js / React Router 运行时——全球分发、零运维。但有两个风险绕不开：
 
 - **被 DDoS 攻击时服务不会停，但账单没有天花板。** 边缘函数的计费模型是按请求数 + CPU 时间，不设封顶。Cloudflare 的 DDoS 防护能保证你在线，不能保证你不破产。
 - **边缘函数不是真正的 Node.js。** Workers 的运行时是 V8 Isolate，不是 Node 进程。跑 SSR 框架需要借助专门的适配器（Next.js → OpenNext，Remix → 有社区方案），这些适配器成熟度参差不齐，出了 bug 排查链很长——到底是你的代码、框架、还是适配器的问题，很难定位。
 
-VPS 的方案则相反：**一台机器的账单是固定的**，不管你一天 100 UV 还是 10 万 UV（只要机器扛得住）。被攻击时 `ufw` 和 Cloudflare Tunnel 挡在前面，最多打满带宽，不会有意外账单。对我这种个人站点来说，一个月几美元的固定成本远比弹性计费的心智负担划算。
+VPS 的方案则相反：**一台机器的账单是固定的**，不管你一天 100 UV 还是 10 万 UV（只要机器扛得住）。被攻击时 `ufw` 挡在前面，Cloudflare 小黄云在边缘扛 DDoS，最多打满带宽，不会有意外账单。对我这种个人站点来说，一个月几美元的固定成本远比弹性计费的心智负担划算。
 
 所以这不是「VPS 比边缘函数好」的问题，是「固定成本 vs 弹性计费」的取舍。如果你的流量稳定、愿意做运维，选 VPS；如果你追求零运维、能承受账单波动，选边缘函数。
 
@@ -192,7 +202,7 @@ supervisorctl restart svaf-ssr:
 
 SSR 让页面渲染不再依赖客户端 JS，但发邮件、注册、登录这些写操作仍然需要防滥用。本站靠的是三层：
 
-**第一层：Cloudflare CDN。** 端口 8787 / 3000 都不对公网开放（ufw 默认 DROP），所有流量走 Cloudflare Tunnel 回源。好处是 CF 的 DDoS 防护免费兜底，而且客户端真实 IP 只从 `CF-Connecting-IP` 取——这个头在边缘被覆写，伪造不进来。
+**第一层：Cloudflare CDN。** VPS 只对公网开放 80 端口，Cloudflare 小黄云代理回源，真实 IP 只从 `CF-Connecting-IP` 取——这个头在边缘被覆写，伪造不进来。DDoS 在 CF 边缘就被消化了，打不到源站。
 
 **第二层：按 IP 的冷却窗口。** 注册、找回密码、更换邮箱各有一个独立的冷却计时器。同一 IP 在窗口期内重复请求会收到 429，附带 `retryAfter` 秒数。邮箱维度的冷却保留——防止同一个人反复点重发，IP 维度的冷却补上——防止换邮箱接着刷。两者互补。
 
@@ -212,7 +222,7 @@ SSR 让页面渲染不再依赖客户端 JS，但发邮件、注册、登录这�
 
 - **不需要 Next.js 的全栈能力** 的时候，React Router 7 Framework Mode 够用且清爽。它只做路由 → loader → 同构 component 这一条链，没有 Server Components 的心智负担。
 - **无 JS 可用性是验收标准，不是优化项。** 从第一天就 `curl` 页面检查，不要等上线了才发现禁用 JS 的用户看到的是空白。
-- **SSG 和 SSR 可以共存。** 博客这种静态内容就让它在 CI 里跑完，大前端只做代理；论坛这种活数据才需要实时 SSR。职责不清会导致同一个数据有两个生成源，然后两边漂移。
+- **内容和数据分离。** 博客文章和图片不打包进主项目，独立仓库通过 ISR 式的本地副本按需 SSR 渲染；论坛这种活数据才需要每次请求都查库。职责不清会导致同一个数据有两个生成源，然后两边漂移。
 - **部署不比 SPA 复杂。** express.static + supervisor 就能跑，旁路构建 + 原子替换就能做到近零停机。不需要 Docker、不需要 K8s。
 
-把博客从源码里拆出去（[那篇文章](/posts/micro-blog-service)）、给 SPA 加上 SEO（[那篇文章](/posts/svaf-next-seo)）、再到现在全站 SSR——这三次迁移下来，2x.nz 的前端架构终于到了我满意的状态。后面如果有时间，可能会再写一篇关于整个后端体系的（论坛 D1 + 生图 nDI + Cloudflare Tunnel 组网），那个坑更多。
+把博客从源码里拆出去（[那篇文章](/posts/micro-blog-service)）、给 SPA 加上 SEO（[那篇文章](/posts/svaf-next-seo)）、再到现在全站 SSR——这三次迁移下来，2x.nz 的前端架构终于到了我满意的状态。后面如果有时间，可能会再写一篇关于整个后端体系的（论坛 D1 → SQLite + 生图 nDI + Cloudflare 组网），那个坑更多。
