@@ -310,6 +310,10 @@ function generateRssFeed(allPosts, allRawPosts) {
 
   var lines = [];
   lines.push('<?xml version="1.0" encoding="utf-8"?>');
+  // xml-stylesheet：让浏览器直接渲染成可读页面，而不是摊一堆裸 XML。
+  // 阅读器只读节点，会忽略这条处理指令。样式表需与订阅源同源，所以
+  // svaf-next（public/xsl/）与本仓库（xsl/ → dist/xsl/）各放了一份。
+  lines.push('<?xml-stylesheet type="text/xsl" href="/xsl/rss.xsl"?>');
   lines.push('<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">');
   lines.push("  <channel>");
   lines.push("    <title>" + escapeXml(SITE_TITLE) + "</title>");
@@ -405,6 +409,21 @@ for (var dpg = 0; dpg < pageCount; dpg++) {
 }
 writeFileSync(join(__dirname, "dist", "rss.xml"), readFileSync(FEED_OUTPUT, "utf-8"), "utf-8");
 console.log("Copied posts.json + " + pageCount + " page files + rss.xml into dist/");
+
+// ---- XSL 样式表 ----
+// rss.xml / sitemap.xml 里的 <?xml-stylesheet?> 指向 /xsl/*.xsl。XSLT 受同源
+// 策略约束，所以每个提供订阅源的域名下都得有一份：这里是 raw-posts.2x.nz，
+// 2x.nz 那份在 svaf-next 的 public/xsl/。两处内容应保持一致。
+mkdirSync(join(__dirname, "dist", "xsl"), { recursive: true });
+for (const xslFile of readdirSync(join(__dirname, "xsl"))) {
+  if (!xslFile.endsWith(".xsl")) continue;
+  writeFileSync(
+    join(__dirname, "dist", "xsl", xslFile),
+    readFileSync(join(__dirname, "xsl", xslFile), "utf-8"),
+    "utf-8",
+  );
+}
+console.log("Copied XSL stylesheets into dist/xsl/");
 
 // ---- SEO 静态预渲染页 (dist/seo/posts/<slug>.html) ----
 // 目的：把主仓边缘 Worker「给爬虫动态拼 HTML」的活挪到构建时。
@@ -580,8 +599,12 @@ for (var si = 0; si < visibleSorted.length; si++) {
       : "";
   sitemapUrls.push("  <url><loc>" + sloc + "</loc>" + slastmod + "</url>");
 }
+// xml-stylesheet：给浏览器一个可读页面，同时消掉「This XML file does not appear
+// to have any style information…」那行浏览器自带的提示。爬虫会忽略处理指令。
 var sitemapXml =
-  '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<?xml-stylesheet type="text/xsl" href="/xsl/sitemap.xsl"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   sitemapUrls.join("\n") +
   "\n</urlset>\n";
 writeFileSync(join(__dirname, "dist", "seo", "posts", "sitemap.xml"), sitemapXml, "utf-8");
