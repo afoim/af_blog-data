@@ -31,14 +31,23 @@ function absUrl(url) {
 // --- AVIF <picture> helper ---
 // 当原始文件是 jpg/png/gif 时包裹 <picture> + <source type="image/avif">，
 // 浏览器优先加载 AVIF 版本，不支持的回退到 <img> fallback。
-// AVIF 文件由 convert-avif.js 在 CI 构建期产出并部署到 raw-posts.2x.nz，
-// 只要 CI 跑过就一定存在，不做本地文件系统检查（VPS 上没有 dist/img/）。
+// AVIF 文件由 convert-avif.js 在 generate-posts.js 之前产出到 dist/img/。
 var AVIF_EXT_RE = /\.(jpg|jpeg|png|gif)$/i;
 function pictureImage(href, alt, extraAttrs) {
   if (!AVIF_EXT_RE.test(href)) {
     return '<img src="' + href + '" alt="' + alt + '"' + (extraAttrs || "") + " />";
   }
   var avifHref = href.replace(AVIF_EXT_RE, ".avif");
+  // statSync 确认 AVIF 存在（convert-avif.js 已跑过），不存在就退回原始图
+  var base = SITE_URL.replace(/\/$/, "");
+  var rel = avifHref.indexOf(base + "/") === 0 ? avifHref.slice(base.length + 1) : null;
+  var avifOk = false;
+  if (rel) {
+    try { avifOk = statSync(join(__dirname, "dist", rel)).isFile(); } catch (e) { /* 不存在 */ }
+  }
+  if (!avifOk) {
+    return '<img src="' + href + '" alt="' + alt + '"' + (extraAttrs || "") + " />";
+  }
   return (
     "<picture>" +
     '<source srcset="' + avifHref + '" type="image/avif" />' +
