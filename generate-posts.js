@@ -28,12 +28,31 @@ function absUrl(url) {
   return base + path;
 }
 
+// --- WebP <picture> helper ---
+// 当原始文件是 jpg/png/gif 时包裹 <picture> + <source type="image/webp">，
+// 浏览器优先加载 WebP 版本，不支持的回退到 <img> fallback。
+// WebP 文件由 convert-to-webp.js 在 CI 构建期产出并部署到 raw-posts.2x.nz，
+// 只要 CI 跑过就一定存在，不做本地文件系统检查。
+var WEBP_EXT_RE = /\.(jpg|jpeg|png|gif)$/i;
+function pictureImage(href, alt, extraAttrs) {
+  if (!WEBP_EXT_RE.test(href)) {
+    return '<img src="' + href + '" alt="' + alt + '"' + (extraAttrs || "") + " />";
+  }
+  var webpHref = href.replace(WEBP_EXT_RE, ".webp");
+  return (
+    "<picture>" +
+    '<source srcset="' + webpHref + '" type="image/webp" />' +
+    '<img src="' + href + '" alt="' + alt + '"' + (extraAttrs || "") + " />" +
+    "</picture>"
+  );
+}
+
 // --- Configure marked to use absUrl for images and links ---
 var renderer = new marked.Renderer();
 renderer.image = function (tok) {
   var href = tok.href ? absUrl(tok.href) : "";
-  var alt = tok.text || "";
-  return '<img src="' + href + '" alt="' + alt.replace(/"/g, "&quot;") + '" />';
+  var alt = (tok.text || "").replace(/"/g, "&quot;");
+  return pictureImage(href, alt, "");
 };
 renderer.link = function (tok) {
   var href = tok.href ? absUrl(tok.href) : "";
@@ -337,7 +356,7 @@ function generateRssFeed(allPosts, allRawPosts) {
     // Full HTML with cover image at top if available
     var fullContent = "";
     if (post.image) {
-      fullContent += '<p><img src="' + absUrl(post.image) + '" alt="' + escapeXml(post.title) + '" /></p>';
+      fullContent += '<p>' + pictureImage(absUrl(post.image), escapeXml(post.title), '') + '</p>';
     }
     if (post.description) {
       fullContent += "<p>" + escapeXml(post.description) + "</p>";
@@ -445,8 +464,8 @@ var SITE_AVATAR = "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0";
 var seoRenderer = new marked.Renderer();
 seoRenderer.image = function (tok) {
   var href = tok.href ? absUrl(tok.href) : "";
-  var alt = tok.text || "";
-  return '<img src="' + href + '" alt="' + alt.replace(/"/g, "&quot;") + '" loading="lazy" />';
+  var alt = (tok.text || "").replace(/"/g, "&quot;");
+  return pictureImage(href, alt, ' loading="lazy"');
 };
 seoRenderer.link = function (tok) {
   var href = tok.href || "";
