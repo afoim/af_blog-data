@@ -31,7 +31,7 @@ jobs:
 
       - name: Prepare dist directory
         run: |
-          cp -r img dist/img/
+          cp -r img/* dist/img/
           cp _headers dist/
 
       - name: Deploy to Cloudflare Workers
