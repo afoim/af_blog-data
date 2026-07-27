@@ -25,8 +25,6 @@ jobs:
 
       - run: npm ci
 
-      - run: node convert-avif.js
-
       - run: node generate-posts.js
 
       - name: Prepare dist directory

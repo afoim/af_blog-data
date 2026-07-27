@@ -1,20 +1,9 @@
 {
   "page": 3,
   "perPage": 30,
-  "total": 159,
+  "total": 158,
   "pageCount": 6,
   "posts": [
-    {
-      "slug": "umami-local-2-render",
-      "title": "记录迁移Umami，从本地到云",
-      "description": "之前的站点统计部署在家里云NAS，通过IPv6回源，而现在我将他迁移到了Render+Supabase",
-      "published": "2025-08-28",
-      "image": null,
-      "pinned": false,
-      "draft": false,
-      "hide": false,
-      "tags": []
-    },
     {
       "slug": "cbjq-unzip",
       "title": "记录解包尘白禁区以获得涩涩（？）CG",
@@ -329,6 +318,17 @@
       "description": "很讨厌别人用ITDog等拨测服务疯狂测试你的站点？拒绝他们！",
       "published": "2025-07-09",
       "image": "https://raw-posts.2x.nz/img/vercel-deny-d81562f3-8efb-45f3-8dd1-72cb9c032bc2.webp",
+      "pinned": false,
+      "draft": false,
+      "hide": false,
+      "tags": []
+    },
+    {
+      "slug": "umami",
+      "title": "让你的网站对接高级的Umami统计！",
+      "description": "Umami是一个站点统计服务，只需要插入一行js即可获得高效，易读，可观察性的站点统计！",
+      "published": "2025-07-05",
+      "image": "https://raw-posts.2x.nz/img/umami-6eedb10a-08d3-4268-8caf-370bc093a668.webp",
       "pinned": false,
       "draft": false,
       "hide": false,
