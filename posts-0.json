@@ -1,7 +1,7 @@
 {
   "page": 0,
   "perPage": 30,
-  "total": 158,
+  "total": 159,
   "pageCount": 6,
   "posts": [
     {
@@ -16,9 +16,22 @@
       "tags": []
     },
     {
+      "slug": "fullstack-ssr",
+      "title": "从 SPA 到全站 SSR：2x.nz 的服务端渲染实践录",
+      "description": "上篇 SEO 的文章里我提到已经把网站从 Next.js 迁到了 Vite+React Router 7 的纯 SPA，并靠边缘 Worker+路由级元数据+预渲染四管齐下搞定了 SEO。但 SPA 终究有天花板——比如禁用 JS 后整页空白这种硬伤， 不是边缘补丁能解决的。这篇文章记录 2x.nz 从 SPA 再次迁移到 React Router 7 Framework Mode 全站 SSR 的完整过程，包括架构选型、坑位清单、部署流水线和运维保障。",
+      "published": "2026-07-27",
+      "image": "https://raw-posts.2x.nz/img/cover-fullstack-ssr.png",
+      "pinned": false,
+      "draft": false,
+      "hide": false,
+      "tags": [
+        "技术"
+      ]
+    },
+    {
       "slug": "svaf-next-seo",
       "title": "纯前端 SPA 的 SEO 自救指南：我是如何让博客和论坛被百度谷歌乖乖收录的",
-      "description": "众所周知，现在流行前后端分离，而 SPA 更是许多个人网站的首选。但 SPA 天生的 SEO 劣势（爬虫不执行 JS）让很多人头疼不已。这篇文章就来复盘一下，",
+      "description": "众所周知，现在流行前后端分离，而 SPA 更是许多个人网站的首选。但 SPA 天生的 SEO 劣势（爬虫不执行 JS）让很多人头疼不已。这篇文章就来复盘一下， 我（二叉树树）的网站是如何通过边缘 Worker + 路由级元数据 + 结构化数据 + 预渲染四管齐下，让搜索引擎和社交爬虫在 SPA 里也能畅游的。",
       "published": "2026-07-22",
       "image": "https://raw-posts.2x.nz/img/cover-svaf-next-seo.png",
       "pinned": false,
@@ -31,7 +44,7 @@
     {
       "slug": "micro-blog-service",
       "title": "整个博客非得塞到网站源码吗？不！纯前端的前后端分离全部搞定！",
-      "description": "很久很久以前，我的网站一直都是把博文和图片资源当做源码，封装在整个源码仓库里的。这会导致仅仅更新一行代码，CI/CD",
+      "description": "很久很久以前，我的网站一直都是把博文和图片资源当做源码，封装在整个源码仓库里的。这会导致仅仅更新一行代码，CI/CD 都需要重新拉取整个仓库，包括高达 5 个 G 的博客图片。  那么，我们为什么不能跟它分离开来？来，这期教你掌控分离的权能！",
       "published": "2026-07-17",
       "image": "https://raw-posts.2x.nz/img/cover.png",
       "pinned": false,
@@ -90,7 +103,7 @@
     {
       "slug": "9060xt",
       "title": "AMD 9060XT测评",
-      "description": "",
+      "description": "9060XT评测：从AMD Readon Software到实际游戏体验",
       "published": "2026-06-06",
       "image": "https://raw-posts.2x.nz/img/9060xt-cover-5.png",
       "pinned": false,
@@ -324,17 +337,6 @@
       "description": "你是否正在寻找一个密码库？又不想自托管？",
       "published": "2026-02-23",
       "image": "https://raw-posts.2x.nz/img/bitwarden-com-bitwarden.png",
-      "pinned": false,
-      "draft": false,
-      "hide": false,
-      "tags": []
-    },
-    {
-      "slug": "google-adsense",
-      "title": "保姆级通过Google Adsense的教程！",
-      "description": "你是否正在运营一个脍炙人口的网站？手把手教你变现！",
-      "published": "2026-02-23",
-      "image": "https://raw-posts.2x.nz/img/google-adsense-google-adsense1.png",
       "pinned": false,
       "draft": false,
       "hide": false,

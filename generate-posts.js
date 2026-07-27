@@ -28,12 +28,40 @@ function absUrl(url) {
   return base + path;
 }
 
+// --- AVIF <picture> helper ---
+// 当原始文件是 jpg/png/gif 时包裹 <picture> + <source type="image/avif">，
+// 浏览器优先加载 AVIF 版本，不支持的回退到 <img> fallback。
+// AVIF 文件由 convert-avif.js 在 generate-posts.js 之前产出到 dist/img/。
+var AVIF_EXT_RE = /\.(jpg|jpeg|png|gif)$/i;
+function pictureImage(href, alt, extraAttrs) {
+  if (!AVIF_EXT_RE.test(href)) {
+    return '<img src="' + href + '" alt="' + alt + '"' + (extraAttrs || "") + " />";
+  }
+  var avifHref = href.replace(AVIF_EXT_RE, ".avif");
+  // statSync 确认 AVIF 存在（convert-avif.js 已跑过），不存在就退回原始图
+  var base = SITE_URL.replace(/\/$/, "");
+  var rel = avifHref.indexOf(base + "/") === 0 ? avifHref.slice(base.length + 1) : null;
+  var avifOk = false;
+  if (rel) {
+    try { avifOk = statSync(join(__dirname, "dist", rel)).isFile(); } catch (e) { /* 不存在 */ }
+  }
+  if (!avifOk) {
+    return '<img src="' + href + '" alt="' + alt + '"' + (extraAttrs || "") + " />";
+  }
+  return (
+    "<picture>" +
+    '<source srcset="' + avifHref + '" type="image/avif" />' +
+    '<img src="' + href + '" alt="' + alt + '"' + (extraAttrs || "") + " />" +
+    "</picture>"
+  );
+}
+
 // --- Configure marked to use absUrl for images and links ---
 var renderer = new marked.Renderer();
 renderer.image = function (tok) {
   var href = tok.href ? absUrl(tok.href) : "";
-  var alt = tok.text || "";
-  return '<img src="' + href + '" alt="' + alt.replace(/"/g, "&quot;") + '" />';
+  var alt = (tok.text || "").replace(/"/g, "&quot;");
+  return pictureImage(href, alt, "");
 };
 renderer.link = function (tok) {
   var href = tok.href ? absUrl(tok.href) : "";
@@ -265,6 +293,7 @@ const MIME_MAP = {
   ".webp": "image/webp",
   ".svg": "image/svg+xml",
   ".bmp": "image/bmp",
+  ".avif": "image/avif",
 };
 
 /**
@@ -337,7 +366,7 @@ function generateRssFeed(allPosts, allRawPosts) {
     // Full HTML with cover image at top if available
     var fullContent = "";
     if (post.image) {
-      fullContent += '<p><img src="' + absUrl(post.image) + '" alt="' + escapeXml(post.title) + '" /></p>';
+      fullContent += '<p>' + pictureImage(absUrl(post.image), escapeXml(post.title), '') + '</p>';
     }
     if (post.description) {
       fullContent += "<p>" + escapeXml(post.description) + "</p>";
@@ -445,8 +474,8 @@ var SITE_AVATAR = "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0";
 var seoRenderer = new marked.Renderer();
 seoRenderer.image = function (tok) {
   var href = tok.href ? absUrl(tok.href) : "";
-  var alt = tok.text || "";
-  return '<img src="' + href + '" alt="' + alt.replace(/"/g, "&quot;") + '" loading="lazy" />';
+  var alt = (tok.text || "").replace(/"/g, "&quot;");
+  return pictureImage(href, alt, ' loading="lazy"');
 };
 seoRenderer.link = function (tok) {
   var href = tok.href || "";
