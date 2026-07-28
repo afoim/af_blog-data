@@ -7,9 +7,8 @@ draft: false
 coverImage: /img/af-claude-code-ops-pitfalls.png
 ---
 
-:::caution
-本文由 DeepSeek V4 Pro 基于实际开发记录撰写，内容已经人工审核。
-:::
+> [!caution]
+> 本文使用 DeepSeek-V4-Pro 编写。
 
 2026 年 7 月 28 日，我计划给全站做一轮性能优化，顺带把论坛的通知系统重构掉。预期半天收工，结果干了整整一天，中间两次差点把线上功能丢光。事后来看，所有的问题都指向同一件事：**在多机多仓、有生产数据的真实环境里，AI 编程助手缺乏仓库拓扑感知能力时，会系统性犯错。**
 
