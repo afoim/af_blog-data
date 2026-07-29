@@ -1,7 +1,7 @@
 ---
 title: af_ 系统运维灾难复盘：我把 7 个仓库交给 AI，丢了两次线上功能
 description: 别让 AI 在没版本控制的机器上改代码，你会哭着补回来的
-coverImage: /img/af-claude-code-ops-pitfalls.png
+coverImage: /img/af-claude-code-ops-pitfalls-v2.png
 date: 2026-07-29
 draft: false
 pin: false
