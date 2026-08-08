@@ -1,6 +1,7 @@
 ---
 title: 从零在您的Windows、Linux和Android设备上使用WARP（Cloudflare IP）游览互联网
 description: Cloudflare WARP允许您使用Cloudflare的数据中心节点（通常为LAX [洛杉矶] ）进行互联网访问
+coverImage: /img/f12f646e-a3b0-4afd-9c2e-93821298f58c.png
 date: 2026-08-08
 draft: false
 pin: false
