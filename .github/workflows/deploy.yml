@@ -42,18 +42,27 @@ jobs:
           wranglerVersion: "4"
           command: deploy
 
-      # 通知大前端（VPS）拉取本仓库并重跑 generate-posts.js。
+      # 通知大前端（2x.nz）重建：博客正文已改为构建期预渲染成静态壳
+      # （posts/<slug>/index.html），新文章/改文必须让大前端重新构建并部署
+      # （deploy-cf.mjs → wrangler）预渲染壳才会跟上。前端那边
+      # .github/workflows/blog-redeploy.yml 监听 repository_dispatch。
       #
-      # 少了这一步，博客的 RSS / sitemap / 正文在 2x.nz 上会停在旧版本：
-      # 大前端不生成任何博客产物，只代理 VPS 上那份仓库副本，而那份副本除了
-      # 这个 webhook 之外没有任何自动更新机制（无 cron、无 timer）。
+      # 需要给本仓库加一个 secret：SVAF_DEPLOY_PAT —— 对 afoim/af_frontend
+      # 有 repo 权限的 PAT（经典 PAT 或 fine-grained 都行）。没配时跳过并警告。
+      # 失败不该阻断已经成功的 CDN 部署，所以 continue-on-error —— 但仍会显红。
       #
-      # 端点是幂等的（git pull + 重新生成），失败不该阻断已经成功的 CDN 部署，
-      # 所以标记 continue-on-error —— 但仍会在 Action 里显红，便于发现。
-      - name: Revalidate svaf-next (VPS)
+      # 之前那个 /internal/revalidate webhook 是给已失联的 Oracle VPS 用的，已废弃。
+      - name: 触发大前端重建（博客预渲染壳同步）
         continue-on-error: true
+        env:
+          PAT: ${{ secrets.SVAF_DEPLOY_PAT }}
         run: |
-          resp=$(curl -sS -m 300 -X POST \
-            "https://2x.nz/internal/revalidate?token=${{ secrets.SVAF_REVALIDATE_TOKEN }}")
-          echo "$resp"
-          echo "$resp" | grep -q '"ok":true' || { echo "::error::revalidate 未返回 ok"; exit 1; }
+          if [ -z "$PAT" ]; then
+            echo "::warning::未配置 SVAF_DEPLOY_PAT，跳过触发大前端重建"
+            exit 0
+          fi
+          curl -sS -X POST \
+            -H "Authorization: Bearer $PAT" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/afoim/af_frontend/dispatches \
+            -d '{"event_type":"blog-updated"}'
